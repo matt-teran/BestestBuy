@@ -1,24 +1,42 @@
-require("dotenv").config();
-
 const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: path.join(__dirname, "/client/src/index.jsx"),
+  entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "/client/dist"),
+    path: path.join(__dirname, "public"),
     filename: "bundle.js",
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /nodeModules/,
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.(jsx|js)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
+  },
+  devtool: "eval-cheap-module-source-map",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    compress: true,
+    port: 3000,
   },
 };
