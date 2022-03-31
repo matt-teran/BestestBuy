@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductInformation from './ProductInformation';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -8,7 +9,12 @@ class ProductOverview extends React.Component {
   }
 
   render() {
-    return <div>Hello I am overview</div>;
+    return (
+      <div className="product_overview_block">
+        <div>ImageGallery</div>
+        <div><ProductInformation /></div>
+      </div>
+    );
   }
 }
 
