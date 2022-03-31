@@ -25,9 +25,24 @@
         border: none;
         border-bottom: 1.5px solid white;
     }
+    input:focus-visible {
+        outline: 0;
+    }
     .search-icon {
         border: 1px solid white;
         width: 20px;
         height: 20px;
+    }
+}
+.announcement {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 36px;
+    .message {
+        font-style: italic;
+    }
+    .highlight {
+        text-decoration: underline;
     }
 }
