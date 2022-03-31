@@ -1,7 +1,7 @@
 {
   "name": "bestest_buy",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.jsx",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.1",

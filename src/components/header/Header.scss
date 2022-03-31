@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #525252;
+    height: 9vh;
+    h1 {
+        line-height: 0;
+        color: white;
+        text-decoration: underline;
+        font-size: 20px;
+        font-style: italic;
+        margin: 0 1.5em;
+    }
+}
+.search {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin: 0 1.5em;
+    input {
+        background-color: rgba(0,0,0,0);
+        width: 80%;
+        margin: 0 2em;
+        border: none;
+        border-bottom: 1.5px solid white;
+    }
+    input:focus-visible {
+        outline: 0;
+    }
+    .search-icon {
+        border: 1px solid white;
+        width: 20px;
+        height: 20px;
+    }
+}
+.announcement {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 36px;
+    .message {
+        font-style: italic;
+    }
+    .highlight {
+        text-decoration: underline;
+    }
+}
