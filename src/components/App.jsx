@@ -1,5 +1,6 @@
 import React from 'react';
 import './app.scss';
+import Navbar from './header/Navbar';
 import ProductOverview from './overview/ProductOverview';
 import RelatedProducts from './relatedProducts/RelatedProducts';
 import QuestionsAndAnswers from './Q_and_A/QuestionsAndAnswers';
@@ -15,7 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <div>Hello Team Saturn</div>
+        <Navbar />
         <div><ProductOverview /></div>
         <div><RelatedProducts /></div>
         <div><QuestionsAndAnswers /></div>
