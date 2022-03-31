@@ -1,5 +1,8 @@
 import React from 'react';
 
+import RelatedProductsList from './RelatedProductsList';
+import './RelatedProducts.scss';
+
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
@@ -8,8 +11,15 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    return <div>Hello I am RelatedProducts</div>;
+    return (
+      <div className="related-products">
+        <RelatedProductsList title="Related Products" />
+        <RelatedProductsList title="Your Outfit" />
+      </div>
+    );
   }
 }
+
+
 
 export default RelatedProducts;
