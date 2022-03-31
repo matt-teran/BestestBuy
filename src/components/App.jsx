@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <div>Hello Team Saturn</div>
         <div><ProductOverview /></div>
         <div><RelatedProducts /></div>
