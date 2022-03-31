@@ -34,7 +34,11 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
+<<<<<<< HEAD
+  devtool: "eval-cheap-module-source-map",
+=======
   devtool: 'eval-cheap-module-source-map',
+>>>>>>> 728b02f61cd5081ddf47b61ebe67017aecc7c2d8
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
