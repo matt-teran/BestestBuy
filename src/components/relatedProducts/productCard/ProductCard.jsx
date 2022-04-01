@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Rating from '../../ui/Rating/Rating';
+import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
 
 function ProductCard({
@@ -8,10 +9,15 @@ function ProductCard({
 }) {
   return (
     <div className="card">
-      <span>{category}</span>
-      <span>{name}</span>
-      <span>{`$${price}`}</span>
-      {avgRating !== -1 ? <Rating rating={avgRating} size="20px" /> : null}
+      <div className="btn-wrapper">
+        <Btn />
+      </div>
+      <div className="detail-wrapper">
+        <span>{category}</span>
+        <span>{name}</span>
+        <span>{`$${price}`}</span>
+        {avgRating !== -1 ? <Rating rating={avgRating} size="20px" /> : null}
+      </div>
     </div>
   );
 }

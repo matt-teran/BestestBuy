@@ -2,12 +2,21 @@
     background-color: rgb(190, 190, 190);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     border-radius: 10px;
     height: 200px;
     width: 135px;
-    
-}
-.star {
-    background-color: yellow;
+    .btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .btn {
+            margin: 5px;
+        }
+    }   
+    .detail-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
 }

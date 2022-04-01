@@ -13,7 +13,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-products">
-        <ProductCard avgRating={0} price="140.00" name="Camo Onesie" category="Jackets" />
+        <ProductCard avgRating={2.5} price="140.00" name="Camo Onesie" category="Jackets" />
       </div>
     );
   }
