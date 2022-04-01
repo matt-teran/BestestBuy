@@ -1,6 +1,6 @@
 import React from 'react';
+import ProductCard from './productCard/ProductCard';
 
-import RelatedProductsList from './RelatedProductsList';
 import './RelatedProducts.scss';
 
 class RelatedProducts extends React.Component {
@@ -13,13 +13,10 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-products">
-        <RelatedProductsList title="Related Products" />
-        <RelatedProductsList title="Your Outfit" />
+        <ProductCard avgRating={0} price="140.00" name="Camo Onesie" category="Jackets" />
       </div>
     );
   }
 }
-
-
 
 export default RelatedProducts;

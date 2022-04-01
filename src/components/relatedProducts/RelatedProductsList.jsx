@@ -11,12 +11,8 @@ function RelatedProductsList({ title }) {
   );
 }
 
-RelatedProductsList.defaultProps = {
-  title: propTypes.string,
-};
-
 RelatedProductsList.propTypes = {
-  title: propTypes.string,
+  title: propTypes.string.isRequired,
 };
 
 export default RelatedProductsList;

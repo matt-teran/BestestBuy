@@ -8,6 +8,7 @@ import './Rating.scss';
  * @param {String} size Size of stars in pixels ('10px', '20px' '37.3px' etc).
  * @returns {React Component}
  */
+
 function Rating({ rating, size }) {
   return (
     <div className="stars" style={{ '--rating': rating, '--star-size': size }} aria-label={`Rating of this product is ${rating} out of 5.`} />
