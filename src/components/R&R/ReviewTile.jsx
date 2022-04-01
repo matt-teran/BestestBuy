@@ -1,7 +1,13 @@
-import request from './requests.js';
+import request from './requests';
+import React from 'react';
 
-function Tiles({ productId }) {
-  console.log(productId);
+function Tiles({ productId, page = 1, sort = 'relevant' }) {
+  request.getReviews(productId, page, sort);
+  // .then((data)={
+  //   console.log(data);
+  // })
+
+  return (<div> </div>);
 }
 
 export default Tiles;
