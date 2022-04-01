@@ -1,5 +1,8 @@
 import React from 'react';
+// import requests from './requests';
+import ReviewTile from './ReviewTile';
 
+const id = 66642; // this represents an ID that's passed into props
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +11,9 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    return <div>Hello I am RatingsAndReviews</div>;
+    return (
+      <ReviewTile productId={id} />
+    );
   }
 }
 
