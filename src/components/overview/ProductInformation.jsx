@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import config from '../../config';
 import PropTypes from 'prop-types';
 import ProductCategory from './Product information/ProductCategory';
 
