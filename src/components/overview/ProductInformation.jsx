@@ -1,43 +1,28 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../config';
+import PropTypes from 'prop-types';
+import ProductCategory from './Product information/ProductCategory';
 
-const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
+function ProductInformation({ category }) {
+  return (
+    <div className="product_information_block">
+      <div>Rating</div>
+      <div><ProductCategory category={category} /></div>
+      <div>Title</div>
+      <div>Price</div>
+      <div>Detail</div>
+      <div>Share</div>
+    </div>
+  );
+}
 
-const getData = () => {
-  axios.get(
-    `${url}products?page=1&count=5`,
-    {
-      headers: {
-        Authorization: config.TOKEN,
-      },
-    },
-  )
-    .then((result) => console.log(result))
-    .catch();
+ProductInformation.propTypes = {
+  category: PropTypes.string,
 };
 
-getData();
-
-class ProductInformation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <div className="product_information_block">
-        <div>Rating</div>
-        <div>Category</div>
-        <div>Title</div>
-        <div>Price</div>
-        <div>Detail</div>
-        <div>Share</div>
-      </div>
-    );
-  }
-}
+ProductInformation.defaultProps = {
+  category: ' ',
+};
 
 export default ProductInformation;
