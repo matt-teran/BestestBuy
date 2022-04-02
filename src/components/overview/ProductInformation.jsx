@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import config from './config';
+import config from '../../config';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 
