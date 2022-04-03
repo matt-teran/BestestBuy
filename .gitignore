@@ -105,3 +105,6 @@ dist
 
 # API token
 *config.js
+
+# Sample Data
+*Data.json
