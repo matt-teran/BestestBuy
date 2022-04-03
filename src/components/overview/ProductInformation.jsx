@@ -25,4 +25,4 @@ ProductInformation.defaultProps = {
   category: ' ',
 };
 
-export default ProductInformation;
+// export default ProductInformation;

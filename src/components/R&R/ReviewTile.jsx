@@ -1,13 +1,17 @@
-import request from './requests';
 import React from 'react';
 
-function Tiles({ productId, page = 1, sort = 'relevant' }) {
-  request.getReviews(productId, page, sort);
-  // .then((data)={
-  //   console.log(data);
-  // })
-
-  return (<div> </div>);
+function Tile({ review }) {
+  return review ? (
+    <section>
+      <div>
+        <p>Star rating goes here</p>
+        <p>{`${review.reviewer_name}, ${review.date}`}</p>
+      </div>
+      <h3>{review.summary}</h3>
+      <p>{review.body}</p>
+      <div>helpful and report buttons</div>
+    </section>
+  ) : (<></>);
 }
 
-export default Tiles;
+export default Tile;

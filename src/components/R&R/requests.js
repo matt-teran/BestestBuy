@@ -4,22 +4,26 @@ const { Api_Key } = require('../../config');
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 
-const getReviews = function (productId, page, sort) {
-  console.log('productId: ', productId, ' page: ', page, ' sort: ', sort);
-  // return axios.get(url + `reviews?product_id=${productId}&page=${page}&sort=${sort}`, {
-  //   headers: {
-  //     Authorization: Api_Key,
-  //   },
-  // });
+const getReviews = function (productId, page = 1, sort = 'relevant') {
+  console.log('productId: ', productId, ' page: ', page, ' sort: ', sort); // for testing
+
+  return axios.get(`${url}reviews?product_id=${productId}&page=${page}&sort=${sort}`, {
+    headers: {
+      Authorization: Api_Key,
+    },
+  });
 };
 
-// let body = {
-//   page: 1,
-//   count: 5,
-//   sort: 'newest',
-//   product: 2,
+// working request
+/*
+return axios.get(url + `reviews?product_id=66643`, {
+    headers: {
+      Authorization: Api_Key,
+    },
+  });
+*/
+// module.exports = {
+//   getReviews,
 // };
 
-module.exports = {
-  getReviews,
-};
+export default { getReviews };
