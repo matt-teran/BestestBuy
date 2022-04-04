@@ -11,6 +11,7 @@ class ProductOverview extends React.Component {
     super(props);
     this.state = {
       category: '',
+      title: '',
     };
   }
 
@@ -30,6 +31,7 @@ class ProductOverview extends React.Component {
       .then((productInfo) => {
         this.setState({
           category: productInfo.data.category,
+          title: productInfo.data.name,
         });
       })
       .catch();
@@ -37,10 +39,11 @@ class ProductOverview extends React.Component {
 
   render() {
     const { category } = this.state;
+    const { title } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
-        <div><ProductInformation category={category} /></div>
+        <div><ProductInformation category={category} title={title} /></div>
       </div>
     );
   }
