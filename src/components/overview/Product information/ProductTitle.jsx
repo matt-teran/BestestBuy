@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function ProductTitle({ title }) {
   return (
-    <div>
-      <h4>
+    <div className="title">
+      <h4 id="title">
         {' '}
         {title}
         {' '}

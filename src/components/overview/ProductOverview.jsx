@@ -15,6 +15,7 @@ class ProductOverview extends React.Component {
       slogan: '',
       description: '',
       price: '',
+      features: [],
     };
   }
 
@@ -40,6 +41,7 @@ class ProductOverview extends React.Component {
           slogan: productInfo.data.slogan,
           description: productInfo.data.description,
           price: productInfo.data.default_price,
+          features: productInfo.data.features,
         });
       })
       .catch();
@@ -63,6 +65,7 @@ class ProductOverview extends React.Component {
     const { slogan } = this.state;
     const { description } = this.state;
     const { price } = this.state;
+    const { features } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -72,6 +75,7 @@ class ProductOverview extends React.Component {
             title={title}
             slogan={slogan}
             description={description}
+            features={features}
             price={price}
           />
         </div>
