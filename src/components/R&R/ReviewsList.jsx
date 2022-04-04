@@ -10,34 +10,54 @@ class ReviewsList extends React.Component {
     this.state = {
       numberOfTiles: 2,
       reviews: [],
-      isLoaded: true,
+      isLoaded: false,
+      page: 1,
     };
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
 
   componentDidMount() {
     const { productId } = this.props;
-    if (productId && this.state.isLoaded) {
+    const { isLoaded } = this.state;
+    if (productId && !isLoaded) {
       request.getReviews(productId)
         .then(({ data }) => {
           console.log(data.results);
           this.setState({
-            isLoaded: false,
+            isLoaded: true,
             reviews: data.results,
           });
-        }); // need a catch here
+        }).catch(() => {
+          console.log('something went wrong with the API request');
+        });
+    }
+  }
+
+  handleMoreReviews() {
+    const { numberOfTiles, reviews, page } = this.state;
+
+    this.setState({ numberOfTiles: numberOfTiles + 2 });
+
+    console.log('reviews.length: ', reviews.length, ' numberOfTiles: ', numberOfTiles);
+
+    // makes an API request ahead of time to always have more reviews ready to be displayed
+    if (reviews.length < numberOfTiles + 2) {
+      console.log('entered reviews.length < numberOfTiles +2');
     }
   }
 
   render() {
     let { isLoaded, numberOfTiles, reviews } = this.state;
-    if (isLoaded) {
+    let displayedTiles = reviews.slice(0, numberOfTiles);
+    if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
       // eslint-disable-next-line no-else-return
     } else {
       return (
-        <div>
+        <div id="reviewsList">
           <p>Total: {reviews.length}</p>
-          {reviews.map((review, index) => <ReviewTile key={index} review={review} />)}
+          {displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />)}
+          <button onClick={this.handleMoreReviews}>More Reviews</button>
         </div>
       );
     }
@@ -85,6 +105,5 @@ response to review
 rating helpfulness
 */
 
-// The most commonly used react hooks: useState, useEffect, useContext (useContext is okay not to learn right now)
+// The most commonly used react hooks: useState, useEffect, useContext
 export default ReviewsList;
-
