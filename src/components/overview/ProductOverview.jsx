@@ -16,12 +16,15 @@ class ProductOverview extends React.Component {
       description: '',
       price: '',
       features: [],
+      rating: 3,
+      review: 5,
     };
   }
 
   componentDidMount() {
     this.fetchProductData();
     this.fetchStyleData();
+    this.fetchRatingData();
   }
 
   fetchProductData() {
@@ -59,6 +62,33 @@ class ProductOverview extends React.Component {
       .then((styleInfo) => console.log(styleInfo.data));
   }
 
+  fetchRatingData() {
+    axios.get(
+      `${url}reviews?product_id=${id}`,
+      {
+        headers: {
+          Authorization: config.TOKEN,
+        },
+      },
+    )
+      .then((ratingInfo) => {
+        console.log(ratingInfo.data.results);
+        if (ratingInfo.data.results.length === 0) {
+          this.setState({
+            rating: 0,
+            review: 0,
+          });
+        } else {
+          let totalRating = 0;
+          ratingInfo.data.results.forEach((result) => { totalRating += result.rating; });
+          this.setState({
+            rating: totalRating / ratingInfo.data.results.length,
+            review: ratingInfo.data.results.length,
+          });
+        }
+      });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -66,6 +96,8 @@ class ProductOverview extends React.Component {
     const { description } = this.state;
     const { price } = this.state;
     const { features } = this.state;
+    const { rating } = this.state;
+    const { review } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -77,6 +109,8 @@ class ProductOverview extends React.Component {
             description={description}
             features={features}
             price={price}
+            rating={rating}
+            review={review}
           />
         </div>
       </div>

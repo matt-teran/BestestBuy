@@ -5,13 +5,14 @@ import ProductTitle from './Product information/ProductTitle';
 import ProductDetail from './Product information/ProductDetail';
 import Price from './Product information/Price';
 import Share from './Product information/Share';
+import StarRating from './Product information/StarRating';
 
 function ProductInformation({
-  category, title, slogan, description, price, features,
+  category, title, slogan, description, price, features, rating, review,
 }) {
   return (
     <div className="product_information_block">
-      <div>Rating</div>
+      <div><StarRating rating={rating} review={review} /></div>
       <div><ProductCategory category={category} /></div>
       <div><ProductTitle title={title} /></div>
       <div><Price price={price} /></div>
@@ -28,6 +29,8 @@ ProductInformation.propTypes = {
   description: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.shape({})),
   price: PropTypes.string,
+  rating: PropTypes.number,
+  review: PropTypes.number,
 };
 
 ProductInformation.defaultProps = {
@@ -37,6 +40,8 @@ ProductInformation.defaultProps = {
   description: '',
   features: [],
   price: '',
+  rating: 0,
+  review: 0,
 };
 
 export default ProductInformation;
