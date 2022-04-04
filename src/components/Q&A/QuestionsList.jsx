@@ -1,6 +1,4 @@
 /*
-import Question from './Question.jsx';
-import Search from './Search.jsx';
 import AskYourQuestion from './AskYourQuestion.jsx';
 import SubmitYourAnswer from './SubmitYourAnswer.jsx';
 */
@@ -8,6 +6,9 @@ import SubmitYourAnswer from './SubmitYourAnswer.jsx';
 import React from 'react';
 import axios from 'axios';
 import API_KEY from '../../config';
+import Search from './Search.jsx';
+import qData from './Data.json';
+import Question from './Question.jsx';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 
@@ -38,8 +39,14 @@ class QuestionsList extends React.Component {
   }
 
   render() {
-    return <div>Hello I am QuestionsList</div>;
+    return (
+      <div>
+        <h4>Questions & Answers</h4>
+        <Search placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...' data={qData} />
+        <Question />
+      </div>)
   }
-};
+}
+
 
 export default QuestionsList;
