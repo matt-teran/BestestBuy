@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function ProductCategory({ category }) {
   return (
-    <div>
-      <h4>
+    <div className="category">
+      <h4 id="category">
         {' '}
         {category}
         {' '}
