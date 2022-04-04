@@ -3,15 +3,14 @@ import React from 'react';
 function Question() {
   return (
     <div>
-      <div className='question'>
+      <div className='question-ctr'>
         <h4>Q: Is this a question?</h4>
-      </div>
-      <div className='answer'>
-        <h4>A: This is an answer!</h4>
       </div>
     </div>
   );
 }
+
+
 /*
 class Question extends React.Component {
   constructor(props) {
