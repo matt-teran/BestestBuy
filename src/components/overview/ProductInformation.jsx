@@ -4,6 +4,7 @@ import ProductCategory from './Product information/ProductCategory';
 import ProductTitle from './Product information/ProductTitle';
 import ProductDetail from './Product information/ProductDetail';
 import Price from './Product information/Price';
+import Share from './Product information/Share';
 
 function ProductInformation({
   category, title, slogan, description, price, features,
@@ -15,7 +16,7 @@ function ProductInformation({
       <div><ProductTitle title={title} /></div>
       <div><Price price={price} /></div>
       <div><ProductDetail slogan={slogan} description={description} features={features} /></div>
-      <div>Share</div>
+      <div><Share title={title} /></div>
     </div>
   );
 }
