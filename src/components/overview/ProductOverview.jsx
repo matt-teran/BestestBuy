@@ -14,11 +14,13 @@ class ProductOverview extends React.Component {
       title: '',
       slogan: '',
       description: '',
+      price: '',
     };
   }
 
   componentDidMount() {
     this.fetchProductData();
+    this.fetchStyleData();
   }
 
   fetchProductData() {
@@ -31,14 +33,28 @@ class ProductOverview extends React.Component {
       },
     )
       .then((productInfo) => {
+        console.log(productInfo.data);
         this.setState({
           category: productInfo.data.category,
           title: productInfo.data.name,
           slogan: productInfo.data.slogan,
           description: productInfo.data.description,
+          price: productInfo.data.default_price,
         });
       })
       .catch();
+  }
+
+  fetchStyleData() {
+    axios.get(
+      `${url}products/${id}/styles`,
+      {
+        headers: {
+          Authorization: config.TOKEN,
+        },
+      },
+    )
+      .then((styleInfo) => console.log(styleInfo.data));
   }
 
   render() {
@@ -46,6 +62,7 @@ class ProductOverview extends React.Component {
     const { title } = this.state;
     const { slogan } = this.state;
     const { description } = this.state;
+    const { price } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -55,6 +72,7 @@ class ProductOverview extends React.Component {
             title={title}
             slogan={slogan}
             description={description}
+            price={price}
           />
         </div>
       </div>
