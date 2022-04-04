@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../config';
 import ProductInformation from './ProductInformation';
+import StyleSelector from './StyleSelector';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
-const id = '66643';
+const id = '66642';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -16,8 +17,9 @@ class ProductOverview extends React.Component {
       description: '',
       price: '',
       features: [],
-      rating: 3,
-      review: 5,
+      rating: 0,
+      review: 0,
+      styles: [],
     };
   }
 
@@ -37,7 +39,7 @@ class ProductOverview extends React.Component {
       },
     )
       .then((productInfo) => {
-        console.log(productInfo.data);
+        // console.log(productInfo.data);
         this.setState({
           category: productInfo.data.category,
           title: productInfo.data.name,
@@ -59,7 +61,12 @@ class ProductOverview extends React.Component {
         },
       },
     )
-      .then((styleInfo) => console.log(styleInfo.data));
+      .then((styleInfo) => {
+        // console.log(styleInfo.data);
+        this.setState({
+          styles: styleInfo.data.results,
+        });
+      });
   }
 
   fetchRatingData() {
@@ -72,7 +79,7 @@ class ProductOverview extends React.Component {
       },
     )
       .then((ratingInfo) => {
-        console.log(ratingInfo.data.results);
+        // console.log(ratingInfo.data.results);
         if (ratingInfo.data.results.length === 0) {
           this.setState({
             rating: 0,
@@ -98,6 +105,7 @@ class ProductOverview extends React.Component {
     const { features } = this.state;
     const { rating } = this.state;
     const { review } = this.state;
+    const { styles } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -113,6 +121,8 @@ class ProductOverview extends React.Component {
             review={review}
           />
         </div>
+        <div><StyleSelector styles={styles} /></div>
+        <div>add to cart</div>
       </div>
     );
   }
