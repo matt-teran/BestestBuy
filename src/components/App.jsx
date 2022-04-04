@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header />
-        {/* <div><ProductOverview /></div> */}
+        <div><ProductOverview /></div>
         <div><RelatedProducts id={productId} /></div>
         <div><QuestionsList /></div>
         <div><RatingsAndReviews /></div>
