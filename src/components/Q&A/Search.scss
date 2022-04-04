@@ -1,0 +1,70 @@
+.search-ctr {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-input {
+  display: flex;
+  height: 7vh;
+  width: 80rem;
+  border-top: .08rem solid #0a4abf;
+  border-bottom: .08rem solid #0a4abf;
+  border-left: .08rem solid #0a4abf;
+  border-right: .08rem solid #0a4abf;
+  font-size: 16px;
+}
+
+.btn-ctr {
+  display: flex;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.maq-btn {
+  padding: .5rem;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: .0156rem;
+  font-weight: lighter;
+  color: #f6eb16;
+  background-color: #0a4abf;
+  border: none;
+  margin: .25rem;
+  box-shadow: 7px 6px 28px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  width: 15rem;
+}
+
+.aaq-btn {
+  padding: .5rem;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: .0156rem;
+  font-weight: lighter;
+  color: #f6eb16;
+  background-color: #0a4abf;
+  border: none;
+  margin: .25rem;
+  box-shadow: 7px 6px 28px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  width: 15rem;
+}
+
+.maq-btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.aaq-btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
