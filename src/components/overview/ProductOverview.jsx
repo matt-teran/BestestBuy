@@ -12,6 +12,8 @@ class ProductOverview extends React.Component {
     this.state = {
       category: '',
       title: '',
+      slogan: '',
+      description: '',
     };
   }
 
@@ -32,6 +34,8 @@ class ProductOverview extends React.Component {
         this.setState({
           category: productInfo.data.category,
           title: productInfo.data.name,
+          slogan: productInfo.data.slogan,
+          description: productInfo.data.description,
         });
       })
       .catch();
@@ -40,10 +44,19 @@ class ProductOverview extends React.Component {
   render() {
     const { category } = this.state;
     const { title } = this.state;
+    const { slogan } = this.state;
+    const { description } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
-        <div><ProductInformation category={category} title={title} /></div>
+        <div>
+          <ProductInformation
+            category={category}
+            title={title}
+            slogan={slogan}
+            description={description}
+          />
+        </div>
       </div>
     );
   }
