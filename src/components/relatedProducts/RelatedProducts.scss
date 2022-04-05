@@ -16,19 +16,27 @@
         font-size: 12px;
         color: white;
     }
-}
-.products-list {
-    display: flex;
-    width: 80%;
-    overflow: hidden;
-    position: relative;
-}
-.scroll-left {
-    position: absolute;
-    top: calc(50% - 25px);
-}
-.scroll-right {
-    position: absolute;
-    top: calc(50% - 25px);
-    left: calc(100% - 25px);
+
+    .products-list {
+        display: flex;
+        width: 90%;
+        padding: 0 5%;
+        overflow: hidden;
+        position: relative;
+        margin: 10px 0;
+        .scroll-left {
+            position: absolute;
+            top: calc(50% - 25px);
+            right: calc(100% - 25px);
+            color: $yellow;
+            background-color: $blue;
+        }
+        .scroll-right {
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(100% - 25px);
+            color: $yellow;
+            background-color: $blue;
+        }
+    }
 }

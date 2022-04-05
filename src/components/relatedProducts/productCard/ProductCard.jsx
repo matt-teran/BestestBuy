@@ -13,10 +13,10 @@ function ProductCard({
         <Btn />
       </div>
       <div className="detail-wrapper">
-        <span>{category}</span>
-        <span>{name}</span>
-        <span>{`$${price}`}</span>
-        {avgRating !== -1 ? <Rating rating={avgRating} size="20px" /> : null}
+        <span className="category">{category}</span>
+        <span className="name">{name}</span>
+        <span className="price">{`$${price}`}</span>
+        {avgRating !== -1 ? <Rating rating={avgRating} size="15px" /> : <span className="not-yet-reviewed">Not Yet Reviewed</span>}
       </div>
     </div>
   );
