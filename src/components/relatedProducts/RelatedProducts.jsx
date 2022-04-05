@@ -40,7 +40,6 @@ class RelatedProducts extends React.Component {
       .then((cards) => {
         Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, header)))
           .then((res) => {
-            console.log(res);
             this.setState({ relatedCards: cards.map((card, i) => ({ ...card, avgRating: this.getAvgRating(res[i].data.ratings) }))});
           })
           .catch((err) => { throw err; });
