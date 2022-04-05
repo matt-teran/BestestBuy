@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <>
       <div className="navbar">
-        <h1>Logo</h1>
+        <h1>BestestBuy</h1>
         <Search />
       </div>
       <div />

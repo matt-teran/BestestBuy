@@ -17,13 +17,15 @@ class App extends React.Component {
   render() {
     const { productId } = this.state;
     return (
-      <div className="app">
+      <>
         <Header />
-        <div><ProductOverview /></div>
-        <div><RelatedProducts id={productId} /></div>
-        <div><QuestionsList /></div>
-        <div><RatingsAndReviews /></div>
-      </div>
+        <div className="app">
+          <div><ProductOverview /></div>
+          <div><RelatedProducts id={productId} /></div>
+          <div><QuestionsList /></div>
+          <div><RatingsAndReviews /></div>
+        </div>
+      </>
     );
   }
 }
