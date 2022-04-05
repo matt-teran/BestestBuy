@@ -6,10 +6,10 @@ function Tile({ review }) {
   const datePosted = review.date.slice(0, 10);
   const formatedDatePosted = moment(datePosted).format('MMMM Do YYYY');
   return review ? (
-    <section id="reviewTile">
+    <section className="reviewTile">
       <div>
         <Rating rating={review.rating} size="20px" />
-        <p>{`${review.reviewer_name}, ${formatedDatePosted}`}</p>
+        <p className="reviewer">{`${review.reviewer_name}, ${formatedDatePosted}`}</p>
       </div>
       <h3>{review.summary}</h3>
       <p>{review.body}</p>

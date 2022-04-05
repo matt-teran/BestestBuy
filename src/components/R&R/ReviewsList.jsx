@@ -6,7 +6,7 @@ import 'regenerator-runtime/runtime';
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
-
+    this.hideButton = false;
     this.state = {
       numberOfTiles: 2,
       reviews: [],
@@ -23,6 +23,7 @@ class ReviewsList extends React.Component {
       request.getReviews(productId)
         .then(({ data }) => {
           console.log(data.results);
+          if (!data.results.length) this.hideButton = true;
           this.setState({
             isLoaded: true,
             reviews: data.results,
@@ -34,30 +35,35 @@ class ReviewsList extends React.Component {
   }
 
   handleMoreReviews() {
+    this.setState({ numberOfTiles: this.state.numberOfTiles + 2 });
     const { numberOfTiles, reviews, page } = this.state;
 
-    this.setState({ numberOfTiles: numberOfTiles + 2 });
-
-    console.log('reviews.length: ', reviews.length, ' numberOfTiles: ', numberOfTiles);
-
     // makes an API request ahead of time to always have more reviews ready to be displayed
-    if (reviews.length < numberOfTiles + 2) {
+    if (reviews.length <= numberOfTiles + 3) {
       console.log('entered reviews.length < numberOfTiles +2');
+      this.state.page = page + 1;
+      request.getReviews(this.props.productId, this.state.page)
+        .then(({ data }) => {
+          if (data.results.length) {
+            this.state.reviews = this.state.reviews.concat(data.results);
+          } else {
+            this.hideButton = true;
+          }
+        });
     }
   }
 
   render() {
-    let { isLoaded, numberOfTiles, reviews } = this.state;
-    let displayedTiles = reviews.slice(0, numberOfTiles);
+    const { isLoaded, numberOfTiles, reviews } = this.state;
+    const displayedTiles = reviews.slice(0, numberOfTiles);
     if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
       // eslint-disable-next-line no-else-return
     } else {
       return (
-        <div id="reviewsList">
-          <p>Total: {reviews.length}</p>
-          {displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />)}
-          <button onClick={this.handleMoreReviews}>More Reviews</button>
+        <div className="reviewsList">
+          { displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />) }
+          <button className="buttonbutton" hidden={this.hideButton} onClick={this.handleMoreReviews}>More Reviews</button>
         </div>
       );
     }
