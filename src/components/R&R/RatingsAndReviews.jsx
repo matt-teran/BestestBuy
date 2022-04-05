@@ -4,7 +4,7 @@ import React from 'react';
 import ReviewsList from './ReviewsList';
 import './RatingsAndReviews.scss';
 
-const id = 66643; // this represents an ID that's passed into props
+const id = 66659; // this represents an ID that's passed into props
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
