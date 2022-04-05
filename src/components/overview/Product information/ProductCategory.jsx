@@ -18,7 +18,7 @@ ProductCategory.propTypes = {
 };
 
 ProductCategory.defaultProps = {
-  category: ' ',
+  category: '',
 };
 
 export default ProductCategory;

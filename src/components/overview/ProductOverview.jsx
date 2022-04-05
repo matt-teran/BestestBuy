@@ -20,6 +20,7 @@ class ProductOverview extends React.Component {
       rating: 0,
       review: 0,
       styles: [],
+      currentStyle: '',
     };
   }
 
@@ -62,7 +63,7 @@ class ProductOverview extends React.Component {
       },
     )
       .then((styleInfo) => {
-        // console.log(styleInfo.data);
+        console.log(styleInfo.data);
         this.setState({
           styles: styleInfo.data.results,
         });
@@ -96,6 +97,12 @@ class ProductOverview extends React.Component {
       });
   }
 
+  selectStyle(event) {
+    this.setState({
+      currentStyle: event,
+    });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -106,6 +113,7 @@ class ProductOverview extends React.Component {
     const { rating } = this.state;
     const { review } = this.state;
     const { styles } = this.state;
+    const { currentStyle } = this.state;
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -121,7 +129,13 @@ class ProductOverview extends React.Component {
             review={review}
           />
         </div>
-        <div><StyleSelector styles={styles} /></div>
+        <div>
+          <StyleSelector
+            styles={styles}
+            selectStyle={(event) => this.selectStyle(event)}
+            title={currentStyle.name}
+          />
+        </div>
         <div>add to cart</div>
       </div>
     );
