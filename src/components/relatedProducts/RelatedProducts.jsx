@@ -35,29 +35,32 @@ class RelatedProducts extends React.Component {
             category: card.category,
           };
         });
-        this.setState({relatedCards: cards});
+        return cards;
       })
-      // .then((cards) => {
-      //   cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, header)
-      //     .then(({ data }) => ({ ...cards, avgRating: this.getAvgRating(data.ratings) }))
-      //     .catch((err) => { console.log(err); }));
-      // })
+      .then((cards) => {
+        Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, header)))
+          .then((res) => {
+            console.log(res);
+            this.setState({ relatedCards: cards.map((card, i) => ({ ...card, avgRating: this.getAvgRating(res[i].data.ratings) }))});
+          })
+          .catch((err) => { throw err; });
+      })
       .catch((err) => { console.log(err); });
   }
 
-  // getAvgRating(ratings) {
-  //   const ratingsArray = Object.keys(ratings);
-  //   if (ratingsArray.length === 0) {
-  //     return -1;
-  //   }
-  //   let total = 0;
-  //   let numberOfRatings = 0;
-  //   ratingsArray.forEach((stars) => {
-  //     numberOfRatings += Number(ratings[stars]);
-  //     total += stars * Number(ratings[stars]);
-  //   });
-  //   return total / numberOfRatings;
-  // }
+  getAvgRating(ratings) {
+    const ratingsArray = Object.keys(ratings);
+    if (ratingsArray.length === 0) {
+      return -1;
+    }
+    let total = 0;
+    let numberOfRatings = 0;
+    ratingsArray.forEach((stars) => {
+      numberOfRatings += Number(ratings[stars]);
+      total += stars * Number(ratings[stars]);
+    });
+    return total / numberOfRatings;
+  }
 
   render() {
     const { relatedCards } = this.state;
