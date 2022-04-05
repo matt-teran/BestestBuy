@@ -23,6 +23,8 @@ class ProductOverview extends React.Component {
       styles: [],
       currentStyle: {},
       currentSizeAndQuantity: {},
+      quantitySelected: 0,
+      sizeSelected: '',
     };
   }
 
@@ -108,6 +110,13 @@ class ProductOverview extends React.Component {
   selectSizeAndQuantity(event) {
     this.setState({
       currentSizeAndQuantity: event,
+      sizeSelected: event.label,
+    });
+  }
+
+  selectQuantity(event) {
+    this.setState({
+      quantitySelected: event,
     });
   }
 
@@ -151,6 +160,7 @@ class ProductOverview extends React.Component {
             sizeAndQuantity={currentStyle.skus}
             selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
             currentSizeAndQuantity={currentSizeAndQuantity}
+            selectQuantity={(event) => this.selectQuantity(event)}
           />
         </div>
       </div>
