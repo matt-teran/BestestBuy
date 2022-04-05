@@ -12,6 +12,7 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       relatedCards: [],
+      outfitCards: [],
     };
   }
 
@@ -62,10 +63,11 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    const { relatedCards } = this.state;
+    const { relatedCards, outfitCards } = this.state;
     return (
       <div className="related-products">
         {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} />}
+        <RelatedProductsList title="Outfit List" relatedCards={outfitCards} />
       </div>
     );
   }

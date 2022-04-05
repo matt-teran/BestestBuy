@@ -1,11 +1,21 @@
+@import '../../variables.scss';
+
 .related-products {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 80%;
+    width: 95%;
     margin: auto;
-    background-color: grey;
-
+    background-color: $blue;
+    
+    .list-title {
+        line-height: 1;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+        color: white;
+    }
 }
 .products-list {
     display: flex;

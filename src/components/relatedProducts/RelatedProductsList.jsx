@@ -27,7 +27,7 @@ class RelatedProductsList extends React.Component {
     });
     return (
       <>
-        { title }
+        <h2 className="list-title">{ title }</h2>
         <div className="products-list">
           {position > 0 ? <Btn char="◀" className="scroll-left" clickHandler={() => this.scrollHandler('left')} /> : null}
           {position < cards.length - 1 ? <Btn char="▶" className="scroll-right" clickHandler={() => this.scrollHandler('right')} /> : null}
