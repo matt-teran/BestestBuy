@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
+import AddtoCart from './AddtoCart';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 const id = '66642';
@@ -20,7 +21,8 @@ class ProductOverview extends React.Component {
       rating: 0,
       review: 0,
       styles: [],
-      currentStyle: '',
+      currentStyle: {},
+      currentSizeAndQuantity: {},
     };
   }
 
@@ -63,7 +65,7 @@ class ProductOverview extends React.Component {
       },
     )
       .then((styleInfo) => {
-        console.log(styleInfo.data);
+        // console.log(styleInfo.data);
         this.setState({
           styles: styleInfo.data.results,
         });
@@ -103,6 +105,12 @@ class ProductOverview extends React.Component {
     });
   }
 
+  selectSizeAndQuantity(event) {
+    this.setState({
+      currentSizeAndQuantity: event,
+    });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -114,6 +122,8 @@ class ProductOverview extends React.Component {
     const { review } = this.state;
     const { styles } = this.state;
     const { currentStyle } = this.state;
+    const { currentSizeAndQuantity } = this.state;
+
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -136,7 +146,13 @@ class ProductOverview extends React.Component {
             title={currentStyle.name}
           />
         </div>
-        <div>add to cart</div>
+        <div>
+          <AddtoCart
+            sizeAndQuantity={currentStyle.skus}
+            selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
+            currentSizeAndQuantity={currentSizeAndQuantity}
+          />
+        </div>
       </div>
     );
   }
