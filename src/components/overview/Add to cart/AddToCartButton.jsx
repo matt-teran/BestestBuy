@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../ProductOverview.scss';
 
 function AddtoCartButton() {
   return (
     <div>
-      <p>AddToCartButton</p>
+      <button className="add_to_cart_button" type="submit">Add to bag</button>
     </div>
   );
 }
