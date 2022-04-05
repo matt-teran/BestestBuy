@@ -5,7 +5,7 @@ import QuantitySelector from './Add to cart/QuantitySelector';
 import AddtoCartButton from './Add to cart/AddToCartButton';
 
 function AddtoCart({
-  sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity, selectQuantity,
+  sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity, selectQuantity, addToCart,
 }) {
   return (
     <div>
@@ -21,7 +21,7 @@ function AddtoCart({
           selectQuantity={(event) => selectQuantity(event)}
         />
       </div>
-      <div><AddtoCartButton /></div>
+      <div><AddtoCartButton addToCart={() => addToCart()} /></div>
     </div>
   );
 }

@@ -120,6 +120,22 @@ class ProductOverview extends React.Component {
     });
   }
 
+  addToCart() {
+    const { currentStyle } = this.state;
+    const { sizeSelected } = this.state;
+    const { quantitySelected } = this.state;
+    let skusId;
+    const sizeArray = Object.values(currentStyle.skus);
+    const sizeNumber = Object.keys(currentStyle.skus);
+    for (let i = 0; i < sizeArray.length; i += 1) {
+      if (sizeArray[i].label === sizeSelected) {
+        skusId = sizeNumber[i];
+      }
+    }
+    console.log(skusId);
+    console.log(quantitySelected);
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -161,6 +177,7 @@ class ProductOverview extends React.Component {
             selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
             currentSizeAndQuantity={currentSizeAndQuantity}
             selectQuantity={(event) => this.selectQuantity(event)}
+            addToCart={() => this.addToCart()}
           />
         </div>
       </div>

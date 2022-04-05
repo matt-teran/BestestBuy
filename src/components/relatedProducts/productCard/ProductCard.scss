@@ -1,11 +1,12 @@
 .card {
-    background-color: rgb(190, 190, 190);
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 200px;
     width: 135px;
+    margin: 0 10px;
     .btn-wrapper {
         display: flex;
         justify-content: flex-end;
@@ -18,5 +19,27 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        margin: 10px;
+        .category {
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0;
+        }
+        .name {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            list-style: 15px;
+            height: 30px;
+        }
+        .price {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .not-yet-reviewed {
+            line-height: 15px;
+            font-size: 11px;
+        }
     }
 }

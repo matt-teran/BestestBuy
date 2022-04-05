@@ -23,11 +23,11 @@ class RelatedProductsList extends React.Component {
     const { relatedCards, title } = this.props;
     const { position } = this.state;
     const cards = relatedCards.map((card) => {
-      return (<ProductCard key={card.id} avgRating={2.5} price={card.default_price} name={card.name} category={card.category} />);
+      return (<ProductCard key={card.id} avgRating={card.avgRating} price={card.default_price} name={card.name} category={card.category} />);
     });
     return (
       <>
-        { title }
+        <h2 className="list-title">{ title }</h2>
         <div className="products-list">
           {position > 0 ? <Btn char="◀" className="scroll-left" clickHandler={() => this.scrollHandler('left')} /> : null}
           {position < cards.length - 1 ? <Btn char="▶" className="scroll-right" clickHandler={() => this.scrollHandler('right')} /> : null}
