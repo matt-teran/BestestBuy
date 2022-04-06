@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
+import AddtoCart from './AddtoCart';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 const id = '66642';
@@ -20,6 +21,10 @@ class ProductOverview extends React.Component {
       rating: 0,
       review: 0,
       styles: [],
+      currentStyle: {},
+      currentSizeAndQuantity: {},
+      quantitySelected: 0,
+      sizeSelected: '',
     };
   }
 
@@ -96,6 +101,25 @@ class ProductOverview extends React.Component {
       });
   }
 
+  selectStyle(event) {
+    this.setState({
+      currentStyle: event,
+    });
+  }
+
+  selectSizeAndQuantity(event) {
+    this.setState({
+      currentSizeAndQuantity: event,
+      sizeSelected: event.label,
+    });
+  }
+
+  selectQuantity(event) {
+    this.setState({
+      quantitySelected: event,
+    });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -106,6 +130,9 @@ class ProductOverview extends React.Component {
     const { rating } = this.state;
     const { review } = this.state;
     const { styles } = this.state;
+    const { currentStyle } = this.state;
+    const { currentSizeAndQuantity } = this.state;
+
     return (
       <div className="product_overview_block">
         <div>ImageGallery</div>
@@ -121,8 +148,21 @@ class ProductOverview extends React.Component {
             review={review}
           />
         </div>
-        <div><StyleSelector styles={styles} /></div>
-        <div>add to cart</div>
+        <div>
+          <StyleSelector
+            styles={styles}
+            selectStyle={(event) => this.selectStyle(event)}
+            title={currentStyle.name}
+          />
+        </div>
+        <div>
+          <AddtoCart
+            sizeAndQuantity={currentStyle.skus}
+            selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
+            currentSizeAndQuantity={currentSizeAndQuantity}
+            selectQuantity={(event) => this.selectQuantity(event)}
+          />
+        </div>
       </div>
     );
   }
