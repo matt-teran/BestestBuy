@@ -75,8 +75,8 @@ class RelatedProducts extends React.Component {
   }
 }
 
-export default RelatedProducts;
-
 RelatedProducts.propTypes = {
   id: propTypes.string.isRequired,
 };
+
+export default RelatedProducts;
