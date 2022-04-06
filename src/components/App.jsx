@@ -21,7 +21,7 @@ class App extends React.Component {
         <Header />
         <div className="app">
           <div><ProductOverview /></div>
-          <div><RelatedProducts id={productId} /></div>
+          <RelatedProducts id={productId} />
           <div><QuestionsList /></div>
           <div><RatingsAndReviews /></div>
         </div>

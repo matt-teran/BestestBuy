@@ -4,6 +4,8 @@ import propTypes from 'prop-types';
 
 import { Api_Key } from '../../config';
 import RelatedProductsList from './RelatedProductsList';
+import Modal from '../ui/Modal/Modal';
+import Backdrop from '../ui/Modal/Backdrop';
 
 import './RelatedProducts.scss';
 
@@ -13,6 +15,7 @@ class RelatedProducts extends React.Component {
     this.state = {
       relatedCards: [],
       outfitCards: [],
+      showModal: false,
     };
   }
 
@@ -63,12 +66,17 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    const { relatedCards, outfitCards } = this.state;
+    const { relatedCards, outfitCards, showModal } = this.state;
     return (
-      <div className="related-products">
-        {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} />}
-        <RelatedProductsList title="Outfit List" relatedCards={outfitCards} />
-      </div>
+      <>
+        <Modal showModal={showModal}>
+        </Modal>
+        <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
+        <div className="related-products">
+          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} />}
+          <RelatedProductsList title="Outfit List" relatedCards={outfitCards} />
+        </div>
+      </>
     );
   }
 }
