@@ -7,9 +7,6 @@ import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
 import ImageGallery from './ImageGallery';
 
-// const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
-// const id = '66642';
-
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +28,7 @@ class ProductOverview extends React.Component {
       sizeSelected: '',
       currentImage: '',
       allThumbnail: [],
+      imageIndex: 0,
     };
   }
 
@@ -44,11 +42,6 @@ class ProductOverview extends React.Component {
     const { productId } = this.state;
     axios.get(
       `${url}/products/${productId}`,
-      // {
-      //   headers: {
-      //     Authorization: API_KEY,
-      //   },
-      // },
       headers,
     )
       .then((productInfo) => {
@@ -69,11 +62,6 @@ class ProductOverview extends React.Component {
     const { productId } = this.state;
     axios.get(
       `${url}/products/${productId}/styles`,
-      // {
-      //   headers: {
-      //     Authorization: API_KEY,
-      //   },
-      // },
       headers,
     )
       .then((styleInfo) => {
@@ -91,11 +79,6 @@ class ProductOverview extends React.Component {
     const { productId } = this.state;
     axios.get(
       `${url}/reviews?product_id=${productId}`,
-      // {
-      //   headers: {
-      //     Authorization: API_KEY,
-      //   },
-      // },
       headers,
     )
       .then((ratingInfo) => {
@@ -156,7 +139,8 @@ class ProductOverview extends React.Component {
 
   changeMainImage(event) {
     this.setState({
-      currentImage: event,
+      currentImage: event.url,
+      imageIndex: event.thumbnailIndex,
     });
   }
 
@@ -174,6 +158,7 @@ class ProductOverview extends React.Component {
     const { currentSizeAndQuantity } = this.state;
     const { currentImage } = this.state;
     const { allThumbnail } = this.state;
+    const { imageIndex } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -181,7 +166,9 @@ class ProductOverview extends React.Component {
           <ImageGallery
             currentImage={currentImage}
             allThumbnail={allThumbnail}
+            imageIndex={imageIndex}
             changeMainImage={(event) => this.changeMainImage(event)}
+            arrowChangeImage={(event) => this.arrowChangeImage(event)}
           />
         </div>
         <div>
