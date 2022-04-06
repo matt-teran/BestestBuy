@@ -17,7 +17,21 @@
   width: 12rem;
   border-radius: 15%;
 }
-// .add_to_cart_button {
-//   transform: scale(0.98);
-//   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
-// }
+.gallery_thumbnail {
+  float: left;
+  width:  100px;
+  height: 100px;
+  object-fit: cover;
+}
+.main_image {
+  width:  500px;
+  height: 500px;
+  object-fit: cover;
+}
+.style_thumbnail {
+  float: left;
+  width:  100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}

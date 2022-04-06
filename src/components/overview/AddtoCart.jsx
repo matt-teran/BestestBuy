@@ -31,6 +31,7 @@ AddtoCart.propTypes = {
   selectSizeAndQuantity: PropTypes.func,
   currentSizeAndQuantity: PropTypes.shape({}),
   selectQuantity: PropTypes.func,
+  addToCart: PropTypes.func,
 };
 
 AddtoCart.defaultProps = {
@@ -38,6 +39,7 @@ AddtoCart.defaultProps = {
   selectSizeAndQuantity: () => {},
   currentSizeAndQuantity: {},
   selectQuantity: () => {},
+  addToCart: () => {},
 };
 
 export default AddtoCart;

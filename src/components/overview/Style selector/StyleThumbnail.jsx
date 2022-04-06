@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../ProductOverview.scss';
 
 function StyleThumbnail({ style, selectStyle }) {
   return (

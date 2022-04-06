@@ -26,6 +26,7 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
   return (
     <div>
       <Select
+        placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}
