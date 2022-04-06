@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
-import config from '../../config';
+import { headers, url } from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
 import ImageGallery from './ImageGallery';
 
-const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
+// const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 // const id = '66642';
 
 class ProductOverview extends React.Component {
@@ -43,12 +43,13 @@ class ProductOverview extends React.Component {
   fetchProductData() {
     const { productId } = this.state;
     axios.get(
-      `${url}products/${productId}`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/products/${productId}`,
+      // {
+      //   headers: {
+      //     Authorization: API_KEY,
+      //   },
+      // },
+      headers,
     )
       .then((productInfo) => {
         // console.log(productInfo.data);
@@ -67,12 +68,13 @@ class ProductOverview extends React.Component {
   fetchStyleData() {
     const { productId } = this.state;
     axios.get(
-      `${url}products/${productId}/styles`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/products/${productId}/styles`,
+      // {
+      //   headers: {
+      //     Authorization: API_KEY,
+      //   },
+      // },
+      headers,
     )
       .then((styleInfo) => {
         // console.log(styleInfo.data);
@@ -88,12 +90,13 @@ class ProductOverview extends React.Component {
   fetchRatingData() {
     const { productId } = this.state;
     axios.get(
-      `${url}reviews?product_id=${productId}`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/reviews?product_id=${productId}`,
+      // {
+      //   headers: {
+      //     Authorization: API_KEY,
+      //   },
+      // },
+      headers,
     )
       .then((ratingInfo) => {
         // console.log(ratingInfo.data.results);
