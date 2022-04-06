@@ -28,6 +28,7 @@
             position: absolute;
             top: calc(50% - 25px);
             right: calc(100% - 25px);
+            z-index: 2;
             color: $secondary;
             background-color: $primary;
         }
@@ -35,6 +36,7 @@
             position: absolute;
             top: calc(50% - 25px);
             left: calc(100% - 25px);
+            z-index: 2;
             color: $secondary;
             background-color: $primary;
         }
