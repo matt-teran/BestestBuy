@@ -1,18 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-import config from '../../config';
+import propTypes from 'prop-types';
+import { headers, url } from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
 import ImageGallery from './ImageGallery';
 
-const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
-const id = '66642';
-
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
+    const { id } = this.props;
     this.state = {
+      productId: id,
       category: '',
       title: '',
       slogan: '',
@@ -28,6 +28,7 @@ class ProductOverview extends React.Component {
       sizeSelected: '',
       currentImage: '',
       allThumbnail: [],
+      imageIndex: 0,
     };
   }
 
@@ -38,13 +39,10 @@ class ProductOverview extends React.Component {
   }
 
   fetchProductData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}products/${id}`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/products/${productId}`,
+      headers,
     )
       .then((productInfo) => {
         // console.log(productInfo.data);
@@ -57,17 +55,14 @@ class ProductOverview extends React.Component {
           features: productInfo.data.features,
         });
       })
-      .catch();
+      .catch((err) => console.log('Failed to fetch product data', err));
   }
 
   fetchStyleData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}products/${id}/styles`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/products/${productId}/styles`,
+      headers,
     )
       .then((styleInfo) => {
         // console.log(styleInfo.data);
@@ -76,17 +71,15 @@ class ProductOverview extends React.Component {
           currentImage: styleInfo.data.results[0].photos[0].url,
           allThumbnail: styleInfo.data.results[0].photos,
         });
-      });
+      })
+      .catch((err) => console.log('Failed to fetch style data', err));
   }
 
   fetchRatingData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}reviews?product_id=${id}`,
-      {
-        headers: {
-          Authorization: config.TOKEN,
-        },
-      },
+      `${url}/reviews?product_id=${productId}`,
+      headers,
     )
       .then((ratingInfo) => {
         // console.log(ratingInfo.data.results);
@@ -103,13 +96,15 @@ class ProductOverview extends React.Component {
             review: ratingInfo.data.results.length,
           });
         }
-      });
+      })
+      .catch((err) => console.log('Failed to fetch rating data', err));
   }
 
   selectStyle(event) {
     this.setState({
       currentStyle: event,
       allThumbnail: event.photos,
+      currentImage: event.photos[0].url,
     });
   }
 
@@ -144,7 +139,8 @@ class ProductOverview extends React.Component {
 
   changeMainImage(event) {
     this.setState({
-      currentImage: event,
+      currentImage: event.url,
+      imageIndex: event.thumbnailIndex,
     });
   }
 
@@ -162,6 +158,7 @@ class ProductOverview extends React.Component {
     const { currentSizeAndQuantity } = this.state;
     const { currentImage } = this.state;
     const { allThumbnail } = this.state;
+    const { imageIndex } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -169,7 +166,9 @@ class ProductOverview extends React.Component {
           <ImageGallery
             currentImage={currentImage}
             allThumbnail={allThumbnail}
+            imageIndex={imageIndex}
             changeMainImage={(event) => this.changeMainImage(event)}
+            arrowChangeImage={(event) => this.arrowChangeImage(event)}
           />
         </div>
         <div>
@@ -204,5 +203,9 @@ class ProductOverview extends React.Component {
     );
   }
 }
+
+ProductOverview.propTypes = {
+  id: propTypes.string.isRequired,
+};
 
 export default ProductOverview;
