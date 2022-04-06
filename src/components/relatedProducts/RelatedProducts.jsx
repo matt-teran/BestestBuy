@@ -20,11 +20,31 @@ class RelatedProducts extends React.Component {
   }
 
   componentDidMount() {
+    this.getRelatedProducts();
+  }
+
+  getRelatedProducts() {
     const { id } = this.props;
+
+    function getAvgRating(ratings) {
+      const ratingsArray = Object.keys(ratings);
+      if (ratingsArray.length === 0) {
+        return -1;
+      }
+      let total = 0;
+      let numberOfRatings = 0;
+      ratingsArray.forEach((stars) => {
+        numberOfRatings += Number(ratings[stars]);
+        total += stars * Number(ratings[stars]);
+      });
+      return total / numberOfRatings;
+    }
+
+    let cards;
     axios.get(`${url}/products/${id}/related`, headers)
       .then(({ data }) => Promise.all(data.map((_id) => axios.get(`${url}/products/${_id}`, headers))))
       .then((data) => {
-        const cards = data.map((res) => {
+        cards = data.map((res) => {
           const card = res.data;
           return {
             id: card.id,
@@ -33,30 +53,24 @@ class RelatedProducts extends React.Component {
             category: card.category,
           };
         });
-        return cards;
       })
-      .then((cards) => {
-        Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers)))
-          .then((res) => {
-            this.setState({ relatedCards: cards.map((card, i) => ({ ...card, avgRating: this.getAvgRating(res[i].data.ratings) }))});
-          })
-          .catch((err) => { throw err; });
+      .then(() => Promise.all(cards.map((card) => axios.get(`${url}/products/${card.id}/styles`, headers))))
+      .then((res) => {
+        cards = cards.map((card, i) => ({
+          ...card,
+          image: res[i].data.results[0].photos[0].thumbnail_url,
+        }));
+      })
+      .then(() => Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
+      .then((res) => {
+        this.setState({
+          relatedCards: cards.map((card, i) => ({
+            ...card,
+            avgRating: getAvgRating(res[i].data.ratings),
+          })),
+        });
       })
       .catch((err) => { console.log(err); });
-  }
-
-  getAvgRating(ratings) {
-    const ratingsArray = Object.keys(ratings);
-    if (ratingsArray.length === 0) {
-      return -1;
-    }
-    let total = 0;
-    let numberOfRatings = 0;
-    ratingsArray.forEach((stars) => {
-      numberOfRatings += Number(ratings[stars]);
-      total += stars * Number(ratings[stars]);
-    });
-    return total / numberOfRatings;
   }
 
   render() {
