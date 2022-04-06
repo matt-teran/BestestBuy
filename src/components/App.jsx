@@ -12,22 +12,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '66642',
+      productId: null,
     };
   }
 
-  // componentDidMount() {
-  //   this.getRandomProductId();
-  // }
+  componentDidMount() {
+    this.getRandomProductId();
+  }
 
-  // getRandomProductId() {
-  //   const pageNumber = Math.floor(Math.random() * 100);
-  //   axios.get(`${url}/products?page=${pageNumber}`, headers)
-  //     .then(({ data }) => {
-  //       this.setState({ productId: data[Math.floor(Math.random() * data.length)].id.toString() });
-  //     })
-  //     .catch((err) => { console.log(err); });
-  // }
+  getRandomProductId() {
+    const pageNumber = Math.floor(Math.random() * 100);
+    axios.get(`${url}/products?page=${pageNumber}`, headers)
+      .then(({ data }) => {
+        this.setState({ productId: data[Math.floor(Math.random() * data.length)].id.toString() });
+      })
+      .catch((err) => { console.log(err); });
+  }
 
   render() {
     const { productId } = this.state;
