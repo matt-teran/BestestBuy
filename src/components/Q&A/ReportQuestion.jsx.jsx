@@ -10,7 +10,7 @@ const ReportQuestion = (props) => {
 
   return (
     <div>
-      <button type='submit' onCLick={reportBtn} className='report-or-helpful-btn'>{reportStatus}</button>
+      <button type='submit' onCLick={reportBtn} className='report-helpful-btn'>{reportStatus}</button>
     </div>
   );
 };
