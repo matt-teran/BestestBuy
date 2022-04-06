@@ -78,22 +78,28 @@ class ProductOverview extends React.Component {
   fetchRatingData() {
     const { productId } = this.state;
     axios.get(
-      `${url}/reviews?product_id=${productId}`,
+      `${url}/reviews/meta?product_id=${productId}`,
       headers,
     )
       .then((ratingInfo) => {
-        // console.log(ratingInfo.data.results);
-        if (ratingInfo.data.results.length === 0) {
+        if (Object.keys(ratingInfo.data.ratings).length === 0) {
           this.setState({
             rating: 0,
             review: 0,
           });
         } else {
-          let totalRating = 0;
-          ratingInfo.data.results.forEach((result) => { totalRating += result.rating; });
+          let totalRatings = 0;
+          let totalReviews = 0;
+          // ratingInfo.data.results.forEach((result) => { totalRating += result.rating; });
+          const starArray = Object.keys(ratingInfo.data.ratings);
+          const voteArray = Object.values(ratingInfo.data.ratings);
+          for (let i = 0; i < Object.keys(ratingInfo.data.ratings).length; i += 1) {
+            totalRatings += parseInt(starArray[i], 10) * parseInt(voteArray[i], 10);
+            totalReviews += parseInt(voteArray[i], 10);
+          }
           this.setState({
-            rating: totalRating / ratingInfo.data.results.length,
-            review: ratingInfo.data.results.length,
+            rating: totalRatings / totalReviews,
+            review: totalReviews,
           });
         }
       })

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import '../ProductOverview.scss';
 
 function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
+  if (imageIndex === 0 && imageIndex === allThumbnail.length - 1) {
+    return (
+      <div> </div>
+    );
+  }
   // this is the first image, then only show right arrow
   if (imageIndex === 0) {
     return (
