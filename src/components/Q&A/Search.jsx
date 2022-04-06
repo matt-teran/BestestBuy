@@ -37,7 +37,7 @@ class Search extends React.component {
           <img className='search-btn' src='' />
         </div>
       </div>
-    )
+    );
   }
 }
 export default Search;
