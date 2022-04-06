@@ -1,7 +1,6 @@
 const axios = require('axios');
 const { API_KEY } = require('../../config');
-
-const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
+const { url } = require('../../config');
 
 const getQuestion = (id, cb) => {
   const apiOptions = {
