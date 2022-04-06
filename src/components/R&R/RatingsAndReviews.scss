@@ -44,13 +44,15 @@
 }
 
 .bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
 
-.right {
-  text-align: right;
-}
+// .side {
+//   float: left;
+//   width: 15%;
+//   margin-top: 10px;
+// }
 
-.side {
-  float: left;
-  width: 15%;
-  margin-top: 10px;
+.RatingSummaryStats {
+  display: flex;
+  flex-direction: row;
 }

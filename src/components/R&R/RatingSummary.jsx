@@ -22,6 +22,13 @@ function RatingSummary() {
             <div>150</div>
           </div>
         </div>
+        <div className="RatingSummary4Stars">
+          <p>4 Star</p>
+          <div className="bar-4" />
+          <div className="side Right">
+            <div>182</div>
+          </div>
+        </div>
       </div>
 
 
