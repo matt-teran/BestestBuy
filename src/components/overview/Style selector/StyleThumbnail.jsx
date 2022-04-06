@@ -2,7 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../ProductOverview.scss';
 
-function StyleThumbnail({ style, selectStyle }) {
+function StyleThumbnail({ style, selectStyle, title }) {
+  if (style.name === title) {
+    return (
+      <div>
+        <img
+          className="style_thumbnail"
+          src={style.photos[0].thumbnail_url}
+          alt="This is style thumbnail"
+          onClick={() => selectStyle(style)}
+          aria-hidden="true"
+        />
+        <p>\/</p>
+      </div>
+    );
+  }
   return (
     <div>
       <img
