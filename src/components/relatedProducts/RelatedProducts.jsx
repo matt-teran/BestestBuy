@@ -64,6 +64,7 @@ class RelatedProducts extends React.Component {
     return (
       <>
         <Modal showModal={showModal}>
+          <h1>Hello from modal!</h1>
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
