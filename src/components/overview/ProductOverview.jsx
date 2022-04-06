@@ -61,7 +61,7 @@ class ProductOverview extends React.Component {
           features: productInfo.data.features,
         });
       })
-      .catch();
+      .catch((err) => console.log('Failed to fetch product data', err));
   }
 
   fetchStyleData() {
@@ -81,7 +81,8 @@ class ProductOverview extends React.Component {
           currentImage: styleInfo.data.results[0].photos[0].url,
           allThumbnail: styleInfo.data.results[0].photos,
         });
-      });
+      })
+      .catch((err) => console.log('Failed to fetch style data', err));
   }
 
   fetchRatingData() {
@@ -109,7 +110,8 @@ class ProductOverview extends React.Component {
             review: ratingInfo.data.results.length,
           });
         }
-      });
+      })
+      .catch((err) => console.log('Failed to fetch rating data', err));
   }
 
   selectStyle(event) {
