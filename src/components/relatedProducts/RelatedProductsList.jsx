@@ -22,9 +22,16 @@ class RelatedProductsList extends React.Component {
   render() {
     const { relatedCards, title } = this.props;
     const { position } = this.state;
-    const cards = relatedCards.map((card) => {
-      return (<ProductCard key={card.id} avgRating={card.avgRating} price={card.default_price} name={card.name} category={card.category} />);
-    });
+    const cards = relatedCards.map((card) => (
+      <ProductCard
+        key={card.id}
+        avgRating={card.avgRating}
+        price={card.default_price}
+        name={card.name}
+        category={card.category}
+        image={card.image}
+      />
+    ));
     return (
       <>
         <h2 className="list-title">{ title }</h2>

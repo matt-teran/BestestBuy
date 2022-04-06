@@ -5,7 +5,7 @@ import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
 
 function ProductCard({
-  category, name, price, avgRating,
+  category, name, price, avgRating, image,
 }) {
   return (
     <div className="card">
@@ -13,6 +13,7 @@ function ProductCard({
         <Btn />
       </div>
       <div className="detail-wrapper">
+        <img src={image} alt={name} className="image" />
         <span className="category">{category}</span>
         <span className="name">{name}</span>
         <span className="price">{`$${price}`}</span>
@@ -21,11 +22,12 @@ function ProductCard({
     </div>
   );
 }
-
-export default ProductCard;
 ProductCard.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   avgRating: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
 };
+
+export default ProductCard;
