@@ -1,20 +1,22 @@
-import React from 'react';
-import axios from 'axios';
-import API_KEY from '../../config';
-import Search from './Search.jsx';
-import Question from './Question.jsx';
-import Answer from './Answer.jsx'
-import { url } from './apiData.js'
+/*
+const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
+const id = 66642;
+// quest: qa/questions
+// ans: qa/questions/:question_id/
 
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      body: '',
+      helpfulness: 0,
+      answer: {},
+      numberOfQuestions: 4,
+      numberOfAnswers: 2,
+      allQuestionsLoaded: false,
+      allAnswersLoaded: false
+
     };
-    getQuestions().then((data) => {
-      console.log(data);
-    });
   }
 
   render() {
@@ -36,19 +38,4 @@ class QuestionsList extends React.Component {
 
 export default QuestionsList;
 
-
-// quest: qa/questions
-// ans: qa/questions/:question_id/
-
-const getQuestions = function () {
-  let body = {
-    product_id: '5',
-    page: 1,
-    count: 5,
-  };
-  return axios.get(url + 'qa/questions/', {
-    headers: {
-      Authorization: API_KEY,
-    },
-  });
-};
+*/
