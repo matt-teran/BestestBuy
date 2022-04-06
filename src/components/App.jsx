@@ -36,13 +36,12 @@ class App extends React.Component {
         <Header />
         {!productId ? <div>Loading...</div> : (
           <div className="app">
-            <div><ProductOverview /></div>
+            <div><ProductOverview id={productId} /></div>
             <RelatedProducts id={productId} />
             <div><QuestionsList /></div>
             <div><RatingsAndReviews /></div>
           </div>
         )}
-
       </>
     );
   }

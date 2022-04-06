@@ -2,16 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MainImage from './Image gallery/MainImage';
 import ThumbnailImage from './Image gallery/ThumbnailImges';
+import ArrowButton from './Image gallery/ArrowButton';
 
-function ImageGallery({ currentImage, allThumbnail, changeMainImage }) {
+function ImageGallery({
+  currentImage, allThumbnail, changeMainImage, imageIndex,
+}) {
   return (
     <div>
       <MainImage currentImage={currentImage} />
-      <div>
+      <ArrowButton
+        imageIndex={imageIndex}
+        allThumbnail={allThumbnail}
+        changeMainImage={(event) => changeMainImage(event)}
+      />
+      <div className="image_thumbnails">
         {
-          allThumbnail.map((thumbnail) => (
+          allThumbnail.map((thumbnail, index) => (
             <ThumbnailImage
               key={thumbnail.url}
+              index={index}
               thumbnail={thumbnail}
               changeMainImage={(event) => changeMainImage(event)}
             />
@@ -26,12 +35,14 @@ ImageGallery.propTypes = {
   currentImage: PropTypes.string,
   allThumbnail: PropTypes.arrayOf(PropTypes.shape({})),
   changeMainImage: PropTypes.func,
+  imageIndex: PropTypes.number,
 };
 
 ImageGallery.defaultProps = {
   currentImage: '',
   allThumbnail: [{}],
   changeMainImage: () => {},
+  imageIndex: 0,
 };
 
 export default ImageGallery;
