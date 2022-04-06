@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import propTypes from 'prop-types';
 import config from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
@@ -7,12 +8,14 @@ import AddtoCart from './AddtoCart';
 import ImageGallery from './ImageGallery';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
-const id = '66642';
+// const id = '66642';
 
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
+    const { id } = this.props;
     this.state = {
+      productId: id,
       category: '',
       title: '',
       slogan: '',
@@ -38,8 +41,9 @@ class ProductOverview extends React.Component {
   }
 
   fetchProductData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}products/${id}`,
+      `${url}products/${productId}`,
       {
         headers: {
           Authorization: config.TOKEN,
@@ -61,8 +65,9 @@ class ProductOverview extends React.Component {
   }
 
   fetchStyleData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}products/${id}/styles`,
+      `${url}products/${productId}/styles`,
       {
         headers: {
           Authorization: config.TOKEN,
@@ -80,8 +85,9 @@ class ProductOverview extends React.Component {
   }
 
   fetchRatingData() {
+    const { productId } = this.state;
     axios.get(
-      `${url}reviews?product_id=${id}`,
+      `${url}reviews?product_id=${productId}`,
       {
         headers: {
           Authorization: config.TOKEN,
@@ -110,6 +116,7 @@ class ProductOverview extends React.Component {
     this.setState({
       currentStyle: event,
       allThumbnail: event.photos,
+      currentImage: event.photos[0].url,
     });
   }
 
@@ -204,5 +211,9 @@ class ProductOverview extends React.Component {
     );
   }
 }
+
+ProductOverview.propTypes = {
+  id: propTypes.string.isRequired,
+};
 
 export default ProductOverview;

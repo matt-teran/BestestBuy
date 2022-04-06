@@ -20,7 +20,7 @@ class App extends React.Component {
       <>
         <Header />
         <div className="app">
-          <div><ProductOverview /></div>
+          <div><ProductOverview id={productId} /></div>
           <div><RelatedProducts id={productId} /></div>
           <div><QuestionsList /></div>
           <div><RatingsAndReviews /></div>
