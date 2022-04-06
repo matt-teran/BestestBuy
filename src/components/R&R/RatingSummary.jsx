@@ -2,7 +2,7 @@ import React from 'react';
 
 function RatingSummary() {
   return (
-    <>hello world</>
+    <>hello world (rating Summary)</>
   );
 }
 
