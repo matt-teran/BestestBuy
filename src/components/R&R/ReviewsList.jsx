@@ -22,7 +22,7 @@ class ReviewsList extends React.Component {
     if (productId && !isLoaded) {
       request.getReviews(productId)
         .then(({ data }) => {
-          console.log(data.results);
+          // console.log(data.results);
           if (!data.results.length) this.hideButton = true;
           this.setState({
             isLoaded: true,
@@ -40,7 +40,6 @@ class ReviewsList extends React.Component {
 
     // makes an API request ahead of time to always have more reviews ready to be displayed
     if (reviews.length <= numberOfTiles + 3) {
-      console.log('entered reviews.length < numberOfTiles +2');
       this.state.page = page + 1;
       request.getReviews(this.props.productId, this.state.page)
         .then(({ data }) => {
