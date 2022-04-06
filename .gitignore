@@ -106,3 +106,6 @@ dist
 # API token
 *config.js
 
+# bundle.js
+*bundle.js
+
