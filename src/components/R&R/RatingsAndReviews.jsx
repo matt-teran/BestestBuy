@@ -3,7 +3,7 @@ import React from 'react';
 // import ReviewTile from './ReviewTile';
 import ReviewsList from './ReviewsList';
 import './RatingsAndReviews.scss';
-import './RatingSummary';
+import RatingSummary from './RatingSummary';
 
 const tempData = {
   product_id: '66659',
