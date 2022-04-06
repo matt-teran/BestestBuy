@@ -30,3 +30,15 @@
   display: flex;
   max-width: fit-content;
 }
+
+.reviewImage {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  padding: 10px;
+}
+
+.reviewTileImages {
+  display: flex;
+  flex-direction: row;
+}

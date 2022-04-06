@@ -13,7 +13,7 @@ class QuestionsList extends React.Component {
       data: [],
     };
     getQuestions().then((data) => {
-      console.log(data);
+      // console.log(data);
     });
   }
 

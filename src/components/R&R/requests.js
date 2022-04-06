@@ -14,6 +14,10 @@ const getReviews = function (productId, page = 1, sort = 'relevant') {
   });
 };
 
+// const getRequest = function() {
+
+// }
+
 // working request
 /*
 return axios.get(url + `reviews?product_id=66643`, {

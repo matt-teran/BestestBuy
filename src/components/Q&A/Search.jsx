@@ -1,20 +1,19 @@
 import React from 'react';
 import './Search.scss';
 
-const Search = (props) => {
+function Search(props) {
   return (
     <div className='search-ctr'>
       <input
         className='search-input'
         type='text'
         placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-        name='question'>
-      </input>
+        name='question' />
       <div className='icon-ctr'>
-        <image className='search-btn' src=''></image>
+        <img className='search-btn' src='' />
       </div>
     </div>
-  )
+  );
 }
 
 export default Search;

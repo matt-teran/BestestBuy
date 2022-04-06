@@ -29,7 +29,7 @@ class ReviewsList extends React.Component {
             reviews: data.results,
           });
         }).catch(() => {
-          console.log('something went wrong with the API request');
+          console.log('something went wrong with the API request in ReviewsList');
         });
     }
   }
@@ -63,7 +63,8 @@ class ReviewsList extends React.Component {
       return (
         <div className="reviewsList">
           { displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />) }
-          <button className="buttonbutton" hidden={this.hideButton} onClick={this.handleMoreReviews}>More Reviews</button>
+          {/* {buttonMaker('More Reviews', 'More Reviews', this.handleMoreReviews, this.hideButton)} */}
+          {!this.hideButton ? <button type="button" className="buttonbutton" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );
     }
