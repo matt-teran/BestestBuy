@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import './app.scss';
 import Header from './header/Header';
-// import ProductOverview from './overview/ProductOverview';
-// import RelatedProducts from './relatedProducts/RelatedProducts';
-// import QuestionsList from './Q&A/QuestionsList';
+import ProductOverview from './overview/ProductOverview';
+import RelatedProducts from './relatedProducts/RelatedProducts';
+import QuestionsList from './Q&A/QuestionsList';
 import RatingsAndReviews from './R&R/RatingsAndReviews';
 import { headers, url } from '../config';
 
@@ -36,9 +36,9 @@ class App extends React.Component {
         <Header />
         {!productId ? <div>Loading...</div> : (
           <div className="app">
-            {/* <div><ProductOverview /></div> */}
-            {/* <RelatedProducts id={productId} /> */}
-            {/* <div><QuestionsList /></div> */}
+            <div><ProductOverview /></div>
+            <RelatedProducts id={productId} />
+            <div><QuestionsList /></div>
             <div><RatingsAndReviews /></div>
           </div>
         )}
