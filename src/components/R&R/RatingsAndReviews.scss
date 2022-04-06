@@ -1,0 +1,44 @@
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  border-width: .5px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  // border-style: solid;
+  // border-color: black;
+  margin: 10px 25px;
+}
+
+.reviewTile {
+  border-width: .5px;
+  border-style: solid;
+  width: 75%;
+  border-color: black;
+  margin: 10px 25px;
+  padding: 10px 10px;
+
+}
+
+.reviewer {
+  display: flex;
+  justify-content: right;
+}
+
+.buttonbutton {
+  display: flex;
+  max-width: fit-content;
+}
+
+.reviewImage {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  padding: 10px;
+}
+
+.reviewTileImages {
+  display: flex;
+  flex-direction: row;
+}
