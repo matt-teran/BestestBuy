@@ -14,12 +14,19 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
       sizeAndQuantityArray[i].value = sizeAndQuantityArray[i].quantity
       || sizeAndQuantityArray[i].value;
       delete sizeAndQuantityArray[i].quantity;
+      if (sizeAndQuantityArray[i].label === undefined) {
+        sizeAndQuantityArray[i].label = 'Not available';
+      }
+      if (sizeAndQuantityArray[i].value === undefined) {
+        sizeAndQuantityArray[i].value = 0;
+      }
     }
   }
 
   return (
     <div>
       <Select
+        placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}

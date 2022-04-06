@@ -4,6 +4,7 @@ import config from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
+import ImageGallery from './ImageGallery';
 
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/';
 const id = '66642';
@@ -25,6 +26,8 @@ class ProductOverview extends React.Component {
       currentSizeAndQuantity: {},
       quantitySelected: 0,
       sizeSelected: '',
+      currentImage: '',
+      allThumbnail: [],
     };
   }
 
@@ -70,6 +73,8 @@ class ProductOverview extends React.Component {
         // console.log(styleInfo.data);
         this.setState({
           styles: styleInfo.data.results,
+          currentImage: styleInfo.data.results[0].photos[0].url,
+          allThumbnail: styleInfo.data.results[0].photos,
         });
       });
   }
@@ -104,6 +109,7 @@ class ProductOverview extends React.Component {
   selectStyle(event) {
     this.setState({
       currentStyle: event,
+      allThumbnail: event.photos,
     });
   }
 
@@ -120,6 +126,28 @@ class ProductOverview extends React.Component {
     });
   }
 
+  addToCart() {
+    const { currentStyle } = this.state;
+    const { sizeSelected } = this.state;
+    const { quantitySelected } = this.state;
+    let skusId;
+    const sizeArray = Object.values(currentStyle.skus);
+    const sizeNumber = Object.keys(currentStyle.skus);
+    for (let i = 0; i < sizeArray.length; i += 1) {
+      if (sizeArray[i].label === sizeSelected) {
+        skusId = sizeNumber[i];
+      }
+    }
+    console.log(skusId);
+    console.log(quantitySelected);
+  }
+
+  changeMainImage(event) {
+    this.setState({
+      currentImage: event,
+    });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -132,10 +160,18 @@ class ProductOverview extends React.Component {
     const { styles } = this.state;
     const { currentStyle } = this.state;
     const { currentSizeAndQuantity } = this.state;
+    const { currentImage } = this.state;
+    const { allThumbnail } = this.state;
 
     return (
       <div className="product_overview_block">
-        <div>ImageGallery</div>
+        <div>
+          <ImageGallery
+            currentImage={currentImage}
+            allThumbnail={allThumbnail}
+            changeMainImage={(event) => this.changeMainImage(event)}
+          />
+        </div>
         <div>
           <ProductInformation
             category={category}
@@ -161,6 +197,7 @@ class ProductOverview extends React.Component {
             selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
             currentSizeAndQuantity={currentSizeAndQuantity}
             selectQuantity={(event) => this.selectQuantity(event)}
+            addToCart={() => this.addToCart()}
           />
         </div>
       </div>
