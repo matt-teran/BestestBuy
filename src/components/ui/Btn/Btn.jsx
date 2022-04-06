@@ -15,9 +15,6 @@ function Btn({ char, className, clickHandler }) {
     <button className={`btn ${className}`} type="button" onClick={clickHandler}>{char}</button>
   );
 }
-
-export default Btn;
-
 Btn.defaultProps = {
   char: 'X',
   className: '',
@@ -29,3 +26,5 @@ Btn.propTypes = {
   className: PropTypes.string,
   clickHandler: PropTypes.func,
 };
+
+export default Btn;
