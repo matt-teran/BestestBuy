@@ -21,11 +21,11 @@ function ProductCard({
     </div>
   );
 }
-
-export default ProductCard;
 ProductCard.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   avgRating: PropTypes.number.isRequired,
 };
+
+export default ProductCard;
