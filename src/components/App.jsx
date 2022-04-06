@@ -1,17 +1,32 @@
 import React from 'react';
+import axios from 'axios';
 import './app.scss';
 import Header from './header/Header';
 import ProductOverview from './overview/ProductOverview';
 import RelatedProducts from './relatedProducts/RelatedProducts';
 import QuestionsList from './Q&A/QuestionsList';
 import RatingsAndReviews from './R&R/RatingsAndReviews';
+import { headers, url } from '../config';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '66642',
+      productId: null,
     };
+  }
+
+  componentDidMount() {
+    this.getRandomProductId();
+  }
+
+  getRandomProductId() {
+    const pageNumber = Math.floor(Math.random() * 100);
+    axios.get(`${url}/products?page=${pageNumber}`, headers)
+      .then(({ data }) => {
+        this.setState({ productId: data[Math.floor(Math.random() * data.length)].id.toString() });
+      })
+      .catch((err) => { console.log(err); });
   }
 
   render() {
@@ -19,12 +34,15 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <div className="app">
-          <div><ProductOverview /></div>
-          <div><RelatedProducts id={productId} /></div>
-          <div><QuestionsList /></div>
-          <div><RatingsAndReviews /></div>
-        </div>
+        {!productId ? <div>Loading...</div> : (
+          <div className="app">
+            <div><ProductOverview /></div>
+            <RelatedProducts id={productId} />
+            <div><QuestionsList /></div>
+            <div><RatingsAndReviews /></div>
+          </div>
+        )}
+
       </>
     );
   }
