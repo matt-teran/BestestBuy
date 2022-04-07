@@ -16,9 +16,9 @@ class RelatedProducts extends React.Component {
     this.state = {
       relatedCards: [],
       outfitCards: [],
-      showModal: true,
-      currentProductInfo: [],
-      comparedProductInfo: [],
+      showModal: false,
+      currentProductInfo: null,
+      comparedProductInfo: null,
     };
     this.openModal = this.openModal.bind(this);
   }
@@ -98,7 +98,7 @@ class RelatedProducts extends React.Component {
     return (
       <>
         <Modal showModal={showModal}>
-          <Comparison currentProduct={currentProductInfo} comparedProduct={comparedProductInfo} />
+          {currentProductInfo && comparedProductInfo ? <Comparison currentProduct={currentProductInfo.features} comparedProduct={comparedProductInfo.features} /> : null}
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">

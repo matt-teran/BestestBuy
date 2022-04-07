@@ -11,6 +11,10 @@
     }
     .comparison-table {
         width: 100%;
+        .comparison-table-body {
+            display: flex;
+            flex-direction: column;
+        }
         .comparison-table-row {
             display: flex;
             justify-content: space-between;
