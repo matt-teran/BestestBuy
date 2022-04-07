@@ -6,6 +6,7 @@ import { url, headers } from '../../config';
 import RelatedProductsList from './RelatedProductsList';
 import Modal from '../ui/Modal/Modal';
 import Backdrop from '../ui/Modal/Backdrop';
+import Comparison from './comparisonModal/comparison/Comparison';
 
 import './RelatedProducts.scss';
 
@@ -15,7 +16,7 @@ class RelatedProducts extends React.Component {
     this.state = {
       relatedCards: [],
       outfitCards: [],
-      showModal: false,
+      showModal: true,
     };
   }
 
@@ -78,7 +79,7 @@ class RelatedProducts extends React.Component {
     return (
       <>
         <Modal showModal={showModal}>
-          <h1>Hello from modal!</h1>
+          <Comparison />
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">

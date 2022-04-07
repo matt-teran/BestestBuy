@@ -1,0 +1,12 @@
+.comparison {
+    height: calc(100% - 60px);
+    width: calc(100% - 60px);
+    margin: 30px 30px;
+    .comparison-title {
+        font-weight: 300;
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+}
