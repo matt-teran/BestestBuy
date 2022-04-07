@@ -46,7 +46,7 @@ class QuestionsList extends React.Component {
         </div>
         <Search />
         {questions.results.map(question => {
-          return question.question_body;
+          return <Question key={question.question_id} questionBody={question.question_body} />
         })}
         <Answer />
         <div className="btn-ctr">
