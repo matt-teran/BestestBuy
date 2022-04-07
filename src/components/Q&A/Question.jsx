@@ -3,13 +3,12 @@ import React from 'react';
 function Question() {
   return (
     <div>
-      <div className='question-ctr'>
+      <div className="question-ctr">
         <h4>Q: Is this a question?</h4>
       </div>
     </div>
   );
 }
-
 
 /*
 class Question extends React.Component {

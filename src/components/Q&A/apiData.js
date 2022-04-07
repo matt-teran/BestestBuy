@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 import { API_KEY, url, headers } from '../../config';
-
 const getQuestion = (id, cb) => {
   const apiOptions = {
     method: 'GET',
