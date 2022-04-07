@@ -8,6 +8,15 @@ function Comparison({ currentProduct, comparedProduct }) {
   return (
     <div className="comparison">
       <h1 className="comparison-title">Comparison</h1>
+      <table className="comparison-table">
+        <thead>
+          <tr className="comparison-table-row">
+            <th>Current Product</th>
+            <th>Characteristic</th>
+            <th>Compared Product</th>
+          </tr>
+        </thead>
+      </table>
     </div>
   );
 }
