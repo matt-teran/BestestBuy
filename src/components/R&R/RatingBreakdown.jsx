@@ -1,5 +1,6 @@
 import React from 'react';
 import Rating from '../ui/Rating/Rating';
+import RatingSummary from './RatingSummary';
 
 const tempData = {
   product_id: '66659',
@@ -37,9 +38,9 @@ const tempData = {
 function RatingBreakdown() {
   return (
     <section className="ratingBreakdown">
-
+      <RatingSummary />
     </section>
-   )
+  );
 }
 
 export default RatingBreakdown;

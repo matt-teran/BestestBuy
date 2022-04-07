@@ -6,7 +6,7 @@
     flex-direction: column;
     width: 95%;
     margin: auto;
-    background-color: $blue;
+    background-color: $primary;
     
     .list-title {
         line-height: 1;
@@ -28,15 +28,17 @@
             position: absolute;
             top: calc(50% - 25px);
             right: calc(100% - 25px);
-            color: $yellow;
-            background-color: $blue;
+            z-index: 2;
+            color: $secondary;
+            background-color: $primary;
         }
         .scroll-right {
             position: absolute;
             top: calc(50% - 25px);
             left: calc(100% - 25px);
-            color: $yellow;
-            background-color: $blue;
+            z-index: 2;
+            color: $secondary;
+            background-color: $primary;
         }
     }
 }

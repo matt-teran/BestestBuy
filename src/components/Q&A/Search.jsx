@@ -10,9 +10,10 @@ class Search extends React.component {
     this.search = this.search.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
   search(event) {
     event.preventDefault();
-    let searchInput = this.state.searchInput;
+    const { searchInput } = this.state;
     this.props.onSearch(searchInput);
   }
 
@@ -26,15 +27,16 @@ class Search extends React.component {
 
   render() {
     return (
-      <div className='search-ctr'>
+      <div className="search-ctr">
         <input
           onChange={this.onChange}
-          className='search-input'
-          type='text'
-          placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-          name='question' />
-        <div className='icon-ctr'>
-          <img className='search-btn' src='' />
+          className="search-input"
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+          name="question"
+        />
+        <div className="icon-ctr">
+          <img className="search-btn" src="" alt="" />
         </div>
       </div>
     );

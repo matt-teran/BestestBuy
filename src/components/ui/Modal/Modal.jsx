@@ -19,10 +19,10 @@ function Modal({ showModal, children }) {
     </div>
   );
 }
-
-export default Modal;
-
 Modal.propTypes = {
   showModal: propTypes.bool.isRequired,
   children: propTypes.node.isRequired,
 };
+
+export default Modal;
+

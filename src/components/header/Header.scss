@@ -4,12 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $blue;
+    background-color: $primary;
     height: 9vh;
     padding: 0 13vw;
     h1 {
         line-height: 0;
-        color: $yellow;
+        color: $secondary;
         text-decoration: underline;
         font-family: sans-serif;
         font-size: 20px;

@@ -12,7 +12,9 @@ class ReportAnswer extends React.Component {
   }
 
   reportBtn() {
-    if (!this.state.reportedArr.includes(this.state.reportedId)) {
+    const { reportedArr, reportedId } = this.state;
+
+    if (!reportedArr.includes(reportedId)) {
       this.setState({
         reported: true,
       });
@@ -24,12 +26,15 @@ class ReportAnswer extends React.Component {
   }
 
   render() {
+    const { reported } = this.state;
     return (
       <div>
-        <button type='submit' onCLick={this.reportBtn} className='report-helpful-btn'>
-          {this.state.reported ? 'Reported' : 'Report'}
+        <button type="submit" onClick={this.reportBtn} className="report-helpful-btn">
+          {reported ? 'Reported' : 'Report'}
         </button>
       </div>
     );
   }
 }
+
+export default ReportAnswer;

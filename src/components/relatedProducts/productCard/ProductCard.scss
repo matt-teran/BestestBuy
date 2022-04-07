@@ -8,9 +8,9 @@
     width: 135px;
     margin: 0 10px;
     .btn-wrapper {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
+        position: relative;
+        left: calc(100% - 35px);
+        z-index: 2;
         .btn {
             margin: 5px;
         }
@@ -18,8 +18,15 @@
     .detail-wrapper {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        position: relative;
+        top: -35px;
         margin: 10px;
+        .image {
+            border-radius: 5px;
+            object-fit: cover;
+            height: 100px;
+            width: 100%;
+        }
         .category {
             font-weight: 300;
             text-transform: uppercase;

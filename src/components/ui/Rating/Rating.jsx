@@ -14,10 +14,9 @@ function Rating({ rating, size }) {
     <div className="stars" style={{ '--rating': rating, '--star-size': size }} aria-label={`Rating of this product is ${rating} out of 5.`} />
   );
 }
-
-export default Rating;
-
 Rating.propTypes = {
   rating: PropTypes.number.isRequired,
   size: PropTypes.string.isRequired,
 };
+
+export default Rating;

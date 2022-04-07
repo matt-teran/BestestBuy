@@ -1,18 +1,15 @@
-const axios = require('axios');
-const { API_KEY } = require('../../config');
-const { url } = require('../../config');
+/* eslint-disable no-console */
+import axios from 'axios';
+import { API_KEY, url, headers } from '../../config';
 
 const getQuestion = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: url + `qa/questions?product_id=${id}&count=25`,
-    headers: { Authorization: API_KEY },
+    url: `${url}qa/questions?product_id=${id}&count=25`,
+    headers,
   };
   axios(apiOptions)
-    .then((response) => {
-      //console.log('getQuestion successful')
-      return cb(response.data);
-    })
+    .then((response) => cb(response.data))
     .catch(() => {
       console.log('getQuestion error');
     });
@@ -21,14 +18,11 @@ const getQuestion = (id, cb) => {
 const getHelpfulQuestCount = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: url + `qa/questions?product_id=${id}`,
+    url: `${url}qa/questions?product_id=${id}`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
-    .then((response) => {
-      //console.log('getQuestHelpfulCounter success');
-      return cb(response.data);
-    })
+    .then((response) => cb(response.data))
     .catch(() => {
       console.log('QuestHelpfulCounter error');
     });
@@ -37,19 +31,16 @@ const getHelpfulQuestCount = (id, cb) => {
 const getAnsCount = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: url + `qa/questions/${id}/answers?count=25`,
+    url: `${url}qa/questions/${id}/answers?count=25`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
-    .then((response) => {
-      //console.log('axios get successful');
-      return response.data.results.map((helpful) => {
-        const isHelpful = ({
-          helpful: helpful.helpfulness,
-        });
-        return isHelpful;
+    .then((response) => response.data.results.map((helpful) => {
+      const isHelpful = ({
+        helpful: helpful.helpfulness,
       });
-    })
+      return isHelpful;
+    }))
     .then((data) => {
       cb(data);
     })
@@ -61,20 +52,16 @@ const getAnsCount = (id, cb) => {
 const getReportedStatus = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: url + `qa/questions?product_id=${id}&count=100`,
+    url: `${url}qa/questions?product_id=${id}&count=100`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
-    .then((response) => {
-      //console.log('axios get success');
-      //console.log(response.data.results);
-      return response.data.results.map((report) => {
-        const reported = {
-          reported: report.reported,
-        };
-        return reported;
-      });
-    })
+    .then((response) => response.data.results.map((report) => {
+      const reported = {
+        reported: report.reported,
+      };
+      return reported;
+    }))
     .then((data) => {
       cb(data);
     })
@@ -183,7 +170,7 @@ const putReportAns = (ansId, cb) => {
     });
 };
 
-module.exports = {
+export default {
   getQuestion,
   getAnsCount,
   getReportedStatus,
@@ -195,4 +182,3 @@ module.exports = {
   putReportAns,
   putQuestHelpful,
 };
-

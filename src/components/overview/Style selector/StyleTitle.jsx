@@ -5,7 +5,9 @@ function StyleTitle({ title }) {
   return (
     <div>
       <p>
-        Style:
+        SELECTED STYLE
+        {' '}
+        {'>'}
         {' '}
         {title}
       </p>

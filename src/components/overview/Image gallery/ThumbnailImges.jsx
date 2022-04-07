@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../ProductOverview.scss';
+import './ImageGallery.scss';
 
-function ThumbnailImage({ thumbnail, changeMainImage }) {
+function ThumbnailImage({ thumbnail, changeMainImage, index }) {
   return (
     <div>
       <img
-        className="gallery_thumbnail"
+        className="gallery-thumbnail"
         src={thumbnail.thumbnail_url}
         alt="product thumbnail"
-        onClick={() => changeMainImage(thumbnail.url)}
+        onClick={() => changeMainImage({ url: thumbnail.url, thumbnailIndex: index })}
         aria-hidden="true"
       />
     </div>
@@ -19,11 +19,13 @@ function ThumbnailImage({ thumbnail, changeMainImage }) {
 ThumbnailImage.propTypes = {
   thumbnail: PropTypes.shape({}),
   changeMainImage: PropTypes.func,
+  index: PropTypes.number,
 };
 
 ThumbnailImage.defaultProps = {
   thumbnail: {},
   changeMainImage: () => {},
+  index: 0,
 };
 
 export default ThumbnailImage;
