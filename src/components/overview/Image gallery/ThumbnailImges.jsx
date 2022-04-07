@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../ProductOverview.scss';
+import './ImageGallery.scss';
 
 function ThumbnailImage({ thumbnail, changeMainImage, index }) {
   return (
     <div>
       <img
-        className="gallery_thumbnail"
+        className="gallery-thumbnail"
         src={thumbnail.thumbnail_url}
         alt="product thumbnail"
         onClick={() => changeMainImage({ url: thumbnail.url, thumbnailIndex: index })}

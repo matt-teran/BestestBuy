@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../ProductOverview.scss';
+import './ImageGallery.scss';
 
 function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
   if (imageIndex === 0 && imageIndex === allThumbnail.length - 1) {
@@ -12,7 +12,7 @@ function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
   if (imageIndex === 0) {
     return (
       <div>
-        <span className="right_arrow">
+        <span className="right-arrow">
           <p onClick={() => changeMainImage({ url: allThumbnail[imageIndex + 1].url, thumbnailIndex: imageIndex + 1 })} aria-hidden="true">⇨</p>
         </span>
       </div>
@@ -22,7 +22,7 @@ function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
   if (imageIndex === allThumbnail.length - 1) {
     return (
       <div>
-        <span className="left_arrow">
+        <span className="left-arrow">
           <p onClick={() => changeMainImage({ url: allThumbnail[imageIndex - 1].url, thumbnailIndex: imageIndex - 1 })} aria-hidden="true">⇦</p>
         </span>
       </div>
@@ -31,10 +31,10 @@ function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
   // otherwise, show both arrow
   return (
     <div>
-      <span className="left_arrow">
+      <span className="left-arrow">
         <p onClick={() => changeMainImage({ url: allThumbnail[imageIndex - 1].url, thumbnailIndex: imageIndex - 1 })} aria-hidden="true">⇦</p>
       </span>
-      <span className="right_arrow">
+      <span className="right-arrow">
         <p onClick={() => changeMainImage({ url: allThumbnail[imageIndex + 1].url, thumbnailIndex: imageIndex + 1 })} aria-hidden="true">⇨</p>
       </span>
     </div>

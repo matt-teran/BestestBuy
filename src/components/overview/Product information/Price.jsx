@@ -20,6 +20,7 @@ function Price({ price, salePrice }) {
         {salePrice}
       </p>
       <p id="original-price">
+        $
         {price}
       </p>
     </div>
