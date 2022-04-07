@@ -162,7 +162,6 @@ class ProductOverview extends React.Component {
         this.setState({
           cart: results.data,
         });
-        console.log(results.data);
       })
       .then(() => this.togglePop())
       .catch((err) => console.log('post fail', err));
