@@ -6,11 +6,15 @@ import ArrowButton from './Image gallery/ArrowButton';
 import './ProductOverview.scss';
 
 function ImageGallery({
-  currentImage, allThumbnail, changeMainImage, imageIndex,
+  currentImage, allThumbnail, changeMainImage, imageIndex, imageSize, expandView,
 }) {
   return (
     <div>
-      <MainImage currentImage={currentImage} />
+      <MainImage
+        currentImage={currentImage}
+        imageSize={imageSize}
+        expandView={() => expandView()}
+      />
       <ArrowButton
         imageIndex={imageIndex}
         allThumbnail={allThumbnail}
@@ -37,6 +41,8 @@ ImageGallery.propTypes = {
   allThumbnail: PropTypes.arrayOf(PropTypes.shape({})),
   changeMainImage: PropTypes.func,
   imageIndex: PropTypes.number,
+  imageSize: PropTypes.string,
+  expandView: PropTypes.func,
 };
 
 ImageGallery.defaultProps = {
@@ -44,6 +50,8 @@ ImageGallery.defaultProps = {
   allThumbnail: [{}],
   changeMainImage: () => {},
   imageIndex: 0,
+  imageSize: '',
+  expandView: () => {},
 };
 
 export default ImageGallery;

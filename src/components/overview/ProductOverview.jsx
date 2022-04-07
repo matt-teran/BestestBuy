@@ -30,6 +30,7 @@ class ProductOverview extends React.Component {
       currentImage: '',
       allThumbnail: [],
       imageIndex: 0,
+      imageSize: '500px',
     };
   }
 
@@ -153,6 +154,12 @@ class ProductOverview extends React.Component {
     });
   }
 
+  expandView() {
+    this.setState({
+      imageSize: '1000px',
+    });
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -169,6 +176,7 @@ class ProductOverview extends React.Component {
     const { allThumbnail } = this.state;
     const { imageIndex } = this.state;
     const { salePrice } = this.state;
+    const { imageSize } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -177,8 +185,10 @@ class ProductOverview extends React.Component {
             currentImage={currentImage}
             allThumbnail={allThumbnail}
             imageIndex={imageIndex}
+            imageSize={imageSize}
             changeMainImage={(event) => this.changeMainImage(event)}
             arrowChangeImage={(event) => this.arrowChangeImage(event)}
+            expandView={() => this.expandView()}
           />
         </div>
         <div>
