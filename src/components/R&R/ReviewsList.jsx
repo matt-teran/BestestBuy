@@ -70,35 +70,6 @@ class ReviewsList extends React.Component {
 }
 
 /*
-function ReviewsList({ productId, page = 1, sort = 'relevant' }) {
-  const [reviews, setReviews] = useState([]);
-  const [mounted, setMounted] = useState(false);
-
-  // runs everytime the component gets mounted
-  useEffect(() => {
-    if (!mounted) {
-      getReviews();
-    }
-    return () => {
-      setReviews([]); // prevents data leakage
-    };
-  }, [mounted]);
-
-  const getReviews = async () => {
-    const response = await request.getReviews(productId, page, sort);
-    setMounted(true);
-    console.log(response.data.results[0]);
-    setReviews(response.data.results);
-  };
-
-  return mounted && reviews.length ? (
-    <div id="reviewTiles">
-      <ReviewTile review={response.data.results[0]} />
-    </div>
-  ) : (<div>No reviews currently...</div>);
-}
-*/
-/*
 star rating
 date of review
 review summary

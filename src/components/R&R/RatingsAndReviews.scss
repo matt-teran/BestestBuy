@@ -36,9 +36,20 @@
   padding: 10px;
 }
 
+.review-image-container {
+  display: flex;
+  width: fit-content;
+}
+
 .review-Tile-Images {
   display: flex;
   flex-direction: row;
+}
+
+.review-image-full {
+  display: flex;
+  position: absolute;
+  align-content: center;
 }
 
 .bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
