@@ -60,10 +60,9 @@ class ReviewsList extends React.Component {
       // eslint-disable-next-line no-else-return
     } else {
       return (
-        <div className="reviewsList">
+        <div className="reviews-List">
           { displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />) }
-          {/* {buttonMaker('More Reviews', 'More Reviews', this.handleMoreReviews, this.hideButton)} */}
-          {!this.hideButton ? <button type="button" className="buttonbutton" onClick={this.handleMoreReviews}>More Reviews</button> : null}
+          {!this.hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );
     }
