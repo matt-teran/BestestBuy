@@ -4,8 +4,8 @@ import './styleSelector.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 
-function StyleThumbnail({ style, selectStyle, title }) {
-  if (style.name === title) {
+function StyleThumbnail({ style, selectStyle, styleId }) {
+  if (style.style_id === styleId) {
     return (
       <div>
         <img
@@ -37,13 +37,13 @@ function StyleThumbnail({ style, selectStyle, title }) {
 StyleThumbnail.propTypes = {
   style: PropTypes.shape({}),
   selectStyle: PropTypes.func,
-  title: PropTypes.string,
+  styleId: PropTypes.number,
 };
 
 StyleThumbnail.defaultProps = {
   style: {},
   selectStyle: '',
-  title: '',
+  styleId: 0,
 };
 
 export default StyleThumbnail;

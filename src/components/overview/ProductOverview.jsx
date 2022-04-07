@@ -199,6 +199,7 @@ class ProductOverview extends React.Component {
             styles={styles}
             selectStyle={(event) => this.selectStyle(event)}
             title={currentStyle.name}
+            styleId={currentStyle.style_id}
           />
         </div>
         <div>
