@@ -31,6 +31,7 @@ class ProductOverview extends React.Component {
       allThumbnail: [],
       imageIndex: 0,
       imageSize: '500px',
+      viewExpanded: false,
     };
   }
 
@@ -156,7 +157,15 @@ class ProductOverview extends React.Component {
 
   expandView() {
     this.setState({
-      imageSize: '1000px',
+      imageSize: '1250px',
+      viewExpanded: true,
+    });
+  }
+
+  normalView() {
+    this.setState({
+      imageSize: '500px',
+      viewExpanded: false,
     });
   }
 
@@ -177,6 +186,7 @@ class ProductOverview extends React.Component {
     const { imageIndex } = this.state;
     const { salePrice } = this.state;
     const { imageSize } = this.state;
+    const { viewExpanded } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -186,9 +196,11 @@ class ProductOverview extends React.Component {
             allThumbnail={allThumbnail}
             imageIndex={imageIndex}
             imageSize={imageSize}
+            viewExpanded={viewExpanded}
             changeMainImage={(event) => this.changeMainImage(event)}
             arrowChangeImage={(event) => this.arrowChangeImage(event)}
             expandView={() => this.expandView()}
+            normalView={() => this.normalView()}
           />
         </div>
         <div>
