@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import request from './requests';
 import ReviewTile from './ReviewTile';
-import 'regenerator-runtime/runtime';
 
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.hideButton = false;
+    this.moreReviewsButtonClicked = 0;
+
     this.state = {
       numberOfTiles: 2,
       reviews: [],
       isLoaded: false,
       page: 1,
+      filter: 1,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
@@ -22,14 +24,14 @@ class ReviewsList extends React.Component {
     if (productId && !isLoaded) {
       request.getReviews(productId)
         .then(({ data }) => {
-          // console.log(data.results);
+          console.log(data.results);
           if (!data.results.length) this.hideButton = true;
           this.setState({
             isLoaded: true,
             reviews: data.results,
           });
-        }).catch(() => {
-          console.log('something went wrong with the API request in ReviewsList');
+        }).catch((err) => {
+          console.log(err);
         });
     }
   }
@@ -53,20 +55,44 @@ class ReviewsList extends React.Component {
   }
 
   render() {
-    const { isLoaded, numberOfTiles, reviews } = this.state;
+    const { isLoaded, numberOfTiles, reviews, filter } = this.state;
     const displayedTiles = reviews.slice(0, numberOfTiles);
+
+    if (displayedTiles.length) {
+      console.log('displayedTiles', displayedTiles);
+      console.log('countFilteredReviews', countFilteredReviews(displayedTiles, 1));
+    }
+
     if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
       // eslint-disable-next-line no-else-return
     } else {
       return (
         <div className="reviews-List">
-          { displayedTiles.map((review, index) => <ReviewTile key={index} review={review} />) }
+          { displayedTiles.map((review, index) => {
+            if (review.rating === filter || filter === false) {
+              return <ReviewTile key={index} review={review} />
+            }
+            return;
+          }) }
           {!this.hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );
     }
   }
+}
+
+//counts up the number of reviews in the buffer that matches the filter
+function countFilteredReviews(reviews, searchNum) {
+  let filteredCount = 0;
+
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].rating === searchNum) {
+      filteredCount += 1;
+    }
+  }
+
+  return filteredCount;
 }
 
 /*
