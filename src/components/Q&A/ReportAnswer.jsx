@@ -6,7 +6,7 @@ class ReportAnswer extends React.Component {
     this.state = {
       reported: false,
       reportedArr: [],
-      reportedId: this.ansId = this.props,
+      // reportedId: this.ansId = this.props,
     };
     this.reportBtn = this.reportBtn.bind(this);
   }

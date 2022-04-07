@@ -4,6 +4,19 @@ const id = 66642;
 // quest: qa/questions
 // ans: qa/questions/:question_id/
 
+const getQuestions = function () {
+  let body = {
+    product_id: '5',
+    page: 1,
+    count: 5,
+  };
+  return axios.get(url + 'qa/questions/', {
+    headers: {
+      Authorization: API_KEY,
+    },
+  });
+};
+
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);

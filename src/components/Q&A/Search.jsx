@@ -1,16 +1,16 @@
 import React from 'react';
 import './Search.scss';
 
-class Search extends React.component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: '',
+      // searchInput: '',
     };
-    this.search = this.search.bind(this);
-    this.onChange = this.onChange.bind(this);
+    // this.search = this.search.bind(this);
+    // this.onChange = this.onChange.bind(this);
   }
-
+  /*
   search(event) {
     event.preventDefault();
     const { searchInput } = this.state;
@@ -24,6 +24,7 @@ class Search extends React.component {
       this.search(event);
     });
   }
+  */
 
   render() {
     return (
