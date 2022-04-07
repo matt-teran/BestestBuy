@@ -32,6 +32,8 @@ class ProductOverview extends React.Component {
       imageIndex: 0,
       imageSize: '500px',
       viewExpanded: false,
+      seen: false,
+      cart: [{}],
     };
   }
 
@@ -147,8 +149,30 @@ class ProductOverview extends React.Component {
         skusId = sizeNumber[i];
       }
     }
-    console.log(skusId);
-    console.log(quantitySelected);
+    // console.log(skusId);
+    // console.log(quantitySelected);
+    axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
+      .then(() => console.log('add to cart successfully'))
+      .catch((err) => console.log('post fail', err));
+  }
+
+  cartButton() {
+    axios.get(`${url}/cart`, headers)
+      .then((results) => {
+        this.setState({
+          cart: results.data,
+        });
+        console.log(results.data);
+      })
+      .then(() => this.togglePop())
+      .catch((err) => console.log('post fail', err));
+  }
+
+  togglePop() {
+    const { seen } = this.state;
+    this.setState({
+      seen: !seen,
+    });
   }
 
   changeMainImage(event) {
@@ -190,6 +214,8 @@ class ProductOverview extends React.Component {
     const { salePrice } = this.state;
     const { imageSize } = this.state;
     const { viewExpanded } = this.state;
+    const { seen } = this.state;
+    const { cart } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -217,6 +243,10 @@ class ProductOverview extends React.Component {
             salePrice={salePrice}
             rating={rating}
             review={review}
+            seen={seen}
+            cart={cart}
+            togglePop={() => this.togglePop()}
+            cartButton={() => this.cartButton()}
           />
         </div>
         <div>
