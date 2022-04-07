@@ -18,6 +18,7 @@ class ProductOverview extends React.Component {
       slogan: '',
       description: '',
       price: '',
+      salePrice: null,
       features: [],
       rating: 0,
       review: 0,
@@ -111,6 +112,8 @@ class ProductOverview extends React.Component {
       currentStyle: event,
       allThumbnail: event.photos,
       currentImage: event.photos[0].url,
+      price: event.original_price,
+      salePrice: event.sale_price,
     });
   }
 
@@ -165,6 +168,7 @@ class ProductOverview extends React.Component {
     const { currentImage } = this.state;
     const { allThumbnail } = this.state;
     const { imageIndex } = this.state;
+    const { salePrice } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -185,6 +189,7 @@ class ProductOverview extends React.Component {
             description={description}
             features={features}
             price={price}
+            salePrice={salePrice}
             rating={rating}
             review={review}
           />

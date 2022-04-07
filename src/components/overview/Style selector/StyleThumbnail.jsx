@@ -37,11 +37,13 @@ function StyleThumbnail({ style, selectStyle, title }) {
 StyleThumbnail.propTypes = {
   style: PropTypes.shape({}),
   selectStyle: PropTypes.func,
+  title: PropTypes.string,
 };
 
 StyleThumbnail.defaultProps = {
   style: {},
   selectStyle: '',
+  title: '',
 };
 
 export default StyleThumbnail;

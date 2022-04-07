@@ -7,7 +7,7 @@ function ProductDetail({ slogan, description, features }) {
       <p id="slogan">{slogan}</p>
       <p id="description">{description}</p>
       {features.map((feature) => (
-        <p key={feature.value}>
+        <p key={Math.random()}>
           {feature.feature}
           :
           {' '}
