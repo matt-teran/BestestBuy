@@ -54,7 +54,6 @@ class ProductOverview extends React.Component {
           title: productInfo.data.name,
           slogan: productInfo.data.slogan,
           description: productInfo.data.description,
-          price: productInfo.data.default_price,
           features: productInfo.data.features,
         });
       })
@@ -73,6 +72,9 @@ class ProductOverview extends React.Component {
           styles: styleInfo.data.results,
           currentImage: styleInfo.data.results[0].photos[0].url,
           allThumbnail: styleInfo.data.results[0].photos,
+          currentStyle: styleInfo.data.results[0],
+          price: styleInfo.data.results[0].original_price,
+          salePrice: styleInfo.data.results[0].sale_price,
         });
       })
       .catch((err) => console.log('Failed to fetch style data', err));
