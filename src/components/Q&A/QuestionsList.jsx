@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+import propTypes from 'prop-types';
 import { url, headers } from '../../config';
-import Search from './Search.jsx';
-import Question from './Question.jsx';
-import Answer from './Answer.jsx';
+import Search from './Search';
+import Question from './Question';
+import Answer from './Answer';
+
 
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      // data: [],
       questions: {
         results: [],
       },
@@ -57,6 +59,10 @@ class QuestionsList extends React.Component {
     );
   }
 }
+
+QuestionsList.propTypes = {
+  id: propTypes.string.isRequired,
+};
 
 export default QuestionsList;
 

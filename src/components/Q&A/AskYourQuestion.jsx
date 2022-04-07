@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import propTypes from 'prop-types';
 
 class AskYourQuestion extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class AskYourQuestion extends React.Component {
       askName: '',
       askEmail: '',
       askQuestion: '',
-      send: false,
+      // send: false,
     };
     this.postQuestion.bind(this);
   }
@@ -23,7 +24,7 @@ class AskYourQuestion extends React.Component {
     const { productId } = this.props;
     const { askQuestion, askName, askEmail } = this.state;
     this.setState({
-      send: true,
+      // send: true,
     });
     axios.post('qa/questions', {
       body: askQuestion,
@@ -37,7 +38,11 @@ class AskYourQuestion extends React.Component {
       });
   }
 
-  type(event) {
+  // type(event) {
 
-  }
+  // }
 }
+
+AskYourQuestion.propTypes = {
+  productId: propTypes.string.isRequired,
+};
