@@ -8,14 +8,14 @@ import Share from './Product information/Share';
 import StarRating from './Product information/StarRating';
 
 function ProductInformation({
-  category, title, slogan, description, price, features, rating, review,
+  category, title, slogan, description, price, features, rating, review, salePrice,
 }) {
   return (
     <div className="product_information_block">
       <div><StarRating rating={rating} review={review} /></div>
       <div><ProductCategory category={category} /></div>
       <div><ProductTitle title={title} /></div>
-      <div><Price price={price} /></div>
+      <div><Price price={price} salePrice={salePrice} /></div>
       <div><ProductDetail slogan={slogan} description={description} features={features} /></div>
       <div><Share title={title} /></div>
     </div>
@@ -31,6 +31,7 @@ ProductInformation.propTypes = {
   price: PropTypes.string,
   rating: PropTypes.number,
   review: PropTypes.number,
+  salePrice: PropTypes.string,
 };
 
 ProductInformation.defaultProps = {
@@ -42,6 +43,7 @@ ProductInformation.defaultProps = {
   price: '',
   rating: 0,
   review: 0,
+  salePrice: null,
 };
 
 export default ProductInformation;

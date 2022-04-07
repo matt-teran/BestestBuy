@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../ProductOverview.scss';
+import './ImageGallery.scss';
 
 function MainImage({ currentImage }) {
   return (
     <div>
-      <img className="main_image" src={currentImage} alt="Product" />
+      <img className="main-image" src={currentImage} alt="Product" />
     </div>
   );
 }

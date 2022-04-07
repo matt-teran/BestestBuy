@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MainImage from './Image gallery/MainImage';
 import ThumbnailImage from './Image gallery/ThumbnailImges';
 import ArrowButton from './Image gallery/ArrowButton';
+import './ProductOverview.scss';
 
 function ImageGallery({
   currentImage, allThumbnail, changeMainImage, imageIndex,
@@ -15,7 +16,7 @@ function ImageGallery({
         allThumbnail={allThumbnail}
         changeMainImage={(event) => changeMainImage(event)}
       />
-      <div className="image_thumbnails">
+      <div className="image-thumbnails">
         {
           allThumbnail.map((thumbnail, index) => (
             <ThumbnailImage

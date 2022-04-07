@@ -15,6 +15,7 @@ function StyleSelector({ styles, selectStyle, title }) {
             <StyleThumbnail
               style={style}
               selectStyle={(event) => selectStyle(event)}
+              title={title}
             />
           </div>
         ))}
