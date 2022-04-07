@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ImageGallery.scss';
+import { GlassMagnifier } from 'react-image-magnifiers';
 
 function MainImage({
   currentImage, imageSize, expandView, viewExpanded, normalView,
@@ -9,13 +10,12 @@ function MainImage({
   if (viewExpanded) {
     return (
       <div>
-        <img
+        <GlassMagnifier
           className="main-image"
-          src={currentImage}
-          alt="Product"
-          style={{ width: imageSize, height: imageSize, cursor: 'crosshair' }}
-          onClick={() => expandView()}
-          aria-hidden="true"
+          imageSrc={currentImage}
+          imageAlt="Product"
+          style={{ width: imageSize, height: 'auto' }}
+          magnifierSize="25%"
         />
         <span className="normal-view-button" onClick={() => normalView()} aria-hidden="true">-</span>
       </div>

@@ -159,7 +159,7 @@ class ProductOverview extends React.Component {
 
   expandView() {
     this.setState({
-      imageSize: '1250px',
+      imageSize: '1000px',
       viewExpanded: true,
     });
   }
