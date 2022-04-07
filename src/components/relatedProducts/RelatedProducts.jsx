@@ -18,6 +18,7 @@ class RelatedProducts extends React.Component {
       outfitCards: [],
       showModal: true,
     };
+    this.openModal = this.openModal.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +75,10 @@ class RelatedProducts extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
+  openModal() {
+    this.setState({ showModal: true });
+  }
+
   render() {
     const { relatedCards, outfitCards, showModal } = this.state;
     return (
@@ -83,8 +88,8 @@ class RelatedProducts extends React.Component {
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
-          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} />}
-          <RelatedProductsList title="Outfit List" relatedCards={outfitCards} />
+          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} openModal={this.openModal} />}
+          {/* <RelatedProductsList title="Outfit List" relatedCards={outfitCards} openModal={this.openModal} /> */}
         </div>
       </>
     );

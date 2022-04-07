@@ -20,7 +20,8 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { relatedCards, title } = this.props;
+    const { relatedCards, title, openModal } = this.props;
+    // console.log(openModal);
     const { position } = this.state;
     const cards = relatedCards.map((card) => (
       <ProductCard
@@ -30,6 +31,7 @@ class RelatedProductsList extends React.Component {
         name={card.name}
         category={card.category}
         image={card.image}
+        openModal={openModal}
       />
     ));
     return (
@@ -58,6 +60,7 @@ RelatedProductsList.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
   })),
+  openModal: propTypes.func.isRequired,
 };
 
 export default RelatedProductsList;
