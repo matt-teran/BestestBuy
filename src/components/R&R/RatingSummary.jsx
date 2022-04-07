@@ -14,48 +14,46 @@ function RatingSummary({ productStats }) {
     5: ((productStats.ratings[5] / counts.noOfRatings) * 100).toString(),
   };
 
-  console.log(ratingPercentages);
-
   return (
-    <section className="RatingSummary">
-      <div className="RatingSummaryHeader">
-        <div className="RatingSummaryOverall">
+    <section className="Rating-Summary">
+      <div className="Rating-Summary-Header">
+        <div className="Rating-Summary-Overall">
           <h3> Overall User Rating </h3>
           <Rating rating={counts.avg} size="30px" />
         </div>
         <p>{counts.avg} average based on {counts.noOfRatings} reviews</p>
       </div>
 
-      <div className="RatingSummaryBars">
-        <div className="RatingSummaryStats">
+      <div className="Rating-Summary-Bars">
+        <div className="Rating-Summary-Stats">
           <p>5 Star</p>
           <div className="bar-5" style={{ width: ratingPercentages[5]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[5]}</div>
           </div>
         </div>
-        <div className="RatingSummaryStats">
+        <div className="Rating-Summary-Stats">
           <p>4 Star</p>
           <div className="bar-4" style={{ width: ratingPercentages[4]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[4]}</div>
           </div>
         </div>
-        <div className="RatingSummaryStats">
+        <div className="Rating-Summary-Stats">
           <p>3 Star</p>
           <div className="bar-3" style={{ width: ratingPercentages[3]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[3]}</div>
           </div>
         </div>
-        <div className="RatingSummaryStats">
+        <div className="Rating-Summary-Stats">
           <p>2 Star</p>
           <div className="bar-2" style={{ width: ratingPercentages[2]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[2]}</div>
           </div>
         </div>
-        <div className="RatingSummaryStats">
+        <div className="Rating-Summary-Stats">
           <p>1 Star</p>
           <div className="bar-1" style={{ width: ratingPercentages[1]+"%" }} />
           <div className="side Right">
