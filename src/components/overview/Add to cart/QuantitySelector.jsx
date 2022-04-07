@@ -3,10 +3,28 @@ import PropTypes from 'prop-types';
 import Select from 'react-dropdown-select';
 
 function QuantitySelector({ currentQuantity, selectQuantity }) {
-  let selectArray = [];
+  const selectArray = [];
+  if (currentQuantity === null) {
+    return (
+      <div>
+        <Select
+          placeholder="-"
+          disabled={true}
+        />
+      </div>
+    );
+  }
   if (currentQuantity === 0) {
-    selectArray = [{ value: 'undefined', label: 'Out of Stock' }];
-  } else if (currentQuantity > 15) {
+    return (
+      <div>
+        <Select
+          placeholder="Out of Stock"
+          disabled={true}
+        />
+      </div>
+    );
+  }
+  if (currentQuantity > 15) {
     for (let i = 1; i < 16; i += 1) {
       selectArray.push({ value: i, label: i });
     }

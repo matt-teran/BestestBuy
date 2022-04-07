@@ -24,7 +24,7 @@ class ProductOverview extends React.Component {
       review: 0,
       styles: [],
       currentStyle: {},
-      currentSizeAndQuantity: {},
+      currentSizeAndQuantity: { value: null },
       quantitySelected: 0,
       sizeSelected: '',
       currentImage: '',
@@ -118,6 +118,7 @@ class ProductOverview extends React.Component {
       currentImage: event.photos[0].url,
       price: event.original_price,
       salePrice: event.sale_price,
+      currentSizeAndQuantity: { value: null },
     });
   }
 
