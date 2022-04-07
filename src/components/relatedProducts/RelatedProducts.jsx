@@ -75,7 +75,11 @@ class RelatedProducts extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
-  openModal() {
+  openModal(comparedId) {
+    const { id } = this.props;
+    Promise.all([id, comparedId].map((productId) => axios.get(`${url}/products/${productId}`, headers).catch((err) => { console.log(err); })))
+      .then((res) => { console.log(res); })
+      .catch((err) => { console.log(err); });
     this.setState({ showModal: true });
   }
 
@@ -89,7 +93,7 @@ class RelatedProducts extends React.Component {
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
           {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} openModal={this.openModal} />}
-          {/* <RelatedProductsList title="Outfit List" relatedCards={outfitCards} openModal={this.openModal} /> */}
+          <RelatedProductsList title="Outfit List" relatedCards={outfitCards} openModal={this.openModal} />
         </div>
       </>
     );

@@ -32,6 +32,7 @@ class RelatedProductsList extends React.Component {
         category={card.category}
         image={card.image}
         openModal={openModal}
+        id={card.id}
       />
     ));
     return (

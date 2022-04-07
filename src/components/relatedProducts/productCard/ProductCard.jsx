@@ -5,10 +5,10 @@ import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
 
 function ProductCard({
-  category, name, price, avgRating, image, openModal,
+  category, name, price, avgRating, image, openModal, id,
 }) {
   return (
-    <div className="card" onClick={openModal}>
+    <div className="card" onKeyDown={(event) => { openModal(event); }} onClick={(event) => { openModal(id); }} role="button" tabIndex={0}>
       <div className="btn-wrapper">
         <Btn />
       </div>
