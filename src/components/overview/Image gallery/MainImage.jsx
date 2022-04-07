@@ -17,7 +17,7 @@ function MainImage({
           style={{ width: imageSize, height: 'auto' }}
           magnifierSize="25%"
         />
-        <span className="normal-view-button" onClick={() => normalView()} aria-hidden="true">-</span>
+        <span className="normal-view-button" onClick={() => normalView()} aria-hidden="true">X</span>
       </div>
     );
   }
