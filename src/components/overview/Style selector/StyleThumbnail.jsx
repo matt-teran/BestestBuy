@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../ProductOverview.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 
 function StyleThumbnail({ style, selectStyle, title }) {
   if (style.name === title) {
@@ -13,7 +15,9 @@ function StyleThumbnail({ style, selectStyle, title }) {
           onClick={() => selectStyle(style)}
           aria-hidden="true"
         />
-        <p>\/</p>
+        <span>
+          <FontAwesomeIcon icon={faCircleCheck} />
+        </span>
       </div>
     );
   }
