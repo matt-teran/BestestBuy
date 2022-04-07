@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function AttributeCompare({ current, feature, compared }) {
@@ -9,5 +10,11 @@ function AttributeCompare({ current, feature, compared }) {
     </tr>
   );
 }
+
+AttributeCompare.propTypes = {
+  current: PropTypes.bool.isRequired,
+  feature: PropTypes.string.isRequired,
+  compared: PropTypes.bool.isRequired,
+};
 
 export default AttributeCompare;

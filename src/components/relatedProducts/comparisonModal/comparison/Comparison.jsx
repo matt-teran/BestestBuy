@@ -45,10 +45,8 @@ function Comparison({ currentProduct, comparedProduct }) {
 }
 
 Comparison.propTypes = {
-  currentProduct: PropTypes.arrayOf(PropTypes.shape({
-
-  })),
-  comparedProduct: PropTypes.arrayOf(PropTypes.shape({})),
+  currentProduct: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  comparedProduct: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Comparison;
