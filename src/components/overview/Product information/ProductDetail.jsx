@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ProductDetail({ slogan, description, features }) {
+  for (let i = 0; i < features.length; i += 1) {
+    features[i].id = i;
+  }
   return (
     <div className="product_detail">
       <p id="slogan">{slogan}</p>
       <p id="description">{description}</p>
       {features.map((feature) => (
-        <p key={Math.random()}>
+        <p key={feature.id}>
           {feature.feature}
           :
           {' '}
