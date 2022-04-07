@@ -17,12 +17,22 @@ class RelatedProducts extends React.Component {
       relatedCards: [],
       outfitCards: [],
       showModal: true,
+      currentProductInfo: [],
+      comparedProductInfo: [],
     };
     this.openModal = this.openModal.bind(this);
   }
 
   componentDidMount() {
     this.getRelatedProducts();
+    this.getCurrentProductInfo();
+  }
+
+  getCurrentProductInfo() {
+    const { id } = this.props;
+    axios.get(`${url}/products/${id}`, headers)
+      .then(({ data }) => this.setState({ currentProductInfo: data }))
+      .catch((err) => { console.log(err); });
   }
 
   getRelatedProducts() {
@@ -76,19 +86,19 @@ class RelatedProducts extends React.Component {
   }
 
   openModal(comparedId) {
-    const { id } = this.props;
-    Promise.all([id, comparedId].map((productId) => axios.get(`${url}/products/${productId}`, headers).catch((err) => { console.log(err); })))
-      .then((res) => { console.log(res); })
+    axios.get(`${url}/products/${comparedId}`, headers)
+      .then(({ data }) => { this.setState({ comparedProductInfo: data, showModal: true }); })
       .catch((err) => { console.log(err); });
-    this.setState({ showModal: true });
   }
 
   render() {
-    const { relatedCards, outfitCards, showModal } = this.state;
+    const {
+      relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo,
+    } = this.state;
     return (
       <>
         <Modal showModal={showModal}>
-          <Comparison />
+          <Comparison currentProduct={currentProductInfo} comparedProduct={comparedProductInfo} />
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
