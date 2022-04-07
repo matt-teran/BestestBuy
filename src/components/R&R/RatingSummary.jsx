@@ -44,6 +44,7 @@ function RatingSummary({ productStats }) {
         <div className="RatingSummaryStats">
           <p>3 Star</p>
           <div className="bar-3" style={{ width: ratingPercentages[3]+"%" }} />
+<<<<<<< Updated upstream
           <div className="side Right">
             <div>{productStats.ratings[3]}</div>
           </div>
@@ -59,6 +60,23 @@ function RatingSummary({ productStats }) {
           <p>1 Star</p>
           <div className="bar-1" style={{ width: ratingPercentages[1]+"%" }} />
           <div className="side Right">
+=======
+          <div className="side Right">
+            <div>{productStats.ratings[3]}</div>
+          </div>
+        </div>
+        <div className="RatingSummaryStats">
+          <p>2 Star</p>
+          <div className="bar-2" style={{ width: ratingPercentages[2]+"%" }} />
+          <div className="side Right">
+            <div>{productStats.ratings[2]}</div>
+          </div>
+        </div>
+        <div className="RatingSummaryStats">
+          <p>1 Star</p>
+          <div className="bar-1" style={{ width: ratingPercentages[1]+"%" }} />
+          <div className="side Right">
+>>>>>>> Stashed changes
             <div>{productStats.ratings[1]}</div>
           </div>
         </div>
@@ -80,5 +98,10 @@ function getAvgRating(ratings) {
   });
   return { avg: total / numberOfRatings, noOfRatings: numberOfRatings };
 }
+<<<<<<< Updated upstream
+=======
+
+export default RatingSummary;
+>>>>>>> Stashed changes
 
 export default RatingSummary;
