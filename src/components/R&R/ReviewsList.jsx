@@ -24,23 +24,25 @@ class ReviewsList extends React.Component {
       reviews: [],
       isLoaded: false,
       page: 1,
-      filter: 1,
-      displayFilteredReviews: 2,
+      filter: false,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
 
   componentDidMount() {
     const { productId } = this.props;
-    const { isLoaded } = this.state;
+    const { isLoaded, page } = this.state;
     if (productId && !isLoaded) {
       request.getReviews(productId)
         .then(({ data }) => {
-          // console.log(data.results);
-          if (!data.results.length) this.hideButton = true;
+          // //stops further axios requests from this component for the same info that's not there
+          if (!data.results.length) {
+            this.hideButton = true;
+          }
           this.setState({
             isLoaded: true,
             reviews: data.results,
+            page: page + 1,
           });
         }).catch((err) => {
           console.log(err);
@@ -52,10 +54,6 @@ class ReviewsList extends React.Component {
     this.setState({ numberOfTiles: this.state.numberOfTiles + 2 });
     const { numberOfTiles, reviews, page } = this.state;
 
-    if (this.state.filter !== false) {
-      this.state.displayFilteredReviews++;
-    }
-
     // makes an API request ahead of time to always have more reviews ready to be displayed
     if (reviews.length <= numberOfTiles + 3) {
       this.state.page = page + 1;
@@ -64,6 +62,7 @@ class ReviewsList extends React.Component {
           if (data.results.length) {
             this.state.reviews = this.state.reviews.concat(data.results);
           } else {
+            //this executes when the data comes back valid but empty
             this.hideButton = true;
           }
         });
@@ -73,23 +72,8 @@ class ReviewsList extends React.Component {
   render() {
     const { isLoaded, numberOfTiles, reviews, filter } = this.state;
     const displayedTiles = reviews.slice(0, numberOfTiles);
-    let numFilteredReviews;
 
-    //hardcoded data here
-    if(this.state.filter!== false) numFilteredReviews = countFilteredReviews(displayedTiles, this.state.filter);
-
-    console.log('numfilteredReviews: ', numFilteredReviews);
-
-    console.log('this.state.filter: ', this.state.filter);
-    console.log('numFilteredReviews: ', numFilteredReviews);
-    console.log('this.state.hideButton', this.hideButton);
-
-    if (this.state.filter !== false && this.state.displayFilteredReviews > numFilteredReviews && this.hideButton === false) {
-      console.log('countFilteredReviews: ', this.state.countFilteredReviews);
-      console.log('NumFilteredReviews: ', numFilteredReviews);
-      console.log('ReviewsLoaded: ', this.state.reviews);
-      // this.handleMoreReviews();
-    }
+    console.log('REVIEWS IN BUFFER', reviews);
 
     if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
@@ -109,8 +93,6 @@ class ReviewsList extends React.Component {
     }
   }
 }
-
-
 
 /*
 star rating
