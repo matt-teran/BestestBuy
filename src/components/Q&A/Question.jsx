@@ -23,4 +23,5 @@ export default Question;
 
 Question.propTypes = {
   questionBody: propTypes.string.isRequired,
+  questId: propTypes.number.isRequired,
 };
