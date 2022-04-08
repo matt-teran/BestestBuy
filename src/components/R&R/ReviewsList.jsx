@@ -13,7 +13,7 @@ class ReviewsList extends React.Component {
       reviews: [],
       isLoaded: false,
       page: 1,
-      filter: 1,
+      filter: false,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
@@ -24,7 +24,7 @@ class ReviewsList extends React.Component {
     if (productId && !isLoaded) {
       request.getReviews(productId)
         .then(({ data }) => {
-          console.log(data.results);
+          // console.log(data.results);
           if (!data.results.length) this.hideButton = true;
           this.setState({
             isLoaded: true,
@@ -58,10 +58,10 @@ class ReviewsList extends React.Component {
     const { isLoaded, numberOfTiles, reviews, filter } = this.state;
     const displayedTiles = reviews.slice(0, numberOfTiles);
 
-    if (displayedTiles.length) {
-      console.log('displayedTiles', displayedTiles);
-      console.log('countFilteredReviews', countFilteredReviews(displayedTiles, 1));
-    }
+    // if (displayedTiles.length) {
+    //   console.log('displayedTiles', displayedTiles);
+    //   console.log('countFilteredReviews', countFilteredReviews(displayedTiles, 1));
+    // }
 
     if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
