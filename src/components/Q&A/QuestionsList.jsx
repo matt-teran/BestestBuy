@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { url, headers } from '../../config';
 import Search from './Search';
 import Question from './Question';
-import Answer from './Answer';
+import AnswerList from './Answer';
 
 
 class QuestionsList extends React.Component {
@@ -47,7 +47,7 @@ class QuestionsList extends React.Component {
         {questions.results.map(question => {
           return <Question key={question.question_id} questionBody={question.question_body} />
         })}
-        <Answer />
+        <AnswerList />
         <div className="btn-ctr">
           <button className="maq-btn" type="button">MORE ANSWERED QUESTIONS</button>
           <button className="aaq-btn" type="button">ADD A QUESTION +</button>
@@ -62,22 +62,3 @@ QuestionsList.propTypes = {
 };
 
 export default QuestionsList;
-
-/*
-// quest: qa/questions
-// ans: qa/questions/:question_id/
-
-const getQuestions = function () {
-  let body = {
-    product_id: '5',
-    page: 1,
-    count: 5,
-  };
-  return axios.get(url + 'qa/questions/', {
-    headers: {
-      Authorization: API_KEY,
-    },
-  });
-};
-
-*/

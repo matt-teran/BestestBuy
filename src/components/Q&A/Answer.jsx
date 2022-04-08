@@ -1,10 +1,14 @@
 import React from 'react';
 
-function Answer() {
+function Answer(props) {
   return (
     <div>
       <div className="answer-ctr">
-        <h4>A: This is an answer!</h4>
+        <h4>
+          A:
+          {' '}
+          {props.answerBody}
+        </h4>
       </div>
     </div>
   );

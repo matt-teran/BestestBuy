@@ -2,23 +2,25 @@ import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
 import { url, headers } from '../../config';
+import Answer from './Answer';
 
 class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      answers: null
+      answers: {
+        results: [],
+      },
     };
   }
 
   componentDidMount() {
-    const { id } = this.props;
-    this.getAnswer(id);
+    const { questId } = this.props;
+    this.getAnswer(questId);
   }
 
-  getAnswer(id) {
-    axios(`${url}/qa/questions/${id}/answers?count=25`, headers)
+  getAnswer(questId) {
+    axios(`${url}/qa/questions/${questId}/answers?count=25`, headers)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -29,4 +31,21 @@ class AnswerList extends React.Component {
         console.log('getAnswer error');
       });
   }
+
+  render() {
+    const { answers } = this.state;
+    return (
+      <div className="answer-list-ctr">
+        {answers.results.map((answer) => {
+          return <Answer key={answer.answer_id} answerBody={answer.body} />
+        })}
+      </div>
+    );
+  }
 }
+
+AnswerList.propTypes = {
+  questId: propTypes.number.isRequired,
+};
+
+export default AnswerList;
