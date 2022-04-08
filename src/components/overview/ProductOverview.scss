@@ -2,4 +2,10 @@
   position:absolute;
   left:17%;
   top:25%;
+  height: 350px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.scrollable-element {
+  scrollbar-width: thin;
 }

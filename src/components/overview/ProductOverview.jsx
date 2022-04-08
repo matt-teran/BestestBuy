@@ -244,6 +244,7 @@ class ProductOverview extends React.Component {
             review={review}
             seen={seen}
             cart={cart}
+            currentImage={currentImage}
             togglePop={() => this.togglePop()}
             cartButton={() => this.cartButton()}
           />

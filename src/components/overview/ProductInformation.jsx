@@ -13,7 +13,7 @@ import Cart from './Product information/Cart';
 function ProductInformation({
   category, title, slogan, description, price,
   features, rating, review, salePrice, cartButton,
-  togglePop, seen, cart,
+  togglePop, seen, cart, currentImage,
 }) {
   return (
     <div className="product_information_block">
@@ -26,7 +26,7 @@ function ProductInformation({
       <div><ProductTitle title={title} /></div>
       <div><Price price={price} salePrice={salePrice} /></div>
       <div><ProductDetail slogan={slogan} description={description} features={features} /></div>
-      <div><Share title={title} /></div>
+      <div><Share title={title} currentImage={currentImage} /></div>
     </div>
   );
 }
@@ -45,6 +45,7 @@ ProductInformation.propTypes = {
   togglePop: PropTypes.func,
   seen: PropTypes.bool,
   cart: PropTypes.arrayOf(PropTypes.shape({})),
+  currentImage: PropTypes.string,
 };
 
 ProductInformation.defaultProps = {
@@ -61,6 +62,7 @@ ProductInformation.defaultProps = {
   togglePop: () => {},
   seen: false,
   cart: [{}],
+  currentImage: '',
 };
 
 export default ProductInformation;
