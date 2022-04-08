@@ -38,10 +38,9 @@ class ReviewsList extends React.Component {
     const { isLoaded, page } = this.state;
     if (productId && !isLoaded) {
       new Promise((res, rej) => {
-        this.getEnoughData(res);
+        this.getEnoughData(res, rej);
       })
         .then(() => {
-          console.log('Content is now loaded!');
           this.setState({
             isLoaded: true,
           });
@@ -53,13 +52,19 @@ class ReviewsList extends React.Component {
   }
 
   handleMoreReviews() {
-    if (this.filteredReviews.length > this.reviewsToDisplay + 2) {
+    const { reviewsToDisplay } = this.state;
+    this.setState({reviewsToDisplay: reviewsToDisplay + 2});
 
+    if (this.state.filteredReviews.length < this.state.reviewsToDisplay + 4) {
+      new Promise( (res, rej)=> {
+        this.getEnoughData(res, rej);
+      })
     }
   }
 
-  //takes in a resolve callback
-  getEnoughData(callback) {
+  //takes in a resolve and reject callbacks. This recursively sends API
+  //requests until we have at least 2 extra tiles stored in the state to render immediately if more reviews is clicked
+  getEnoughData(resCallback, rejCallback) {
     const { productId } = this.props;
 
     const innerFunc = function () {
@@ -73,15 +78,13 @@ class ReviewsList extends React.Component {
             this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.state.filter)});
           }
           if (this.hideButton !== true && this.state.filteredReviews.length <= this.state.reviewsToDisplay + 2) {
-            console.log('notorize bitch');
             innerFunc.call(this);
           }
         }).then(()=>{
-          console.log('this is the filtered reviews', this.state.filteredReviews);
-          callback();
+          resCallback();
         })
         .catch((err) => {
-          console.log(err);
+          rejCallback(err);
         });
     };
 
@@ -89,8 +92,7 @@ class ReviewsList extends React.Component {
   }
 
   render() {
-    const { isLoaded, reviewsToDisplay } = this.state;
-    const { filteredReviews } = this.state;
+    const { isLoaded, reviewsToDisplay, filteredReviews } = this.state;
     const reviewsToShow = filteredReviews.slice(0, reviewsToDisplay);
 
     if (!isLoaded) {
