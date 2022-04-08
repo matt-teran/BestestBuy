@@ -23,6 +23,7 @@ class RelatedProducts extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -153,6 +154,12 @@ class RelatedProducts extends React.Component {
     this.setOutfitCookieAsState();
   }
 
+  removeFromOutfit(id) {
+    const updatedOutfitCards = JSON.parse(Cookies.get('outfit')).filter((outfitId) => outfitId !== id.toString());
+    Cookies.set('outfit', JSON.stringify(updatedOutfitCards));
+    this.setOutfitCookieAsState();
+  }
+
   render() {
     const {
       relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo,
@@ -171,8 +178,8 @@ class RelatedProducts extends React.Component {
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
-          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} openModal={this.openModal} />}
-          <RelatedProductsList title="Outfit List" outfit relatedCards={outfitCards} openModal={this.openModal} addToOutfit={this.addToOutfit} />
+          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} clickHandler={this.openModal} />}
+          <RelatedProductsList title="Outfit List" outfit relatedCards={outfitCards} clickHandler={this.removeFromOutfit} addToOutfit={this.addToOutfit} />
         </div>
       </>
     );

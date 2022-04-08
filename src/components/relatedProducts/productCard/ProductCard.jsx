@@ -5,12 +5,12 @@ import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
 
 function ProductCard({
-  category, name, price, avgRating, image, openModal, id,
+  category, name, price, avgRating, image, clickHandler, id, outfit,
 }) {
   return (
     <div className="card">
-      <div className="btn-wrapper" onKeyDown={(event) => { openModal(event); }} onClick={() => { openModal(id); }} role="button" tabIndex={0}>
-        <Btn char="★" />
+      <div className="btn-wrapper" onKeyDown={() => { clickHandler(id); }} onClick={() => { clickHandler(id); }} role="button" tabIndex={0}>
+        <Btn char={outfit ? '×' : '★'} />
       </div>
       <div className="detail-wrapper">
         <img src={image} alt={name} className="image" />
@@ -22,14 +22,19 @@ function ProductCard({
     </div>
   );
 }
+ProductCard.defaultProps = {
+  outfit: false,
+};
+
 ProductCard.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   avgRating: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
+  clickHandler: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  outfit: PropTypes.bool,
 };
 
 export default ProductCard;

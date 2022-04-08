@@ -62,5 +62,10 @@
             font-size: 40px;
             line-height: 0px;
         }
+
+        &:hover {
+            background-color: rgb(234, 234, 234);
+            border-radius: 5px;
+        }
     }
 }
