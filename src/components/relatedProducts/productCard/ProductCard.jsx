@@ -5,10 +5,10 @@ import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
 
 function ProductCard({
-  category, name, price, avgRating, image,
+  category, name, price, avgRating, image, openModal, id,
 }) {
   return (
-    <div className="card">
+    <div className="card" onKeyDown={(event) => { openModal(event); }} onClick={(event) => { openModal(id); }} role="button" tabIndex={0}>
       <div className="btn-wrapper">
         <Btn />
       </div>
@@ -28,6 +28,7 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired,
   avgRating: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
