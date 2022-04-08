@@ -16,9 +16,6 @@ class QuestionsList extends React.Component {
         results: [],
       },
     };
-    // getQuestions().then((data) => {
-    //   console.log(data);
-    // });
   }
 
   componentDidMount() {
