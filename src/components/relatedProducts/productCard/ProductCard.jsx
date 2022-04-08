@@ -8,8 +8,8 @@ function ProductCard({
   category, name, price, avgRating, image, openModal, id,
 }) {
   return (
-    <div className="card" onKeyDown={(event) => { openModal(event); }} onClick={(event) => { openModal(id); }} role="button" tabIndex={0}>
-      <div className="btn-wrapper">
+    <div className="card">
+      <div className="btn-wrapper" onKeyDown={(event) => { openModal(event); }} onClick={() => { openModal(id); }} role="button" tabIndex={0}>
         <Btn char="★" />
       </div>
       <div className="detail-wrapper">
@@ -29,6 +29,7 @@ ProductCard.propTypes = {
   avgRating: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default ProductCard;
