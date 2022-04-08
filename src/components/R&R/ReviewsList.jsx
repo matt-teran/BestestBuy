@@ -2,29 +2,29 @@ import React, { useEffect, useState } from 'react';
 import request from './requests';
 import ReviewTile from './ReviewTile';
 
-//counts up the number of reviews in the buffer that matches the filter
-function countFilteredReviews(reviews, searchNum) {
-  let filteredCount = 0;
+// takes an array of reviews and integer that represents the number of stars to return
+function filterReviews(reviewsArr, starRating) {
+  let filteredArr = [];
 
-  for (let i = 0; i < reviews.length; i++) {
-    if (reviews[i].rating === searchNum) {
-      filteredCount += 1;
-    }
-  }
+  filteredArr = reviewsArr.filter((review) => {
+    return (review.rating === starRating)
+  });
 
-  return filteredCount;
+  return filteredArr;
 }
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.hideButton = false;
+    this.allLoadedReviews = [];
 
     this.state = {
       numberOfTiles: 2,
-      reviews: [],
+      filteredReviews: [],
       isLoaded: false,
       page: 1,
       filter: false,
+      reviewsToDisplay: 2,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
@@ -39,9 +39,16 @@ class ReviewsList extends React.Component {
           if (!data.results.length) {
             this.hideButton = true;
           }
+          this.allLoadedReviews = data.results;
+          console.log('allLoadedReviews from didmount: ', this.allLoadedReviews);
+
+          let filtered = filterReviews(this.allLoadedReviews, this.state.filter);
+
+          console.log('This is the result of the filter function: ', filtered);
+
           this.setState({
             isLoaded: true,
-            reviews: data.results,
+            filteredReviews: data.results, // go back here and filter the shiet
             page: page + 1,
           });
         }).catch((err) => {
@@ -65,13 +72,16 @@ class ReviewsList extends React.Component {
             //this executes when the data comes back valid but empty
             this.hideButton = true;
           }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
   }
 
   render() {
     const { isLoaded, numberOfTiles, reviews, filter } = this.state;
-    const displayedTiles = reviews.slice(0, numberOfTiles);
+    const { filteredReviews } = this.state;
 
     console.log('REVIEWS IN BUFFER', reviews);
 
@@ -81,16 +91,29 @@ class ReviewsList extends React.Component {
     } else {
       return (
         <div className="reviews-List">
-          { displayedTiles.map((review, index) => {
-            if (review.rating === filter || filter === false) {
-              return <ReviewTile key={index} review={review} />
-            }
-            return;
-          }) }
+          {filteredReviews.map((review, index) =>
+            <ReviewTile key={index} review={review} />)}
           {!this.hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );
     }
+
+    // if (!isLoaded) {
+    //   return <div>Loading Ratings and Reviews</div>;
+    //   // eslint-disable-next-line no-else-return
+    // } else {
+    //   return (
+    //     <div className="reviews-List">
+    //       { displayedTiles.map((review, index) => {
+    //         if (review.rating === filter || filter === false) {
+    //           return <ReviewTile key={index} review={review} />
+    //         }
+    //         return;
+    //       }) }
+    //       {!this.hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
+    //     </div>
+    //   );
+    // }
   }
 }
 
