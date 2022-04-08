@@ -34,6 +34,12 @@
   flex-direction: row;
   width: 20%;
   padding: 10px;
+  cursor: pointer;
+}
+
+.review-Image:hover {
+  background: #e1e1e1;
+   border: 1px solid #d0d0d0;
 }
 
 .review-Tile-Images {

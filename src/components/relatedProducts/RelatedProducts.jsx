@@ -6,6 +6,7 @@ import { url, headers } from '../../config';
 import RelatedProductsList from './RelatedProductsList';
 import Modal from '../ui/Modal/Modal';
 import Backdrop from '../ui/Modal/Backdrop';
+import Comparison from './comparisonModal/comparison/Comparison';
 
 import './RelatedProducts.scss';
 
@@ -16,11 +17,22 @@ class RelatedProducts extends React.Component {
       relatedCards: [],
       outfitCards: [],
       showModal: false,
+      currentProductInfo: null,
+      comparedProductInfo: null,
     };
+    this.openModal = this.openModal.bind(this);
   }
 
   componentDidMount() {
     this.getRelatedProducts();
+    this.getCurrentProductInfo();
+  }
+
+  getCurrentProductInfo() {
+    const { id } = this.props;
+    axios.get(`${url}/products/${id}`, headers)
+      .then(({ data }) => this.setState({ currentProductInfo: data }))
+      .catch((err) => { console.log(err); });
   }
 
   getRelatedProducts() {
@@ -73,17 +85,25 @@ class RelatedProducts extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
+  openModal(comparedId) {
+    axios.get(`${url}/products/${comparedId}`, headers)
+      .then(({ data }) => { this.setState({ comparedProductInfo: data, showModal: true }); })
+      .catch((err) => { console.log(err); });
+  }
+
   render() {
-    const { relatedCards, outfitCards, showModal } = this.state;
+    const {
+      relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo,
+    } = this.state;
     return (
       <>
         <Modal showModal={showModal}>
-          <h1>Hello from modal!</h1>
+          {currentProductInfo && comparedProductInfo ? <Comparison currentProduct={currentProductInfo.features} comparedProduct={comparedProductInfo.features} /> : null}
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
-          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} />}
-          <RelatedProductsList title="Outfit List" relatedCards={outfitCards} />
+          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} openModal={this.openModal} />}
+          <RelatedProductsList title="Outfit List" relatedCards={outfitCards} openModal={this.openModal} />
         </div>
       </>
     );
