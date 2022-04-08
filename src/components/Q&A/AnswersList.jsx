@@ -36,8 +36,10 @@ class AnswerList extends React.Component {
     const { answers } = this.state;
     return (
       <div className="answer-list-ctr">
-        {answers.results.map((answer) => {
-          return <Answer key={answer.answer_id} answerBody={answer.body} />
+        {answers.results.map((answer, i) => {
+          if (i < 2) {
+            return <Answer key={answer.answer_id} answerBody={answer.body} />
+          }
         })}
       </div>
     );
