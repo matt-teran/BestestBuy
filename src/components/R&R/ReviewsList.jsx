@@ -2,18 +2,30 @@ import React, { useEffect, useState } from 'react';
 import request from './requests';
 import ReviewTile from './ReviewTile';
 
+//counts up the number of reviews in the buffer that matches the filter
+function countFilteredReviews(reviews, searchNum) {
+  let filteredCount = 0;
+
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].rating === searchNum) {
+      filteredCount += 1;
+    }
+  }
+
+  return filteredCount;
+}
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
     this.hideButton = false;
-    this.moreReviewsButtonClicked = 0;
 
     this.state = {
       numberOfTiles: 2,
       reviews: [],
       isLoaded: false,
       page: 1,
-      filter: false,
+      filter: 1,
+      displayFilteredReviews: 2,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
   }
@@ -40,6 +52,10 @@ class ReviewsList extends React.Component {
     this.setState({ numberOfTiles: this.state.numberOfTiles + 2 });
     const { numberOfTiles, reviews, page } = this.state;
 
+    if (this.state.filter !== false) {
+      this.state.displayFilteredReviews++;
+    }
+
     // makes an API request ahead of time to always have more reviews ready to be displayed
     if (reviews.length <= numberOfTiles + 3) {
       this.state.page = page + 1;
@@ -57,11 +73,23 @@ class ReviewsList extends React.Component {
   render() {
     const { isLoaded, numberOfTiles, reviews, filter } = this.state;
     const displayedTiles = reviews.slice(0, numberOfTiles);
+    let numFilteredReviews;
 
-    // if (displayedTiles.length) {
-    //   console.log('displayedTiles', displayedTiles);
-    //   console.log('countFilteredReviews', countFilteredReviews(displayedTiles, 1));
-    // }
+    //hardcoded data here
+    if(this.state.filter!== false) numFilteredReviews = countFilteredReviews(displayedTiles, this.state.filter);
+
+    console.log('numfilteredReviews: ', numFilteredReviews);
+
+    console.log('this.state.filter: ', this.state.filter);
+    console.log('numFilteredReviews: ', numFilteredReviews);
+    console.log('this.state.hideButton', this.hideButton);
+
+    if (this.state.filter !== false && this.state.displayFilteredReviews > numFilteredReviews && this.hideButton === false) {
+      console.log('countFilteredReviews: ', this.state.countFilteredReviews);
+      console.log('NumFilteredReviews: ', numFilteredReviews);
+      console.log('ReviewsLoaded: ', this.state.reviews);
+      // this.handleMoreReviews();
+    }
 
     if (!isLoaded) {
       return <div>Loading Ratings and Reviews</div>;
@@ -82,18 +110,7 @@ class ReviewsList extends React.Component {
   }
 }
 
-//counts up the number of reviews in the buffer that matches the filter
-function countFilteredReviews(reviews, searchNum) {
-  let filteredCount = 0;
 
-  for (let i = 0; i < reviews.length; i++) {
-    if (reviews[i].rating === searchNum) {
-      filteredCount += 1;
-    }
-  }
-
-  return filteredCount;
-}
 
 /*
 star rating
