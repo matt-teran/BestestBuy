@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import './ProductCard.scss';
 
-function AddToOutfit({ addToOutfit }) {
-  return (
+function AddToOutfit({ addToOutfit, id }) {
+  return ( 
     <div className="card">
       <div
         className="add-to-outfit-container"
@@ -20,6 +21,7 @@ function AddToOutfit({ addToOutfit }) {
 }
 AddToOutfit.propTypes = {
   addToOutfit: PropTypes.func.isRequired,
+  is: PropTypes.string.isRequired,
 };
 
 export default AddToOutfit;
