@@ -22,7 +22,7 @@ class RelatedProductsList extends React.Component {
 
   render() {
     const {
-      relatedCards, title, clickHandler, outfit, addToOutfit, id,
+      relatedCards, title, clickHandler, outfit, addToOutfit,
     } = this.props;
     const { position } = this.state;
     const cards = relatedCards.map((card) => (
@@ -69,7 +69,6 @@ RelatedProductsList.propTypes = {
   outfit: propTypes.bool,
   clickHandler: propTypes.func.isRequired,
   addToOutfit: propTypes.func,
-  id: propTypes.string.isRequired,
 };
 
 export default RelatedProductsList;

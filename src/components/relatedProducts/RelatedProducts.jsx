@@ -179,7 +179,7 @@ class RelatedProducts extends React.Component {
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
           {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} clickHandler={this.openModal} />}
-          <RelatedProductsList title="Outfit List" outfit relatedCards={outfitCards} clickHandler={this.removeFromOutfit} addToOutfit={this.addToOutfit} id={id} />
+          <RelatedProductsList title="Outfit List" outfit relatedCards={outfitCards} clickHandler={this.removeFromOutfit} addToOutfit={this.addToOutfit} />
         </div>
       </>
     );
