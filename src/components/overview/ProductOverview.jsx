@@ -24,12 +24,16 @@ class ProductOverview extends React.Component {
       review: 0,
       styles: [],
       currentStyle: {},
-      currentSizeAndQuantity: {},
+      currentSizeAndQuantity: { value: null },
       quantitySelected: 0,
       sizeSelected: '',
       currentImage: '',
       allThumbnail: [],
       imageIndex: 0,
+      imageSize: '500px',
+      viewExpanded: false,
+      seen: false,
+      cart: [{}],
     };
   }
 
@@ -52,7 +56,6 @@ class ProductOverview extends React.Component {
           title: productInfo.data.name,
           slogan: productInfo.data.slogan,
           description: productInfo.data.description,
-          price: productInfo.data.default_price,
           features: productInfo.data.features,
         });
       })
@@ -71,6 +74,9 @@ class ProductOverview extends React.Component {
           styles: styleInfo.data.results,
           currentImage: styleInfo.data.results[0].photos[0].url,
           allThumbnail: styleInfo.data.results[0].photos,
+          currentStyle: styleInfo.data.results[0],
+          price: styleInfo.data.results[0].original_price,
+          salePrice: styleInfo.data.results[0].sale_price,
         });
       })
       .catch((err) => console.log('Failed to fetch style data', err));
@@ -114,6 +120,7 @@ class ProductOverview extends React.Component {
       currentImage: event.photos[0].url,
       price: event.original_price,
       salePrice: event.sale_price,
+      currentSizeAndQuantity: { value: null },
     });
   }
 
@@ -142,14 +149,49 @@ class ProductOverview extends React.Component {
         skusId = sizeNumber[i];
       }
     }
-    console.log(skusId);
-    console.log(quantitySelected);
+    // console.log(skusId);
+    // console.log(quantitySelected);
+    axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
+      .then(() => console.log('add to cart successfully'))
+      .catch((err) => console.log('post fail', err));
+  }
+
+  cartButton() {
+    axios.get(`${url}/cart`, headers)
+      .then((results) => {
+        this.setState({
+          cart: results.data,
+        });
+      })
+      .then(() => this.togglePop())
+      .catch((err) => console.log('post fail', err));
+  }
+
+  togglePop() {
+    const { seen } = this.state;
+    this.setState({
+      seen: !seen,
+    });
   }
 
   changeMainImage(event) {
     this.setState({
       currentImage: event.url,
       imageIndex: event.thumbnailIndex,
+    });
+  }
+
+  expandView() {
+    this.setState({
+      imageSize: '1000px',
+      viewExpanded: true,
+    });
+  }
+
+  normalView() {
+    this.setState({
+      imageSize: '500px',
+      viewExpanded: false,
     });
   }
 
@@ -169,6 +211,10 @@ class ProductOverview extends React.Component {
     const { allThumbnail } = this.state;
     const { imageIndex } = this.state;
     const { salePrice } = this.state;
+    const { imageSize } = this.state;
+    const { viewExpanded } = this.state;
+    const { seen } = this.state;
+    const { cart } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -177,8 +223,12 @@ class ProductOverview extends React.Component {
             currentImage={currentImage}
             allThumbnail={allThumbnail}
             imageIndex={imageIndex}
+            imageSize={imageSize}
+            viewExpanded={viewExpanded}
             changeMainImage={(event) => this.changeMainImage(event)}
             arrowChangeImage={(event) => this.arrowChangeImage(event)}
+            expandView={() => this.expandView()}
+            normalView={() => this.normalView()}
           />
         </div>
         <div>
@@ -192,6 +242,10 @@ class ProductOverview extends React.Component {
             salePrice={salePrice}
             rating={rating}
             review={review}
+            seen={seen}
+            cart={cart}
+            togglePop={() => this.togglePop()}
+            cartButton={() => this.cartButton()}
           />
         </div>
         <div>
@@ -199,6 +253,7 @@ class ProductOverview extends React.Component {
             styles={styles}
             selectStyle={(event) => this.selectStyle(event)}
             title={currentStyle.name}
+            styleId={currentStyle.style_id}
           />
         </div>
         <div>

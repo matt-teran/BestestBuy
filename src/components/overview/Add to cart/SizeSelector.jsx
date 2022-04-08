@@ -5,7 +5,7 @@ import Select from 'react-dropdown-select';
 function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
   let sizeAndQuantityArray = [];
   if (sizeAndQuantity === undefined) {
-    sizeAndQuantityArray = [{ value: 0, label: 'Please select sytle first' }];
+    sizeAndQuantityArray = [{ value: 'Not available', label: 'Not available' }];
   } else {
     sizeAndQuantityArray = Object.values(sizeAndQuantity);
     for (let i = 0; i < sizeAndQuantityArray.length; i += 1) {
@@ -29,6 +29,7 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
         placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
+        clearOnSelect="true"
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}
       />
     </div>

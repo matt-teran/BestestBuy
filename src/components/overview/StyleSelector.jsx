@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import StyleThumbnail from './Style selector/StyleThumbnail';
 import StyleTitle from './Style selector/StyleTitle';
 
-function StyleSelector({ styles, selectStyle, title }) {
+function StyleSelector({
+  styles, selectStyle, title, styleId,
+}) {
   return (
     <div>
       <div>
@@ -15,7 +17,7 @@ function StyleSelector({ styles, selectStyle, title }) {
             <StyleThumbnail
               style={style}
               selectStyle={(event) => selectStyle(event)}
-              title={title}
+              styleId={styleId}
             />
           </div>
         ))}
@@ -28,11 +30,13 @@ StyleSelector.propTypes = {
   styles: PropTypes.arrayOf(PropTypes.shape({})),
   selectStyle: PropTypes.func,
   title: PropTypes.string,
+  styleId: PropTypes.number,
 };
 
 StyleSelector.defaultProps = {
   styles: [],
   selectStyle: '',
   title: '',
+  styleId: 0,
 };
 export default StyleSelector;
