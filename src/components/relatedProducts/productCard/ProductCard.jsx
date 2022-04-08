@@ -10,7 +10,7 @@ function ProductCard({
   return (
     <div className="card" onKeyDown={(event) => { openModal(event); }} onClick={(event) => { openModal(id); }} role="button" tabIndex={0}>
       <div className="btn-wrapper">
-        <Btn />
+        <Btn char="★" />
       </div>
       <div className="detail-wrapper">
         <img src={image} alt={name} className="image" />
