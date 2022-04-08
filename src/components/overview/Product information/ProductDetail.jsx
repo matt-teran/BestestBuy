@@ -12,7 +12,6 @@ function ProductDetail({ slogan, description, features }) {
       {features.map((feature) => (
         <p key={feature.id}>
           {feature.feature}
-          :
           {' '}
           {feature.value}
         </p>
