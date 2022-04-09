@@ -5,7 +5,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // searchInput: '',
+      searchInput: '',
     };
     // this.search = this.search.bind(this);
     // this.onChange = this.onChange.bind(this);
@@ -27,17 +27,19 @@ class Search extends React.Component {
   */
 
   render() {
+    const { changeHandler } = this.props;
+    const { search } = this.props;
     return (
       <div className="search-ctr">
         <input
-          onChange={this.onChange}
+          onChange={changeHandler}
           className="search-input"
           type="text"
           placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
           name="question"
         />
         <div className="icon-ctr">
-          <img className="search-btn" src="" alt="" />
+          <button onClick={search} className="search-btn">Search</button>
         </div>
       </div>
     );
