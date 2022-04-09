@@ -6,14 +6,15 @@ function StarRating({ rating, review }) {
   return (
     <div className="rating_review">
       <Rating rating={rating} size="20px" />
+      <p>{' '}</p>
       {review !== 0 ? (
-        <p>
+        <u>
           Read all
           {' '}
           {review}
           {' '}
           reviews
-        </p>
+        </u>
       ) : null}
     </div>
   );

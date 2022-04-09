@@ -5,12 +5,12 @@ import {
   FacebookIcon, TwitterIcon, PinterestIcon,
 } from 'react-share';
 
-function Share({ title }) {
+function Share({ title, currentImage }) {
   return (
     <div className="share">
       <div id="facebook_share">
         <FacebookShareButton
-          url="dsssdds"
+          url={currentImage}
           quote={title}
         >
           <FacebookIcon size={32} round />
@@ -18,7 +18,7 @@ function Share({ title }) {
       </div>
       <div id="twitter_share">
         <TwitterShareButton
-          url="dsssdds"
+          url={currentImage}
           quote={title}
         >
           <TwitterIcon size={32} round />
@@ -26,7 +26,7 @@ function Share({ title }) {
       </div>
       <div id="pinterest_share">
         <PinterestShareButton
-          url="dsssdds"
+          url={currentImage}
           quote={title}
         >
           <PinterestIcon size={32} round />
@@ -38,10 +38,12 @@ function Share({ title }) {
 
 Share.propTypes = {
   title: PropTypes.string,
+  currentImage: PropTypes.string,
 };
 
 Share.defaultProps = {
   title: '',
+  currentImage: '',
 };
 
 export default Share;

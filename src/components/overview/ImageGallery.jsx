@@ -10,19 +10,23 @@ function ImageGallery({
   imageIndex, imageSize, expandView, viewExpanded, normalView,
 }) {
   return (
-    <div>
-      <MainImage
-        currentImage={currentImage}
-        imageSize={imageSize}
-        viewExpanded={viewExpanded}
-        expandView={() => expandView()}
-        normalView={() => normalView()}
-      />
-      <ArrowButton
-        imageIndex={imageIndex}
-        allThumbnail={allThumbnail}
-        changeMainImage={(event) => changeMainImage(event)}
-      />
+    <div className="all-image-block">
+      <div className="image">
+        <MainImage
+          currentImage={currentImage}
+          imageSize={imageSize}
+          viewExpanded={viewExpanded}
+          expandView={() => expandView()}
+          normalView={() => normalView()}
+        />
+      </div>
+      <div className="arrow-button">
+        <ArrowButton
+          imageIndex={imageIndex}
+          allThumbnail={allThumbnail}
+          changeMainImage={(event) => changeMainImage(event)}
+        />
+      </div>
       <div className="image-thumbnails">
         {
           allThumbnail.map((thumbnail, index) => (

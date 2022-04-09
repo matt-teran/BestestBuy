@@ -4,9 +4,18 @@
   text-transform: uppercase;
   letter-spacing: .0156rem;
   font-weight: lighter;
-  color: #f6eb16;
+  color: white;
   background-color: #0a4abf;
   justify-content: center;
   width: 12rem;
   border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.size-selector {
+  width: 250px;
+  margin-bottom: 10px;
+}
+.quantity-selector {
+  width: 150px;
 }

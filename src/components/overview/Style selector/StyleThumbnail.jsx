@@ -15,7 +15,7 @@ function StyleThumbnail({ style, selectStyle, styleId }) {
           onClick={() => selectStyle(style)}
           aria-hidden="true"
         />
-        <span>
+        <span className="checkmark">
           <FontAwesomeIcon icon={faCircleCheck} />
         </span>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-dropdown-select';
+import './AddtoCart.scss';
 
 function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
   let sizeAndQuantityArray = [];
@@ -24,7 +25,7 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
   }
 
   return (
-    <div>
+    <div className="size-selector">
       <Select
         placeholder="Select Size"
         options={sizeAndQuantityArray}
