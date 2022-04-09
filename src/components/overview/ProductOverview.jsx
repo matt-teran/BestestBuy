@@ -152,8 +152,6 @@ class ProductOverview extends React.Component {
         skusId = sizeNumber[i];
       }
     }
-    // console.log(skusId);
-    // console.log(quantitySelected);
     for (let i = 0; i < quantitySelected; i += 1) {
       axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
         .then(() => console.log('add to cart successfully'))

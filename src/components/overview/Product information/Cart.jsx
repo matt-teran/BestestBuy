@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './ProductInformation.scss';
 
 export default class Cart extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class Cart extends Component {
     const { shoppingCart } = this.state;
     return (
       <div className="modal">
-        <div className="modal_content">
+        <div className="cart-content">
           <span className="close" onClick={() => this.handleClick()} aria-hidden="true">&times;</span>
           <h3>Shopping Cart</h3>
           {
@@ -38,7 +39,7 @@ export default class Cart extends Component {
               </p>
             ))
           }
-          <button type="submit">Check Out</button>
+          <button type="submit" className="checkout-button">Check Out</button>
         </div>
       </div>
     );
