@@ -47,7 +47,6 @@ class RatingsAndReviews extends React.Component {
       return (
         <div>
           Loading Rating Overview...
-          <ReviewsList productId={id} filter={filter} />
         </div>)
     } else {
       return (

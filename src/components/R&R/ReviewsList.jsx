@@ -20,7 +20,7 @@ class ReviewsList extends React.Component {
     super(props);
     this.hideButton = false;
     this.allLoadedReviews = [];
-    // this.filter = this.props.filter;
+    this.filter = this.props.filter;
 
     this.state = {
       numberOfTiles: 2,
@@ -28,7 +28,6 @@ class ReviewsList extends React.Component {
       isLoaded: false,
       page: 1,
       reviewsToDisplay: 2,
-      filter: this.props.filter,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getEnoughData = this.getEnoughData.bind(this);
@@ -49,6 +48,18 @@ class ReviewsList extends React.Component {
         .catch((err) => {
           console.log(err);
         });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isLoaded } = this.state;
+    const filter = this.filter;
+
+    console.log('this.filter: ', this.filter);
+    console.log('prevProps.filter', prevProps.filter);
+
+    if(prevProps.filter !== filter) {
+      console.log('Inside If statement!');
     }
   }
 
@@ -79,7 +90,7 @@ class ReviewsList extends React.Component {
             this.hideButton = true;
           } else {
             this.allLoadedReviews = this.allLoadedReviews.concat(data.results);
-            this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.state.filter)});
+            this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.filter)});
           }
           if (this.hideButton !== true && this.state.filteredReviews.length <= this.state.reviewsToDisplay + 2) {
             innerFunc.call(this);
