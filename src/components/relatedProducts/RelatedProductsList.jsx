@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import ProductCard from './productCard/ProductCard';
 import Btn from '../ui/Btn/Btn';
+import AddToOutfit from './productCard/AddToOutfit';
 
 class RelatedProductsList extends React.Component {
   constructor(props) {
@@ -20,8 +21,9 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { relatedCards, title, openModal } = this.props;
-    // console.log(openModal);
+    const {
+      relatedCards, title, clickHandler, outfit, addToOutfit,
+    } = this.props;
     const { position } = this.state;
     const cards = relatedCards.map((card) => (
       <ProductCard
@@ -31,8 +33,9 @@ class RelatedProductsList extends React.Component {
         name={card.name}
         category={card.category}
         image={card.image}
-        openModal={openModal}
+        clickHandler={clickHandler}
         id={card.id}
+        outfit={outfit}
       />
     ));
     return (
@@ -41,7 +44,7 @@ class RelatedProductsList extends React.Component {
         <div className="products-list">
           {position > 0 ? <Btn char="◀" className="scroll-left" clickHandler={() => this.scrollHandler('left')} /> : null}
           {position < cards.length - 1 ? <Btn char="▶" className="scroll-right" clickHandler={() => this.scrollHandler('right')} /> : null}
-
+          {outfit && <AddToOutfit addToOutfit={addToOutfit} />}
           {cards.filter((card, i) => i >= position)}
         </div>
       </>
@@ -51,6 +54,8 @@ class RelatedProductsList extends React.Component {
 
 RelatedProductsList.defaultProps = {
   relatedCards: [],
+  outfit: false,
+  addToOutfit: () => {},
 };
 
 RelatedProductsList.propTypes = {
@@ -61,7 +66,9 @@ RelatedProductsList.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
   })),
-  openModal: propTypes.func.isRequired,
+  outfit: propTypes.bool,
+  clickHandler: propTypes.func.isRequired,
+  addToOutfit: propTypes.func,
 };
 
 export default RelatedProductsList;
