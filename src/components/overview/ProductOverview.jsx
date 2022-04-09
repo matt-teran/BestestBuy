@@ -224,7 +224,7 @@ class ProductOverview extends React.Component {
 
     return (
       <div className="product_overview_block">
-        <div className="image-block" style={{ 'grid-row': grid }}>
+        <div className="image-block" style={{ gridRow: grid }}>
           <ImageGallery
             currentImage={currentImage}
             allThumbnail={allThumbnail}
