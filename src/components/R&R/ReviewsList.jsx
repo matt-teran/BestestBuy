@@ -18,7 +18,6 @@ function filterReviews(reviewsArr, starRating) {
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
-    this.hideButton = false;
     this.allLoadedReviews = [];
     this.allReviewsRetrieved = false;
 
@@ -28,6 +27,7 @@ class ReviewsList extends React.Component {
       isLoaded: false,
       page: 1,
       reviewsToDisplay: 2,
+      hideButton: false,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
     this.getEnoughData = this.getEnoughData.bind(this);
@@ -51,26 +51,26 @@ class ReviewsList extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { isLoaded } = this.state;
+  componentDidUpdate(prevProps) {
+    const { isLoaded } = this.state;
 
-  //   if(isLoaded) {
-  //     if(prevProps.filter !== this.props.filter) {
-  //       console.log('did update entered');
-  //       this.setState({
-  //         filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter),
-  //         reviewsToDisplay: 2,
-  //       })
-  //     }
+    if(isLoaded) {
+      if(prevProps.filter !== this.props.filter) {
+        console.log('did update entered');
+        this.setState({
+          filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter),
+          reviewsToDisplay: 2,
+        })
+      }
 
-  //     new Promise( (res, rej)=> {
-  //       this.getEnoughData(res, rej);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   }
-  // }
+      new Promise( (res, rej)=> {
+        this.getEnoughData(res, rej);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  }
 
   handleMoreReviews() {
     const { reviewsToDisplay, filteredReviews } = this.state;
@@ -82,7 +82,7 @@ class ReviewsList extends React.Component {
       })
       .then(() => {
         if(filteredReviews.length < reviewsToDisplay - 1 ) {
-          this.hideButton = true;
+          this.setState({hideButton: true});
         }
       })
       .catch((err) => {
@@ -121,7 +121,7 @@ class ReviewsList extends React.Component {
   }
 
   render() {
-    const { isLoaded, reviewsToDisplay, filteredReviews } = this.state;
+    const { isLoaded, reviewsToDisplay, filteredReviews, hideButton } = this.state;
     const reviewsToShow = filteredReviews.slice(0, reviewsToDisplay);
 
     if (!isLoaded) {
@@ -132,7 +132,7 @@ class ReviewsList extends React.Component {
         <div className="reviews-List">
           {reviewsToShow.map((review, index) =>
             <ReviewTile key={index} review={review} />)}
-          {!this.hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
+          {!hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );
     }
