@@ -34,8 +34,9 @@ class RatingsAndReviews extends React.Component {
     }
   }
 
-  handleFilterSelect (e) {
-    console.log('set filter state here');
+  handleFilterSelect (starRating) {
+    console.log('entered');
+    this.setState({filter: starRating});
   }
 
 
