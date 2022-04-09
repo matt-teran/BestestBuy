@@ -20,7 +20,7 @@ class ReviewsList extends React.Component {
     super(props);
     this.hideButton = false;
     this.allLoadedReviews = [];
-    this.filter = this.props.filter;
+    this.allReviewsRetrieved = false;
 
     this.state = {
       numberOfTiles: 2,
@@ -51,25 +51,39 @@ class ReviewsList extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { isLoaded } = this.state;
-    const filter = this.filter;
+  // componentDidUpdate(prevProps) {
+  //   const { isLoaded } = this.state;
 
-    console.log('this.filter: ', this.filter);
-    console.log('prevProps.filter', prevProps.filter);
+  //   if(isLoaded) {
+  //     if(prevProps.filter !== this.props.filter) {
+  //       console.log('did update entered');
+  //       this.setState({
+  //         filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter),
+  //         reviewsToDisplay: 2,
+  //       })
+  //     }
 
-    if(prevProps.filter !== filter) {
-      console.log('Inside If statement!');
-    }
-  }
+  //     new Promise( (res, rej)=> {
+  //       this.getEnoughData(res, rej);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
 
   handleMoreReviews() {
-    const { reviewsToDisplay } = this.state;
+    const { reviewsToDisplay, filteredReviews } = this.state;
     this.setState({reviewsToDisplay: reviewsToDisplay + 2});
 
-    if (this.state.filteredReviews.length < this.state.reviewsToDisplay + 4) {
+    if (this.state.filteredReviews.length < this.state.reviewsToDisplay + 2) {
       new Promise( (res, rej)=> {
         this.getEnoughData(res, rej);
+      })
+      .then(() => {
+        if(filteredReviews.length < reviewsToDisplay - 1 ) {
+          this.hideButton = true;
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -87,12 +101,12 @@ class ReviewsList extends React.Component {
         .then(({ data }) => {
           this.state.page = this.state.page + 1;
           if (!data.results.length) {
-            this.hideButton = true;
+            this.allReviewsRetrieved = true;
           } else {
             this.allLoadedReviews = this.allLoadedReviews.concat(data.results);
-            this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.filter)});
+            this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter)});
           }
-          if (this.hideButton !== true && this.state.filteredReviews.length <= this.state.reviewsToDisplay + 2) {
+          if (this.allReviewsRetrieved !== true && this.state.filteredReviews.length <= this.state.reviewsToDisplay + 2) {
             innerFunc.call(this);
           }
         }).then(()=>{
