@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-dropdown-select';
 import './AddtoCart.scss';
 
-function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
+function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity, open }) {
   let sizeAndQuantityArray = [];
   if (sizeAndQuantity === undefined) {
     sizeAndQuantityArray = [{ value: 'Not available', label: 'Not available' }];
@@ -30,6 +30,7 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
         placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
+        keepOpen={open}
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}
       />
     </div>
@@ -39,11 +40,13 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
 SizeSelector.propTypes = {
   sizeAndQuantity: PropTypes.shape({}),
   selectSizeAndQuantity: PropTypes.func,
+  open: PropTypes.bool,
 };
 
 SizeSelector.defaultProps = {
   sizeAndQuantity: undefined,
   selectSizeAndQuantity: () => {},
+  open: false,
 };
 
 export default SizeSelector;

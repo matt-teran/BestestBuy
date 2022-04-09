@@ -37,6 +37,7 @@ class ProductOverview extends React.Component {
       seen: false,
       cart: [{}],
       grid: '1/5',
+      open: false,
     };
   }
 
@@ -124,6 +125,7 @@ class ProductOverview extends React.Component {
       price: event.original_price,
       salePrice: event.sale_price,
       currentSizeAndQuantity: { value: null },
+      open: false,
     });
   }
 
@@ -131,6 +133,7 @@ class ProductOverview extends React.Component {
     this.setState({
       currentSizeAndQuantity: event,
       sizeSelected: event.label,
+      open: false,
     });
   }
 
@@ -200,6 +203,13 @@ class ProductOverview extends React.Component {
     });
   }
 
+  openDropdown() {
+    this.setState({
+      open: true,
+    });
+    // alert('Please select size');
+  }
+
   scrollToView() {
     const element = document.getElementById('ratings-and-reviews');
     element.scrollIntoView();
@@ -226,6 +236,7 @@ class ProductOverview extends React.Component {
     const { seen } = this.state;
     const { cart } = this.state;
     const { grid } = this.state;
+    const { open } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -276,6 +287,8 @@ class ProductOverview extends React.Component {
             currentSizeAndQuantity={currentSizeAndQuantity}
             selectQuantity={(event) => this.selectQuantity(event)}
             addToCart={() => this.addToCart()}
+            openDropdown={() => this.openDropdown()}
+            open={open}
           />
         </div>
         <div className="share"><Share title={title} currentImage={currentImage} /></div>

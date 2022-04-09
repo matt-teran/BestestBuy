@@ -5,7 +5,8 @@ import QuantitySelector from './Add to cart/QuantitySelector';
 import AddtoCartButton from './Add to cart/AddToCartButton';
 
 function AddtoCart({
-  sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity, selectQuantity, addToCart,
+  sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity,
+  selectQuantity, addToCart, openDropdown, open,
 }) {
   return (
     <div>
@@ -13,6 +14,7 @@ function AddtoCart({
         <SizeSelector
           sizeAndQuantity={sizeAndQuantity}
           selectSizeAndQuantity={(event) => selectSizeAndQuantity(event)}
+          open={open}
         />
       </div>
       <div>
@@ -25,6 +27,7 @@ function AddtoCart({
         <AddtoCartButton
           addToCart={() => addToCart()}
           currentQuantity={currentSizeAndQuantity.value}
+          openDropdown={() => openDropdown()}
         />
       </div>
     </div>
@@ -37,6 +40,8 @@ AddtoCart.propTypes = {
   currentSizeAndQuantity: PropTypes.shape({}),
   selectQuantity: PropTypes.func,
   addToCart: PropTypes.func,
+  open: PropTypes.bool,
+  openDropdown: PropTypes.func,
 };
 
 AddtoCart.defaultProps = {
@@ -45,6 +50,8 @@ AddtoCart.defaultProps = {
   currentSizeAndQuantity: {},
   selectQuantity: () => {},
   addToCart: () => {},
+  open: false,
+  openDropdown: () => {},
 };
 
 export default AddtoCart;
