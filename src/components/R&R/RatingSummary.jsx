@@ -25,36 +25,36 @@ function RatingSummary({ productStats }) {
 
       <div className="Rating-Summary-Bars">
         <div className="Rating-Summary-Stats">
-          <p>5 Star</p>
-          <div className="bar-5" style={{ width: ratingPercentages[5]+"%" }} />
+          <p className="star-filter">5 Star</p>
+          <div className="bar-5 bar" style={{ width: ratingPercentages[5]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[5]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p>4 Star</p>
-          <div className="bar-4" style={{ width: ratingPercentages[4]+"%" }} />
+          <p className="star-filter">4 Star</p>
+          <div className="bar-4 bar" style={{ width: ratingPercentages[4]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[4]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p>3 Star</p>
-          <div className="bar-3" style={{ width: ratingPercentages[3]+"%" }} />
+          <p className="star-filter">3 Star</p>
+          <div className="bar-3 bar" style={{ width: ratingPercentages[3]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[3]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p>2 Star</p>
-          <div className="bar-2" style={{ width: ratingPercentages[2]+"%" }} />
+          <p className="star-filter">2 Star</p>
+          <div className="bar-2 bar" style={{ width: ratingPercentages[2]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[2]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p>1 Star</p>
-          <div className="bar-1" style={{ width: ratingPercentages[1]+"%" }} />
+          <p className="star-filter">1 Star</p>
+          <div className="bar-1 bar" style={{ width: ratingPercentages[1]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[1]}</div>
           </div>
