@@ -6,6 +6,8 @@ import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
 import ImageGallery from './ImageGallery';
+import ProductDetail from './Product information/ProductDetail';
+import Share from './Product information/Share';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -30,10 +32,11 @@ class ProductOverview extends React.Component {
       currentImage: '',
       allThumbnail: [],
       imageIndex: 0,
-      imageSize: '500px',
+      imageSize: '600px',
       viewExpanded: false,
       seen: false,
       cart: [{}],
+      grid: '1/5',
     };
   }
 
@@ -185,13 +188,15 @@ class ProductOverview extends React.Component {
     this.setState({
       imageSize: '1000px',
       viewExpanded: true,
+      grid: '1',
     });
   }
 
   normalView() {
     this.setState({
-      imageSize: '500px',
+      imageSize: '600px',
       viewExpanded: false,
+      grid: '1/5',
     });
   }
 
@@ -215,10 +220,11 @@ class ProductOverview extends React.Component {
     const { viewExpanded } = this.state;
     const { seen } = this.state;
     const { cart } = this.state;
+    const { grid } = this.state;
 
     return (
       <div className="product_overview_block">
-        <div>
+        <div className="image-block" style={{ 'grid-row': grid }}>
           <ImageGallery
             currentImage={currentImage}
             allThumbnail={allThumbnail}
@@ -231,7 +237,7 @@ class ProductOverview extends React.Component {
             normalView={() => this.normalView()}
           />
         </div>
-        <div>
+        <div className="product_information_block">
           <ProductInformation
             category={category}
             title={title}
@@ -249,7 +255,7 @@ class ProductOverview extends React.Component {
             cartButton={() => this.cartButton()}
           />
         </div>
-        <div>
+        <div className="styles">
           <StyleSelector
             styles={styles}
             selectStyle={(event) => this.selectStyle(event)}
@@ -257,7 +263,7 @@ class ProductOverview extends React.Component {
             styleId={currentStyle.style_id}
           />
         </div>
-        <div>
+        <div className="add-to-cart">
           <AddtoCart
             sizeAndQuantity={currentStyle.skus}
             selectSizeAndQuantity={(event) => this.selectSizeAndQuantity(event)}
@@ -266,6 +272,8 @@ class ProductOverview extends React.Component {
             addToCart={() => this.addToCart()}
           />
         </div>
+        <div className="share"><Share title={title} currentImage={currentImage} /></div>
+        <div className="product-detail"><ProductDetail slogan={slogan} description={description} features={features} /></div>
       </div>
     );
   }

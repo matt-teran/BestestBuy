@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 function ProductTitle({ title }) {
   return (
     <div className="title">
-      <h4 id="title">
+      <h2 id="title">
         {' '}
         {title}
         {' '}
-      </h4>
+      </h2>
     </div>
   );
 }

@@ -12,13 +12,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: null,
+      productId: '66642',
     };
   }
 
-  componentDidMount() {
-    this.getRandomProductId();
-  }
+  // componentDidMount() {
+  //   this.getRandomProductId();
+  // }
 
   getRandomProductId() {
     const pageNumber = Math.floor(Math.random() * 100);

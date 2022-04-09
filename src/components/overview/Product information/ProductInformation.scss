@@ -4,3 +4,27 @@
 #sale-price {
   color: red
 }
+.share {
+  display: grid;
+  grid-template-columns: 50px 50px 50px
+}
+.product-detail {
+  display: grid;
+  grid-template-columns: 800px 300px;
+  column-gap: 50px;
+}
+#slogan {
+  grid-column: 1;
+  grid-row: 1/4;
+}
+#description {
+  grid-column: 1;
+  grid-row: 2/4;
+}
+.features {
+  grid-column: 2;
+  color: grey;
+}
+.category {
+  margin-top: 60px;
+}

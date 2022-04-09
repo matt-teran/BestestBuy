@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-dropdown-select';
+import './AddtoCart.scss';
 
 function QuantitySelector({ currentQuantity, selectQuantity }) {
   const selectArray = [];
   if (currentQuantity === null) {
     return (
-      <div>
+      <div className="quantity-selector">
         <Select
           placeholder="-"
           disabled={true}
@@ -16,7 +17,7 @@ function QuantitySelector({ currentQuantity, selectQuantity }) {
   }
   if (currentQuantity === 0) {
     return (
-      <div>
+      <div className="quantity-selector">
         <Select
           placeholder="Out of Stock"
           disabled={true}
@@ -35,7 +36,7 @@ function QuantitySelector({ currentQuantity, selectQuantity }) {
   }
 
   return (
-    <div>
+    <div className="quantity-selector">
       <Select
         options={selectArray}
         value={[]}

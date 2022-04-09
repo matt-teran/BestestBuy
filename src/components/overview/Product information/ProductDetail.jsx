@@ -6,11 +6,13 @@ function ProductDetail({ slogan, description, features }) {
     features[i].id = i;
   }
   return (
-    <div className="product_detail">
-      <p id="slogan">{slogan}</p>
+    <div className="product-detail">
+      <b id="slogan">{slogan}</b>
       <p id="description">{description}</p>
       {features.map((feature) => (
-        <p key={feature.id}>
+        <p key={feature.id} className="features">
+          <b>√</b>
+          {' '}
           {feature.feature}
           {' '}
           {feature.value}

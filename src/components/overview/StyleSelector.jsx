@@ -8,12 +8,12 @@ function StyleSelector({
 }) {
   return (
     <div>
-      <div>
+      <div className="style-title">
         <StyleTitle title={title} />
       </div>
-      <div>
+      <div className="style-selector">
         {styles.map((style) => (
-          <div key={style.style_id}>
+          <div key={style.style_id} className="style-thumbnail-block">
             <StyleThumbnail
               style={style}
               selectStyle={(event) => selectStyle(event)}

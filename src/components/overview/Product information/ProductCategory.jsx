@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 function ProductCategory({ category }) {
   return (
     <div className="category">
-      <h4 id="category">
+      <h3 id="category">
         {' '}
         {category}
         {' '}
-      </h4>
+      </h3>
     </div>
   );
 }

@@ -5,10 +5,12 @@ function StyleTitle({ title }) {
   return (
     <div>
       <p>
-        SELECTED STYLE
-        {' '}
-        {'>'}
-        {' '}
+        <b>
+          SELECTED STYLE
+          {' '}
+          {'>'}
+          {' '}
+        </b>
         {title}
       </p>
     </div>
