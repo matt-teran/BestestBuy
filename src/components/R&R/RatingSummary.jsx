@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Rating from '../ui/Rating/Rating';
 
 function RatingSummary({ productStats }) {
-  const blah = '60%';
 
   const counts = getAvgRating(productStats.ratings);
   const ratingPercentages = {
@@ -21,7 +20,7 @@ function RatingSummary({ productStats }) {
           <h3> Overall User Rating </h3>
           <Rating rating={counts.avg} size="30px" />
         </div>
-        <p>{counts.avg} average based on {counts.noOfRatings} reviews</p>
+        <p>{counts.avg.toFixed(1)} star(s) average based on {counts.noOfRatings} reviews</p>
       </div>
 
       <div className="Rating-Summary-Bars">
