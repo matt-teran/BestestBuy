@@ -8,6 +8,7 @@ class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //answersToDisplay: 2
       answers: {
         results: [],
       },
@@ -36,11 +37,13 @@ class AnswerList extends React.Component {
     const { answers } = this.state;
     return (
       <div className="answer-list-ctr">
-        {answers.results.map((answer, i) => {
-          if (i < 2) {
-            return <Answer key={answer.answer_id} answerBody={answer.body} />;
+        {answers.results.map((answer) => {
+          if (answers.results.length > 2) {
+            return answers.results.length === 2;
           }
+          return <Answer key={answer.answer_id} answerBody={answer.body} />;
         })}
+        <button type='button' className='more-answers-btn' onClick={this.loadMoreQuestions}>Load More Answers</button>
       </div>
     );
   }

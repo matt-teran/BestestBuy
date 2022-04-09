@@ -11,7 +11,8 @@ class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // data: [],
+      // isHidden: false
+      // questionsToDisplay: 4
       questions: {
         results: [],
       },
@@ -45,6 +46,9 @@ class QuestionsList extends React.Component {
         </div>
         <Search />
         {questions.results.map((question) => {
+          if (questions.results.length > 4) {
+            return questions.results.length === 4;
+          }
           return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} />
         })}
         <AnswerList />
