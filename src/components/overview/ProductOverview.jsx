@@ -152,11 +152,11 @@ class ProductOverview extends React.Component {
         skusId = sizeNumber[i];
       }
     }
-    // console.log(skusId);
-    // console.log(quantitySelected);
-    axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
-      .then(() => console.log('add to cart successfully'))
-      .catch((err) => console.log('post fail', err));
+    for (let i = 0; i < quantitySelected; i += 1) {
+      axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
+        .then(() => console.log('add to cart successfully'))
+        .catch((err) => console.log('post fail', err));
+    }
   }
 
   cartButton() {
@@ -200,6 +200,11 @@ class ProductOverview extends React.Component {
     });
   }
 
+  scrollToView() {
+    const element = document.getElementById('ratings-and-reviews');
+    element.scrollIntoView();
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -224,7 +229,7 @@ class ProductOverview extends React.Component {
 
     return (
       <div className="product_overview_block">
-        <div className="image-block" style={{ 'grid-row': grid }}>
+        <div className="image-block" style={{ gridRow: grid }}>
           <ImageGallery
             currentImage={currentImage}
             allThumbnail={allThumbnail}
@@ -253,6 +258,7 @@ class ProductOverview extends React.Component {
             currentImage={currentImage}
             togglePop={() => this.togglePop()}
             cartButton={() => this.cartButton()}
+            scrollToView={() => this.scrollToView()}
           />
         </div>
         <div className="styles">

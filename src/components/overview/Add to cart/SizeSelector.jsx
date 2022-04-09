@@ -21,16 +21,15 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
       if (sizeAndQuantityArray[i].value === undefined) {
         sizeAndQuantityArray[i].value = 0;
       }
+      sizeAndQuantityArray[i].key = i;
     }
   }
-
   return (
     <div className="size-selector">
       <Select
         placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
-        clearOnSelect="true"
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}
       />
     </div>

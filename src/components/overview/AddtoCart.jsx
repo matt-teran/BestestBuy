@@ -21,7 +21,12 @@ function AddtoCart({
           selectQuantity={(event) => selectQuantity(event)}
         />
       </div>
-      <div><AddtoCartButton addToCart={() => addToCart()} /></div>
+      <div>
+        <AddtoCartButton
+          addToCart={() => addToCart()}
+          currentQuantity={currentSizeAndQuantity.value}
+        />
+      </div>
     </div>
   );
 }
