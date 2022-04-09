@@ -103,10 +103,12 @@ class RelatedProducts extends React.Component {
       });
       return total / numberOfRatings;
     }
-    if (Cookies.get('outfit') === undefined) {
+    if (Cookies.get('outfit') === (undefined || 'undefined')) {
+      console.log(Cookies.get('outfit'));
       Cookies.set('outfit', JSON.stringify([]));
       this.setState({ outfitCards: JSON.parse(Cookies.get('outfit')) });
     } else {
+      console.log(Cookies.get('outfit'));
       const outfitIds = JSON.parse(Cookies.get('outfit'));
       let cards;
       Promise.all(outfitIds.map((id) => axios.get(`${url}/products/${id}`, headers)))
@@ -162,7 +164,7 @@ class RelatedProducts extends React.Component {
 
   render() {
     const {
-      relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo, id,
+      relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo,
     } = this.state;
     return (
       <>
