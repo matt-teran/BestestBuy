@@ -9,4 +9,9 @@ const getReviews = function (productId, page = 1, sort = 'relevant') {
   return axios.get(`${url}/reviews?product_id=${productId}&page=${page}&sort=${sort}`, headers);
 };
 
-export default { getReviews };
+// this gets the metadata for RatingSummary
+const getReviewsSummary = function (productId) {
+  return axios.get(`${url}/reviews/meta?product_id=${productId}`, headers);
+};
+
+export default { getReviews, getReviewsSummary };

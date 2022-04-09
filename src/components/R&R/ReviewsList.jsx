@@ -26,7 +26,7 @@ class ReviewsList extends React.Component {
       filteredReviews: [],
       isLoaded: false,
       page: 1,
-      filter: 1,
+      filter: false,
       reviewsToDisplay: 2,
     };
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
@@ -59,6 +59,9 @@ class ReviewsList extends React.Component {
       new Promise( (res, rej)=> {
         this.getEnoughData(res, rej);
       })
+      .catch((err) => {
+        console.log(err);
+      });
     }
   }
 
