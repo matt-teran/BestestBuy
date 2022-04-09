@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable */
 import React, { useState } from 'react';
 import moment from 'moment';
 import Rating from '../ui/Rating/Rating';
