@@ -200,6 +200,11 @@ class ProductOverview extends React.Component {
     });
   }
 
+  scrollToView() {
+    const element = document.getElementById('ratings-and-reviews');
+    element.scrollIntoView();
+  }
+
   render() {
     const { category } = this.state;
     const { title } = this.state;
@@ -253,6 +258,7 @@ class ProductOverview extends React.Component {
             currentImage={currentImage}
             togglePop={() => this.togglePop()}
             cartButton={() => this.cartButton()}
+            scrollToView={() => this.scrollToView()}
           />
         </div>
         <div className="styles">

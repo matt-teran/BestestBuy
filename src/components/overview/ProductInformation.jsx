@@ -10,7 +10,7 @@ import Cart from './Product information/Cart';
 
 function ProductInformation({
   category, title, price, rating, review, salePrice, cartButton,
-  togglePop, seen, cart,
+  togglePop, seen, cart, scrollToView,
 }) {
   return (
     <div>
@@ -18,7 +18,7 @@ function ProductInformation({
         <FontAwesomeIcon className="shopping-cart" icon={faCartShopping} onClick={() => cartButton()} aria-hidden="true" />
       </div>
       <div>{seen ? <Cart toggle={() => togglePop()} cart={cart} /> : null}</div>
-      <div><StarRating rating={rating} review={review} /></div>
+      <div><StarRating rating={rating} review={review} scrollToView={() => scrollToView()} /></div>
       <div><ProductCategory category={category} /></div>
       <div><ProductTitle title={title} /></div>
       <div><Price price={price} salePrice={salePrice} /></div>
@@ -37,6 +37,7 @@ ProductInformation.propTypes = {
   togglePop: PropTypes.func,
   seen: PropTypes.bool,
   cart: PropTypes.arrayOf(PropTypes.shape({})),
+  scrollToView: PropTypes.func,
 };
 
 ProductInformation.defaultProps = {
@@ -50,6 +51,7 @@ ProductInformation.defaultProps = {
   togglePop: () => {},
   seen: false,
   cart: [{}],
+  scrollToView: () => {},
 };
 
 export default ProductInformation;

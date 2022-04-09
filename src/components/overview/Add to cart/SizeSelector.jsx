@@ -30,7 +30,6 @@ function SizeSelector({ sizeAndQuantity, selectSizeAndQuantity }) {
         placeholder="Select Size"
         options={sizeAndQuantityArray}
         value={[]}
-        clearOnSelect="true"
         onChange={(option) => { selectSizeAndQuantity(option[0]); }}
       />
     </div>
