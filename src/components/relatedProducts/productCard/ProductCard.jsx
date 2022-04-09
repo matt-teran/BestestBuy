@@ -12,11 +12,11 @@ function ProductCard({
       <div className="btn-wrapper" onKeyDown={() => { clickHandler(id); }} onClick={() => { clickHandler(id); }} role="button" tabIndex={0}>
         <Btn char={outfit ? '×' : '★'} />
       </div>
-      <div className="detail-wrapper">
-        <img src={image} alt={name} className="image" />
-        <span className="category">{category}</span>
-        <span className="name">{name}</span>
-        <span className="price">{`$${price}`}</span>
+      <div className="card-detail-wrapper">
+        <img src={image} alt={name} className="card-image" />
+        <span className="card-category">{category}</span>
+        <span className="card-name">{name}</span>
+        <span className="card-price">{`$${price}`}</span>
         {avgRating !== -1 ? <Rating rating={avgRating} size="15px" /> : <span className="not-yet-reviewed">Not Yet Reviewed</span>}
       </div>
     </div>
