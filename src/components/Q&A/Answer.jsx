@@ -1,13 +1,22 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
-function Answer() {
+function Answer({ answerBody }) {
   return (
     <div>
       <div className="answer-ctr">
-        <h4>A: This is an answer!</h4>
+        <h4>
+          A:
+          {' '}
+          {answerBody}
+        </h4>
       </div>
     </div>
   );
 }
+
+Answer.propTypes = {
+  answerBody: propTypes.string.isRequired,
+};
 
 export default Answer;
