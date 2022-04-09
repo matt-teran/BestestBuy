@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Rating from '../ui/Rating/Rating';
 
 function RatingSummary({ productStats }) {
