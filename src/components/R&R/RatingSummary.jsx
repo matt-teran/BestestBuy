@@ -1,7 +1,7 @@
 import React from 'react';
 import Rating from '../ui/Rating/Rating';
 
-function RatingSummary({ productStats }) {
+function RatingSummary({ productStats, filterSelect }) {
 
   const counts = getAvgRating(productStats.ratings);
   const ratingPercentages = {
@@ -24,41 +24,42 @@ function RatingSummary({ productStats }) {
 
       <div className="Rating-Summary-Bars">
         <div className="Rating-Summary-Stats">
-          <p className="star-filter">5 Star</p>
+          <p onClick={()=>{filterSelect(5)}} className="star-filter">5 Star</p>
           <div className="bar-5 bar" style={{ width: ratingPercentages[5]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[5]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p className="star-filter">4 Star</p>
+          <p onClick={()=>{filterSelect(4)}} className="star-filter">4 Star</p>
           <div className="bar-4 bar" style={{ width: ratingPercentages[4]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[4]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p className="star-filter">3 Star</p>
+          <p onClick={()=>{filterSelect(3)}} className="star-filter">3 Star</p>
           <div className="bar-3 bar" style={{ width: ratingPercentages[3]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[3]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p className="star-filter">2 Star</p>
+          <p onClick={()=>{filterSelect(2)}} className="star-filter">2 Star</p>
           <div className="bar-2 bar" style={{ width: ratingPercentages[2]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[2]}</div>
           </div>
         </div>
         <div className="Rating-Summary-Stats">
-          <p className="star-filter">1 Star</p>
+          <p onClick={()=>{filterSelect(1)}} className="star-filter">1 Star</p>
           <div className="bar-1 bar" style={{ width: ratingPercentages[1]+"%" }} />
           <div className="side Right">
             <div>{productStats.ratings[1]}</div>
           </div>
         </div>
       </div>
+      <p onClick={()=>{filterSelect(false)}} className="star-filter"> Reset Filter</p>
     </section>
   );
 }

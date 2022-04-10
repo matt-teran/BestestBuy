@@ -11,7 +11,9 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       isLoaded: false,
       productData: {},
+      filter: false,
     };
+    this.handleFilterSelect = this.handleFilterSelect.bind(this);
   }
 
   componentDidMount() {
@@ -32,20 +34,25 @@ class RatingsAndReviews extends React.Component {
     }
   }
 
+  handleFilterSelect (starRating) {
+    console.log('entered');
+    this.setState({filter: starRating});
+  }
+
+
   render() {
-    const { isLoaded, productData } = this.state;
+    const { isLoaded, productData, filter } = this.state;
     const { id } = this.props;
     if (!isLoaded) {
       return (
         <div>
           Loading Rating Overview...
-          <ReviewsList productId={id} />
         </div>)
     } else {
       return (
         <div>
-          <RatingSummary productStats={productData} />
-          <ReviewsList productId={id} />
+          <RatingSummary productStats={productData} filterSelect={this.handleFilterSelect} />
+          <ReviewsList productId={id} filter={filter} />
         </div>
       );
     }
