@@ -37,6 +37,8 @@ class QuestionsList extends React.Component {
         this.setState({
           questions: response.data,
           searchQuestions: response.data,
+          // questions: response.data.results.sort((a, b) => a.question_helpfulness - b.question_helpfulness),
+          // searchQuestions: response.data.results.sort((a, b) => a.question_helpfulness - b.question_helpfulness),
         });
       })
       .catch(() => {
