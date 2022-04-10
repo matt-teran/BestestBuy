@@ -27,6 +27,7 @@ function Share({ title, currentImage }) {
       <div id="pinterest_share">
         <PinterestShareButton
           url={currentImage}
+          media={currentImage}
           quote={title}
         >
           <PinterestIcon size={32} round />
