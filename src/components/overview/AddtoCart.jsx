@@ -6,7 +6,7 @@ import AddtoCartButton from './Add to cart/AddToCartButton';
 
 function AddtoCart({
   sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity,
-  selectQuantity, addToCart, openDropdown, open,
+  selectQuantity, addToCart, openDropdown, open, quantitySelected,
 }) {
   return (
     <div>
@@ -15,12 +15,14 @@ function AddtoCart({
           sizeAndQuantity={sizeAndQuantity}
           selectSizeAndQuantity={(event) => selectSizeAndQuantity(event)}
           open={open}
+          currentSizeAndQuantity={currentSizeAndQuantity}
         />
       </div>
       <div>
         <QuantitySelector
           currentQuantity={currentSizeAndQuantity.value}
           selectQuantity={(event) => selectQuantity(event)}
+          quantitySelected={quantitySelected}
         />
       </div>
       <div>
@@ -42,6 +44,7 @@ AddtoCart.propTypes = {
   addToCart: PropTypes.func,
   open: PropTypes.bool,
   openDropdown: PropTypes.func,
+  quantitySelected: PropTypes.number,
 };
 
 AddtoCart.defaultProps = {
@@ -52,6 +55,7 @@ AddtoCart.defaultProps = {
   addToCart: () => {},
   open: false,
   openDropdown: () => {},
+  quantitySelected: null,
 };
 
 export default AddtoCart;

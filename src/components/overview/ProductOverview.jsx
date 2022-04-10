@@ -26,8 +26,8 @@ class ProductOverview extends React.Component {
       review: 0,
       styles: [],
       currentStyle: {},
-      currentSizeAndQuantity: { value: null },
-      quantitySelected: 0,
+      currentSizeAndQuantity: { value: null, label: 'Select size' },
+      quantitySelected: null,
       sizeSelected: '',
       currentImage: '',
       allThumbnail: [],
@@ -101,7 +101,6 @@ class ProductOverview extends React.Component {
         } else {
           let totalRatings = 0;
           let totalReviews = 0;
-          // ratingInfo.data.results.forEach((result) => { totalRating += result.rating; });
           const starArray = Object.keys(ratingInfo.data.ratings);
           const voteArray = Object.values(ratingInfo.data.ratings);
           for (let i = 0; i < Object.keys(ratingInfo.data.ratings).length; i += 1) {
@@ -124,7 +123,8 @@ class ProductOverview extends React.Component {
       currentImage: event.photos[0].url,
       price: event.original_price,
       salePrice: event.sale_price,
-      currentSizeAndQuantity: { value: null },
+      currentSizeAndQuantity: { value: null, label: 'Select size' },
+      quantitySelected: 1,
       open: false,
     });
   }
@@ -160,6 +160,11 @@ class ProductOverview extends React.Component {
         .then(() => console.log('add to cart successfully'))
         .catch((err) => console.log('post fail', err));
     }
+    this.setState({
+      currentSizeAndQuantity: { value: null, label: 'Select size' },
+      quantitySelected: null,
+    });
+    alert('Add to bag successfully');
   }
 
   cartButton() {
@@ -207,7 +212,7 @@ class ProductOverview extends React.Component {
     this.setState({
       open: true,
     });
-    // alert('Please select size');
+    alert('Please select a size');
   }
 
   scrollToView() {
@@ -237,6 +242,7 @@ class ProductOverview extends React.Component {
     const { cart } = this.state;
     const { grid } = this.state;
     const { open } = this.state;
+    const { quantitySelected } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -289,6 +295,7 @@ class ProductOverview extends React.Component {
             addToCart={() => this.addToCart()}
             openDropdown={() => this.openDropdown()}
             open={open}
+            quantitySelected={quantitySelected}
           />
         </div>
         <div className="share"><Share title={title} currentImage={currentImage} /></div>
