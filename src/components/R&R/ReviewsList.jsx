@@ -56,10 +56,10 @@ class ReviewsList extends React.Component {
 
     if(isLoaded) {
       if(prevProps.filter !== this.props.filter) {
-        console.log('did update entered');
         this.setState({
           filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter),
           reviewsToDisplay: 2,
+          hideButton: false,
         })
       }
 
@@ -81,7 +81,7 @@ class ReviewsList extends React.Component {
         this.getEnoughData(res, rej);
       })
       .then(() => {
-        if(filteredReviews.length < reviewsToDisplay - 1 ) {
+        if(filteredReviews.length < this.state.reviewsToDisplay - 1 ) {
           this.setState({hideButton: true});
         }
       })
