@@ -17,11 +17,15 @@
   padding: 3px;
 }
 .normal-view-button {
-  color: #112028;
-  font-size: 50px;
+  color: white;
+  font-size: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
   position:absolute;
   left:17%;
   top:15%;
+  border-radius: 6px;
+  background-color: black;
 }
 .main-image {
   width:  600px;
