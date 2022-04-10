@@ -39,7 +39,9 @@ class Search extends React.Component {
           name="question"
         />
         <div className="icon-ctr">
-          <button onClick={search} className="search-btn">Search</button>
+          <button type="submit" onClick={search} className="search-btn">
+            <img className="mag-glass" src="https://media.istockphoto.com/vectors/search-icon-vector-vector-id456619549?k=20&m=456619549&s=170667a&w=0&h=n6cAcqBrcJY8CVTc3jnYytzytE2iud7CfoZs6QyIuNw=" alt="" />
+          </button>
         </div>
       </div>
     );

@@ -12,7 +12,7 @@ class QuestionsList extends React.Component {
     this.state = {
       // isHidden: false
       limit: 4,
-      searchInput: "",
+      searchInput: '',
       searchQuestions: {
         results: [],
       },

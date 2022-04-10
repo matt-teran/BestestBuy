@@ -14,11 +14,34 @@
   font-size: 16px;
 }
 
+.search-btn {
+  display: flex;
+  height: 7.55vh;
+  width: 5rem;
+  background-color: white;
+  border-top: .08rem solid #0a4abf;
+  border-bottom: .08rem solid #0a4abf;
+  border-left: .08rem solid #0a4abf;
+  border-right: .08rem solid #0a4abf;
+  display: flex;
+  margin-left: 0.25rem;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 60px;
+  padding: 0px;
+  padding-top: 10px
+}
+
 .btn-ctr {
   display: flex;
   margin-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  box-shadow: 7px 6px 28px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent
 }
 
 .maq-btn {
@@ -67,4 +90,16 @@
 .aaq-btn:active {
   transform: scale(0.98);
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.search-btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.mag-glass {
+  height: 35px;
+  width: 35px;
+  line-height: 100px;
+  justify-content: center
 }
