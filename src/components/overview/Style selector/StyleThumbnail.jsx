@@ -35,7 +35,10 @@ function StyleThumbnail({ style, selectStyle, styleId }) {
 }
 
 StyleThumbnail.propTypes = {
-  style: PropTypes.shape({}),
+  style: PropTypes.shape({
+    style_id: PropTypes.number,
+    photos: PropTypes.arrayOf(PropTypes.shape({ thumbnail_url: PropTypes.string })),
+  }),
   selectStyle: PropTypes.func,
   styleId: PropTypes.number,
 };

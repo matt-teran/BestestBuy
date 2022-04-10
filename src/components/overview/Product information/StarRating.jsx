@@ -8,7 +8,13 @@ function StarRating({ rating, review }) {
       <Rating rating={rating} size="20px" />
       <p>{' '}</p>
       {review !== 0 ? (
-        <u>
+        <u
+          onClick={() => {
+            const element = document.getElementById('ratings-and-reviews');
+            element.scrollIntoView();
+          }}
+          aria-hidden="true"
+        >
           Read all
           {' '}
           {review}

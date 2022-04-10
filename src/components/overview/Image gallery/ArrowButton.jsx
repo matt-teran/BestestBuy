@@ -43,7 +43,7 @@ function ArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
 
 ArrowButton.propTypes = {
   imageIndex: PropTypes.number,
-  allThumbnail: PropTypes.arrayOf(PropTypes.shape({})),
+  allThumbnail: PropTypes.arrayOf(PropTypes.shape({ url: PropTypes.string })),
   changeMainImage: PropTypes.func,
 };
 
