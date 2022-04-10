@@ -215,11 +215,6 @@ class ProductOverview extends React.Component {
     alert('Please select a size');
   }
 
-  scrollToView() {
-    const element = document.getElementById('ratings-and-reviews');
-    element.scrollIntoView();
-  }
-
   render() {
     const { category } = this.state;
     const { title } = this.state;

@@ -26,7 +26,7 @@ function ThumbnailImage({
 }
 
 ThumbnailImage.propTypes = {
-  thumbnail: PropTypes.shape({}),
+  thumbnail: PropTypes.shape({ thumbnail_url: PropTypes.string, url: PropTypes.string }),
   changeMainImage: PropTypes.func,
   index: PropTypes.number,
   viewExpanded: PropTypes.bool,

@@ -39,7 +39,7 @@ function AddtoCart({
 AddtoCart.propTypes = {
   sizeAndQuantity: PropTypes.shape({}),
   selectSizeAndQuantity: PropTypes.func,
-  currentSizeAndQuantity: PropTypes.shape({}),
+  currentSizeAndQuantity: PropTypes.shape({ value: PropTypes.number }),
   selectQuantity: PropTypes.func,
   addToCart: PropTypes.func,
   open: PropTypes.bool,
