@@ -16,7 +16,7 @@ function ProductCard({
       <div className="card-detail-wrapper">
         <img src={image} alt={name} className="card-image" />
         <span className="card-category">{category}</span>
-        <Link to={`/${id}`}>
+        <Link to={`/${id}`} className="card-link">
           <span className="card-name">{name}</span>
         </Link>
         <span className="card-price">{`$${price}`}</span>
