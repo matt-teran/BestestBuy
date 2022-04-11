@@ -13,7 +13,6 @@ class QuestionsList extends React.Component {
       limit: 4,
       searchInput: '',
       // modal: false,
-      expanded: false,
       searchQuestions: {
         results: [],
       },
@@ -21,7 +20,7 @@ class QuestionsList extends React.Component {
         results: [],
       },
     };
-    this.removeLimit = this.removeLimit.bind(this);
+
     this.changeHandler = this.changeHandler.bind(this);
     this.search = this.search.bind(this);
   }
@@ -43,26 +42,6 @@ class QuestionsList extends React.Component {
       .catch(() => {
         console.log('getQuestion error');
       });
-  }
-
-  // removeLimit() {
-  //   return this.setState({
-  //     limit: 100,
-  //   });
-  // }
-
-  removeLimit() {
-    this.state.limit === 4 ? (
-      this.setState({
-        limit: this.state.response.data.length,
-        expanded: true,
-      })
-    ) : (
-      this.setState({
-        limit: 4,
-        expanded: false,
-      })
-    )
   }
 
   changeHandler(event) {
@@ -91,14 +70,13 @@ class QuestionsList extends React.Component {
         </div>
         <Search changeHandler={this.changeHandler} search={this.search} />
         {searchQuestions.results.map((question, i) => {
-          //const { limit } = this.state;
           if (i < limit) {
             return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} />
           }
         })}
         <AnswerList />
         <div className="btn-ctr">
-          <button className="maq-btn" type="button" onClick={this.removeLimit}>MORE ANSWERED QUESTIONS</button>
+          <button className="maq-btn" type="button">MORE ANSWERED QUESTIONS</button>
           <button className="aaq-btn" type="button">ADD A QUESTION +</button>
         </div>
       </div>

@@ -42,7 +42,7 @@ class AnswerList extends React.Component {
   // }
 
   removeLimit() {
-    const { limit, answers } = this.state;
+    const { limit, answers, expanded } = this.state;
     limit === 2 ? (this.setState({
       limit: answers.results.length,
       expanded: true,

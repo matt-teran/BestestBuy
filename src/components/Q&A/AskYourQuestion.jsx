@@ -1,48 +1,85 @@
+/*
 import React from 'react';
-import axios from 'axios';
-import propTypes from 'prop-types';
 
-class AskYourQuestion extends React.Component {
+class SubmitYourAnswer extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-      askName: '',
-      askEmail: '',
-      askQuestion: '',
-      // send: false,
-    };
-    this.postQuestion.bind(this);
-  }
-  /*
-  const { closeModal } = this.state;
-  selectModal(event) {
-  event.stopPropagation();
-  closeModal();
-*/
+      yourQuestion: '',
+      yourName: '',
+      yourEmail: '',
+      validQuestion: true,
+      validName: true,
+      validEmail: true,
 
-  postQuestion() {
-    const { productId } = this.props;
-    const { askQuestion, askName, askEmail } = this.state;
+    },
+  }
+
+  onChangeAnswer(event) {
     this.setState({
-      // send: true,
-    });
-    axios.post('qa/questions', {
-      body: askQuestion,
-      name: askName,
-      email: askEmail,
-      productId,
+      yourAnswer: event.target.value,
     })
-      .then((response) => {
-        console.log('Submission Successful!', response.data);
-        // this.props.closeModal();
-      });
   }
 
-  // type(event) {
+  onChangeName(event) {
+    this.setState({
+      yourNickname: event.target.value,
+    })
+  }
 
-  // }
+  onChangeEmail(event) {
+    this.setState({
+      yourEmail: event.target.value,
+    })
+  }
+
+  validateForm() {
+    const yourName = this.state.yourName;
+    const yourAnswer = this.state.yourAnswer;
+    const yourEmail = this.state.yourEmail;
+
+    let validForm = true;
+
+    if (!yourName) {
+      validForm = false;
+      this.setState({
+        validName: false
+      });
+    }
+    if (!yourAnswer) {
+      validForm = false;
+      this.setState({
+        validAnswer: false
+      });
+    }
+    if (!yourEmail) {
+      validForm = false;
+      this.setState({
+        validEmail: false
+      });
+    }
+    if (!yourEmail.includes('@') || !yourEmail.includes('.com')) {
+      validForm = false;
+      this.setState({
+        validEmail: false
+      });
+    }
+    if (name && body && email) {
+      return validForm;
+    }
+  }
+
+  render() {
+    return (
+      <div className='answer-form'>
+        <form>
+          <h1 className='answer-form-title'>Ask Your Question</h1>
+          <div>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
-
-AskYourQuestion.propTypes = {
-  productId: propTypes.string.isRequired,
-};
+*/
