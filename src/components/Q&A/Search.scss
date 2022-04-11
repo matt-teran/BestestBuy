@@ -16,7 +16,7 @@
 
 .search-btn {
   display: flex;
-  height: 7.55vh;
+  height: 7.65vh;
   width: 5rem;
   background-color: white;
   border-top: .10rem solid #0a4abf;
@@ -116,4 +116,38 @@
   //text-decoration: underline;
   cursor: pointer;
   color: #0a4abf;
+}
+
+
+.helpful-addAnswer-ctr {
+  display: flex;
+  margin-left: auto;
+  float: right;
+  background: none !important;
+  border: none;
+  font-size: 14px
+}
+
+.helpful-btn {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #0a4abf;
+  line-height: 1px
+}
+
+.addAnswer-btn {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  //text-decoration: underline;
+  cursor: pointer;
+  color: #0a4abf;
+  line-height: 1px
 }

@@ -6,13 +6,17 @@ function Question({ questionBody, questId }) {
   return (
     <div>
       <div className="question-ctr">
-        <h4>
+        <h3>
           Q:
           {' '}
           {questionBody}
-        </h4>
-      </div>
-      <div className="answer-ctr">
+        </h3>
+        <div className="helpful-addAnswer-ctr">
+          <p>Helpful?</p>
+          <button className="helpful-btn" type="submit">Yes</button>
+          {/* <div className="divider"> | </div> */}
+          <button className="addAnswer-btn" type="submit">Report</button>
+        </div>
         <AnswerList questId={questId} />
       </div>
     </div>
