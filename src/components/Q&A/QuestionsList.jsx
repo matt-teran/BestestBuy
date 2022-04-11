@@ -12,6 +12,8 @@ class QuestionsList extends React.Component {
     this.state = {
       limit: 4,
       searchInput: '',
+      // modal: false,
+      expanded: false,
       searchQuestions: {
         results: [],
       },
@@ -43,10 +45,24 @@ class QuestionsList extends React.Component {
       });
   }
 
+  // removeLimit() {
+  //   return this.setState({
+  //     limit: 100,
+  //   });
+  // }
+
   removeLimit() {
-    return this.setState({
-      limit: 100,
-    });
+    this.state.limit === 4 ? (
+      this.setState({
+        limit: this.state.response.data.length,
+        expanded: true,
+      })
+    ) : (
+      this.setState({
+        limit: 4,
+        expanded: false,
+      })
+    )
   }
 
   changeHandler(event) {
@@ -67,7 +83,7 @@ class QuestionsList extends React.Component {
   }
 
   render() {
-    const { searchQuestions } = this.state;
+    const { searchQuestions, limit } = this.state;
     return (
       <div className="main-ctr">
         <div className="title-ctr">
@@ -75,7 +91,7 @@ class QuestionsList extends React.Component {
         </div>
         <Search changeHandler={this.changeHandler} search={this.search} />
         {searchQuestions.results.map((question, i) => {
-          const { limit } = this.state;
+          //const { limit } = this.state;
           if (i < limit) {
             return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} />
           }

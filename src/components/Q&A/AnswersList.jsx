@@ -9,6 +9,7 @@ class AnswerList extends React.Component {
     super(props);
     this.state = {
       limit: 2,
+      expanded: false,
       answers: {
         results: [],
       },
@@ -34,15 +35,27 @@ class AnswerList extends React.Component {
       });
   }
 
+  // removeLimit() {
+  //   this.setState({
+  //     limit: 100,
+  //   });
+  // }
+
   removeLimit() {
-    this.setState({
-      limit: 100,
-    });
+    const { limit, answers } = this.state;
+    limit === 2 ? (this.setState({
+      limit: answers.results.length,
+      expanded: true,
+    })) : (this.setState({
+      limit: 2,
+      expanded: false,
+    }));
   }
 
   render() {
     const { answers } = this.state;
     const { limit } = this.state;
+    const { expanded } = this.setState;
     return (
       <div className="answer-list-ctr">
         {answers.results.map((answer, i) => {
@@ -50,7 +63,15 @@ class AnswerList extends React.Component {
             return <Answer key={answer.answer_id} answerBody={answer.body} />;
           }
         })}
-        <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Load More Answers</button>
+        {answers.results.length > 2 ? (
+          <div>
+            {(!expanded) ? (
+              <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Load More Answers</button>
+            ) : (
+              <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Collapse Answers</button>
+            )}
+          </div>
+        ) : (null)}
       </div>
     );
   }
