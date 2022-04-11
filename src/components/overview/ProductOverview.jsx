@@ -54,7 +54,6 @@ class ProductOverview extends React.Component {
       headers,
     )
       .then((productInfo) => {
-        // console.log(productInfo.data);
         this.setState({
           category: productInfo.data.category,
           title: productInfo.data.name,
@@ -73,7 +72,6 @@ class ProductOverview extends React.Component {
       headers,
     )
       .then((styleInfo) => {
-        // console.log(styleInfo.data);
         this.setState({
           styles: styleInfo.data.results,
           currentImage: styleInfo.data.results[0].photos[0].url,

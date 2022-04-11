@@ -41,10 +41,29 @@
   justify-content: center;
   width: 12rem;
   border-radius: 8px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 30px;
-  margin-left: 250px;
+  margin-left: 280px;
 }
 .cart-content {
-  margin-left: 30px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.items-in-cart {
+  overflow: hidden;
+  overflow-y: auto;
+  height: 180px;
+}
+.modal {
+  border: 5px solid black;
+  border-radius: 5px;
+}
+.close {
+  color: white;
+  font-size: 20px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  background-color: black;
 }
