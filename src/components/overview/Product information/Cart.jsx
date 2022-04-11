@@ -25,7 +25,8 @@ export default class Cart extends Component {
         <div className="cart-content">
           <span className="close" onClick={() => this.handleClick()} aria-hidden="true">&times;</span>
           <h3>Shopping Cart</h3>
-          {
+          <div className="items-in-cart">
+            {
             shoppingCart.map((item) => (
               <p key={item.sku_id}>
                 Style Id:
@@ -39,6 +40,7 @@ export default class Cart extends Component {
               </p>
             ))
           }
+          </div>
           <button type="submit" className="checkout-button">Check Out</button>
         </div>
       </div>
