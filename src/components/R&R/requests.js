@@ -2,15 +2,6 @@
 import axios from 'axios';
 import { headers, url } from '../../config';
 
-const axiosInfo = {
-  method: 'PUT',
-  headers: {
-    'content-type': 'application/x-www-form-urlencoded',
-    Authorization: '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'
-  },
-  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews/1155930/helpful',
-}
-
 const getReviews = function (productId, page = 1, sort = 'relevant') {
   // console.log('productId: ', productId, ' page: ', page, ' sort: ', sort); // for testing
   // console.log('Axios Request Made');
