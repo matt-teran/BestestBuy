@@ -10,7 +10,6 @@ class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isHidden: false
       limit: 4,
       searchInput: '',
       searchQuestions: {
@@ -33,12 +32,10 @@ class QuestionsList extends React.Component {
   getQuestion(id) {
     axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           questions: response.data,
           searchQuestions: response.data,
-          // questions: response.data.results.sort((a, b) => a.question_helpfulness - b.question_helpfulness),
-          // searchQuestions: response.data.results.sort((a, b) => a.question_helpfulness - b.question_helpfulness),
         });
       })
       .catch(() => {
@@ -53,7 +50,7 @@ class QuestionsList extends React.Component {
   }
 
   changeHandler(event) {
-    console.log(event);
+    // console.log(event);
     return this.setState({
       searchInput: event.target.value,
     });

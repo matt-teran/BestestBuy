@@ -8,7 +8,6 @@ class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // answersToDisplay: 2
       limit: 2,
       answers: {
         results: [],

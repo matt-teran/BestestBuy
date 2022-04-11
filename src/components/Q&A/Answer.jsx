@@ -6,7 +6,9 @@ function Answer({ answerBody }) {
     <div>
       <div className="answer-ctr">
         <h4>
-          A: {answerBody}
+          A:
+          {' '}
+          {answerBody}
         </h4>
       </div>
     </div>

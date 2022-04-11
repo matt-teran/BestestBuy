@@ -104,7 +104,16 @@
   justify-content: center
 }
 
+// .more-answers-btn {
+//   background-color: #0a4abf;
+//   color: white
+// }
+
 .more-answers-btn {
-  background-color: #0a4abf;
-  color: white
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  //text-decoration: underline;
+  cursor: pointer;
+  color: #0a4abf;
 }
