@@ -12,7 +12,7 @@ function Question({ questionBody, questId }) {
           {questionBody}
         </h4>
       </div>
-      <div>
+      <div className="answer-ctr">
         <AnswerList questId={questId} />
       </div>
     </div>
