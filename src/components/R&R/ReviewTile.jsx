@@ -4,11 +4,14 @@ import moment from 'moment';
 import Rating from '../ui/Rating/Rating';
 import Backdrop from '../ui/Modal/Backdrop';
 import Modal from '../ui/Modal/Modal';
+import request from './requests';
 
 function Tile({ review }) {
   const datePosted = review.date.slice(0, 10);
   const formatedDatePosted = moment(datePosted).format('MMMM Do YYYY');
   const [showModal, setModal] = useState(false);
+  const [reviewHelpfulness, setReviewHelpfulness] = useState(review.helpfulness);
+  const [disable, setDisable] = useState(false);
   const altImg = 'https://images.unsplash.com/photo-1490127252417-7c393f993ee4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80';
   const [modalImgUrl, setModalImgUrl] = useState(altImg);
 
@@ -36,9 +39,13 @@ function Tile({ review }) {
       </div>
 
       <div className="helpfulAndReport">
-        <button type="button">
+        <button type="button" disabled={disable} onClick={()=>{
+          setReviewHelpfulness(reviewHelpfulness+1);
+          setDisable(true);
+          request.markHelpful(review.review_id);
+          }}>
           Helpful(
-          {review.helpfulness}
+          {reviewHelpfulness}
           )
         </button>
         <button type="button">Report</button>

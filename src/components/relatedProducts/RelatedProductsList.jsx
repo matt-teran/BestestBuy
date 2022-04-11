@@ -8,15 +8,22 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: 0,
+      start: 0,
+      end: 5
     };
   }
 
   scrollHandler(direction) {
     if (direction === 'left') {
-      this.setState((prev) => ({ position: prev.position - 1 }));
+      this.setState((prev) => ({
+        start: prev.start - 1,
+        end: prev.end - 1,
+      }));
     } else {
-      this.setState((prev) => ({ position: prev.position + 1 }));
+      this.setState((prev) => ({
+        start: prev.start + 1,
+        end: prev.end + 1,
+      }));
     }
   }
 
@@ -24,7 +31,7 @@ class RelatedProductsList extends React.Component {
     const {
       relatedCards, title, clickHandler, outfit, addToOutfit,
     } = this.props;
-    const { position } = this.state;
+    const { start, end } = this.state;
     const cards = relatedCards.map((card) => (
       <ProductCard
         key={card.id}
@@ -42,10 +49,10 @@ class RelatedProductsList extends React.Component {
       <>
         <h2 className="list-title">{ title }</h2>
         <div className="products-list">
-          {position > 0 ? <Btn char="◀" className="scroll-left" clickHandler={() => this.scrollHandler('left')} /> : null}
-          {position < cards.length - 1 ? <Btn char="▶" className="scroll-right" clickHandler={() => this.scrollHandler('right')} /> : null}
+          {start > 0 ? <Btn char="◀" className="scroll-left" clickHandler={() => this.scrollHandler('left')} /> : null}
+          {end < cards.length ? <Btn char="▶" className="scroll-right" clickHandler={() => this.scrollHandler('right')} /> : null}
           {outfit && <AddToOutfit addToOutfit={addToOutfit} />}
-          {cards.filter((card, i) => i >= position)}
+          {cards.slice(start, end)}
         </div>
       </>
     );

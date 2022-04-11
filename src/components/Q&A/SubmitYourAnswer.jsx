@@ -1,8 +1,9 @@
+/*
 import React from 'react';
 
 class SubmitYourAnswer extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       yourAnswer: '',
@@ -11,34 +12,31 @@ class SubmitYourAnswer extends React.Component {
       validAnswer: true,
       validName: true,
       validEmail: true,
-
-    },
+    };
   }
 
   onChangeAnswer(event) {
     this.setState({
       yourAnswer: event.target.value,
-    })
+    });
   }
 
   onChangeName(event) {
     this.setState({
-      yourNickname: event.target.value,
+      yourName: event.target.value,
     })
   }
 
   onChangeEmail(event) {
     this.setState({
       yourEmail: event.target.value,
-    })
+    });
   }
 
   validateForm() {
-    const yourName = this.state.yourName;
-    const yourAnswer = this.state.yourAnswer;
-    const yourEmail = this.state.yourEmail;
+    const { yourName, yourAnswer, yourEmail } = this.state;
 
-    let validForm = true;
+    let validForm;
 
     if (!yourName) {
       validForm = false;
@@ -64,20 +62,21 @@ class SubmitYourAnswer extends React.Component {
         validEmail: false
       });
     }
-    if (name && body && email) {
+    if (yourName && yourAnswer && yourEmail) {
       return validForm;
     }
   }
 
-  return(
-    <div className = 'answer-form' >
-      <form>
-        <h1 className='answer-form-title'>Ask Your Question</h1>
-        <label>
-          <p
-        </label>
-      </form>
-    </div>
-  )
-
+  render() {
+    return (
+      <div className="answer-form">
+        <form>
+          <h1 className="answer-form-title">Ask Your Question</h1>
+          <div>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
+*/
