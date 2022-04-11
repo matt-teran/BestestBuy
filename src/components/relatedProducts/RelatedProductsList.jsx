@@ -32,7 +32,7 @@ class RelatedProductsList extends React.Component {
         price={card.default_price}
         name={card.name}
         category={card.category}
-        image={card.image}
+        image={card.image || ''}
         clickHandler={clickHandler}
         id={card.id}
         outfit={outfit}

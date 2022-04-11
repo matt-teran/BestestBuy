@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Rating from '../../ui/Rating/Rating';
 import Btn from '../../ui/Btn/Btn';
 import './ProductCard.scss';
@@ -15,7 +16,9 @@ function ProductCard({
       <div className="card-detail-wrapper">
         <img src={image} alt={name} className="card-image" />
         <span className="card-category">{category}</span>
-        <span className="card-name">{name}</span>
+        <Link to={`/${id}`}>
+          <span className="card-name">{name}</span>
+        </Link>
         <span className="card-price">{`$${price}`}</span>
         {avgRating !== -1 ? <Rating rating={avgRating} size="15px" /> : <span className="not-yet-reviewed">Not Yet Reviewed</span>}
       </div>
