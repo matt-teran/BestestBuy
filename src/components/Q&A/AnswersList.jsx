@@ -8,10 +8,12 @@ class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      limit: 2,
       answers: {
         results: [],
       },
     };
+    this.removeLimit = this.removeLimit.bind(this);
   }
 
   componentDidMount() {
@@ -32,15 +34,23 @@ class AnswerList extends React.Component {
       });
   }
 
+  removeLimit() {
+    this.setState({
+      limit: 100,
+    });
+  }
+
   render() {
     const { answers } = this.state;
+    const { limit } = this.state;
     return (
       <div className="answer-list-ctr">
         {answers.results.map((answer, i) => {
-          if (i < 2) {
+          if (i < limit) {
             return <Answer key={answer.answer_id} answerBody={answer.body} />;
           }
         })}
+        <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Load More Answers</button>
       </div>
     );
   }

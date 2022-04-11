@@ -4,9 +4,9 @@ import React from 'react';
 function AttributeCompare({ current, feature, compared }) {
   return (
     <tr className="comparison-table-row">
-      <td>{current ? 'yup' : 'nope'}</td>
+      <td>{current ? '✓' : '×'}</td>
       <td>{feature}</td>
-      <td>{compared ? 'yup' : 'nope'}</td>
+      <td>{compared ? '✓' : '×'}</td>
     </tr>
   );
 }
