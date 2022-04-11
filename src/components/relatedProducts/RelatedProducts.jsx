@@ -167,6 +167,10 @@ class RelatedProducts extends React.Component {
     const {
       relatedCards, outfitCards, showModal, currentProductInfo, comparedProductInfo,
     } = this.state;
+
+    if (relatedCards.length === 0) {
+      return <div className="related-products-loading">Loading...</div>;
+    }
     return (
       <>
         <Modal showModal={showModal}>
@@ -181,8 +185,8 @@ class RelatedProducts extends React.Component {
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => this.setState({ showModal: false })} />
         <div className="related-products">
-          {relatedCards.length === 0 ? <div>Loading...</div> : <RelatedProductsList title="Related Products" relatedCards={relatedCards} clickHandler={this.openModal} />}
-          <RelatedProductsList title="Outfit List" outfit relatedCards={outfitCards} clickHandler={this.removeFromOutfit} addToOutfit={this.addToOutfit} />
+          <RelatedProductsList title="Related Products" relatedCards={relatedCards} clickHandler={this.openModal} />
+          <RelatedProductsList className="outfit-list" title="Outfit List" outfit relatedCards={outfitCards} clickHandler={this.removeFromOutfit} addToOutfit={this.addToOutfit} />
         </div>
       </>
     );
