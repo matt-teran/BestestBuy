@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="app" key={productId}>
       <div><ProductOverview id={productId} /></div>
-      {showRelated ? <RelatedProducts id={productId} /> : <button onClick={() => setShowRelated(true)} type="button">Show Related Products</button>}
+      {showRelated ? <RelatedProducts id={productId} /> : <button className="show-related" onClick={() => setShowRelated(true)} type="button">Show Related Products</button>}
       <div><QuestionsList id={productId} /></div>
       <div id="ratings-and-reviews"><RatingsAndReviews id={productId} /></div>
     </div>
