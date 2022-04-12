@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
+import swal from 'sweetalert';
 import { headers, url } from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
@@ -162,7 +163,7 @@ class ProductOverview extends React.Component {
       currentSizeAndQuantity: { value: null, label: 'Select size' },
       quantitySelected: null,
     });
-    alert('Add to bag successfully');
+    swal('Add to bag successfully!', '', 'success');
   }
 
   cartButton() {
@@ -210,7 +211,7 @@ class ProductOverview extends React.Component {
     this.setState({
       open: true,
     });
-    alert('Please select a size');
+    swal('Please select a size');
   }
 
   render() {
