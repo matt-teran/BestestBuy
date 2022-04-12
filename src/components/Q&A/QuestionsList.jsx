@@ -12,7 +12,6 @@ class QuestionsList extends React.Component {
     this.state = {
       limit: 4,
       searchInput: '',
-      // modal: false,
       searchQuestions: {
         results: [],
       },
@@ -23,6 +22,8 @@ class QuestionsList extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.search = this.search.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +59,18 @@ class QuestionsList extends React.Component {
     });
     this.setState({
       searchQuestions: { results: searchedArr },
+    });
+  }
+
+  showModal() {
+    this.setState({
+      showModel: true,
+    });
+  }
+
+  hideModal() {
+    this.setState({
+      showModel: false,
     });
   }
 
