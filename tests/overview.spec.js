@@ -1,3 +1,9 @@
+/* eslint-disable no-undef */
+describe('BestestBuy Test Suite', () => {
+  it('should run this dummy test with CircleCI', () => {
+    expect(true).toEqual(true);
+  });
+});
 // import React from 'react';
 // import Enzyme, { shallow } from 'enzyme';
 // import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
