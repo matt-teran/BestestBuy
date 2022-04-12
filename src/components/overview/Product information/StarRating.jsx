@@ -9,6 +9,7 @@ function StarRating({ rating, review }) {
       <p>{' '}</p>
       {review !== 0 ? (
         <u
+          className="link-to-reviews"
           onClick={() => {
             const element = document.getElementById('ratings-and-reviews');
             element.scrollIntoView();

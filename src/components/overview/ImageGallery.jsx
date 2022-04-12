@@ -21,7 +21,7 @@ function ImageGallery({
           normalView={() => normalView()}
         />
       </div>
-      <div className="right-arrow-button" style={{ 'margin-left': rightArrowPosition }}>
+      <div className="right-arrow-button" style={{ marginLeft: rightArrowPosition }}>
         <RightArrowButton
           imageIndex={imageIndex}
           allThumbnail={allThumbnail}
