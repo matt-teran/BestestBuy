@@ -60,7 +60,7 @@ class RelatedProducts extends React.Component {
     axios.get(`${url}/products/${id}/related`, headers)
       .then(({ data }) => {
         const ids = [...new Set(data)];
-        return Promise.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
+        return Promise.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)));
       })
       .then((data) => {
         cards = data.map((res) => {

@@ -6,10 +6,10 @@ import './Header.scss';
 
 function Header() {
   return (
-    <>
+    <div className="header" id="header">
       <Navbar />
       <Announcement />
-    </>
+    </div>
   );
 }
 
