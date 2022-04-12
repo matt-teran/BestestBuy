@@ -2,33 +2,34 @@ import React from 'react';
 import propTypes from 'prop-types';
 import AnswerList from './AnswersList';
 import ModalA from './ModalA';
+import SubmitYourAnswerForm from './SubmitYourAnswerForm';
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showModal: false,
+      show: false,
     };
-    this.showModal = this.showModal.bind.this;
-    this.hideModal = this.hideModal.bind.this;
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   showModal() {
     this.setState({
-      showModel: true,
+      show: true,
     });
   }
 
   hideModal() {
     this.setState({
-      showModel: false,
+      show: false,
     });
   }
 
   render() {
     const { questionBody, questId } = this.props;
-    const { showModal, hideModal } = this.state;
+    const { show, showModal, hideModal } = this.state;
     return (
       <div>
         <div className="question-ctr">
@@ -42,9 +43,11 @@ class Question extends React.Component {
             <button className="helpful-btn" type="submit">Yes</button>
             {/* <div className="divider"> | </div> */}
             <div className="answer-modal">
-              {/* <ModalA show={showModal} handleClose={hideModal} /> */}
+              <ModalA show={show} handleClose={this.hideModal}>
+                <SubmitYourAnswerForm />
+              </ModalA>
             </div>
-            <button className="addAnswer-btn" type="submit" onClick={showModal}>Add Answer</button>
+            <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
           </div>
           <AnswerList questId={questId} />
         </div>
@@ -57,7 +60,7 @@ export default Question;
 Question.propTypes = {
   questionBody: propTypes.string.isRequired,
   questId: propTypes.number.isRequired,
-  showModal: propTypes.func.isRequired,
+  //showModal: propTypes.func.isRequired,
 };
 
 

@@ -1,11 +1,42 @@
 import React from 'react';
 
+class SubmitYourAnswerForm extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      userName: '',
+      userEmail: '',
+      userAnswer: '',
+      submitAnswer: false,
+    };
+  }
 
+  type(event) {
+    if (event.target.placeholder === 'Example: jackson11!') {
+      this.setState({
+        userName: event.target.value,
+      });
+    } else if (event.target.placeholder === 'Why did you like the product or not?') {
+      this.setState({
+        userEmail: event.target.value
+      });
+    }
+  }
 
-
-
-
+  render() {
+    return (
+      <div className="answer-form">
+        <form>
+          <h1 className="answer-form-title">Ask Your Question</h1>
+          <div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+export default SubmitYourAnswerForm
 /*
 import React from 'react';
 

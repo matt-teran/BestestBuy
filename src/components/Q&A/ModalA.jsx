@@ -1,32 +1,21 @@
 import React from 'react';
 import './modal.scss';
 
-class ModalA extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      userEmail: '',
-      userAnswer: '',
-    };
+function ModalA({ handleClose, show, children }) {
+  if (show === false) {
+    return null;
   }
-
-  render() {
-    const { handleClose, show, children } = this.props;
-    const showHideClassName = show ? 'model display-block' : 'modal display-none';
-    return (
-      <div className={showHideClassName}>
-        <section className="modal-main">
-          {children}
-          <button type="button" onClick={handleClose}>
-            Close
-          </button>
-        </section>
-      </div>
-    );
-  }
+  return (
+    <div className="modal">
+      <section className="modal-main">
+        {children}
+        <button type="button" onClick={handleClose}>
+        </button>
+      </section>
+    </div>
+  );
 }
+
 export default ModalA;
 
 /*
