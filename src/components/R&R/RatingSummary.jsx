@@ -23,7 +23,9 @@ function RatingSummary({ productStats, filterSelect }) {
     };
 
     return (
+
       <section className="Rating-Summary">
+
         <div className="Rating-Summary-Header">
           <div className="Rating-Summary-Overall">
             <h3> Overall User Rating </h3>
@@ -103,3 +105,7 @@ function getAvgRating(ratings) {
 }
 
 export default RatingSummary;
+
+
+
+
