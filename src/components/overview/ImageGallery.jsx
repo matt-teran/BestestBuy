@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MainImage from './Image gallery/MainImage';
 import ThumbnailImage from './Image gallery/ThumbnailImges';
-import ArrowButton from './Image gallery/ArrowButton';
+import LeftArrowButton from './Image gallery/LeftArrowButton';
+import RightArrowButton from './Image gallery/RightArrowButton';
 import './ProductOverview.scss';
 
 function ImageGallery({
-  currentImage, allThumbnail, changeMainImage,
-  imageIndex, imageSize, expandView, viewExpanded, normalView,
+  currentImage, allThumbnail, changeMainImage, imageIndex, imageSize,
+  expandView, viewExpanded, normalView, rightArrowPosition,
 }) {
   return (
     <div className="all-image-block">
@@ -20,8 +21,15 @@ function ImageGallery({
           normalView={() => normalView()}
         />
       </div>
-      <div className="arrow-button">
-        <ArrowButton
+      <div className="right-arrow-button" style={{ 'margin-left': rightArrowPosition }}>
+        <RightArrowButton
+          imageIndex={imageIndex}
+          allThumbnail={allThumbnail}
+          changeMainImage={(event) => changeMainImage(event)}
+        />
+      </div>
+      <div className="left-arrow-button">
+        <LeftArrowButton
           imageIndex={imageIndex}
           allThumbnail={allThumbnail}
           changeMainImage={(event) => changeMainImage(event)}
@@ -53,6 +61,7 @@ ImageGallery.propTypes = {
   expandView: PropTypes.func,
   viewExpanded: PropTypes.bool,
   normalView: PropTypes.func,
+  rightArrowPosition: PropTypes.string,
 };
 
 ImageGallery.defaultProps = {
@@ -64,7 +73,7 @@ ImageGallery.defaultProps = {
   expandView: () => {},
   viewExpanded: false,
   normalView: () => {},
-
+  rightArrowPosition: '45px',
 };
 
 export default ImageGallery;

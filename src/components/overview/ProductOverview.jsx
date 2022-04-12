@@ -39,6 +39,7 @@ class ProductOverview extends React.Component {
       cart: [{}],
       grid: '1/5',
       open: false,
+      rightArrowPosition: '45px',
     };
   }
 
@@ -120,6 +121,7 @@ class ProductOverview extends React.Component {
       currentStyle: event,
       allThumbnail: event.photos,
       currentImage: event.photos[0].url,
+      imageIndex: 0,
       price: event.original_price,
       salePrice: event.sale_price,
       currentSizeAndQuantity: { value: null, label: 'Select size' },
@@ -196,6 +198,7 @@ class ProductOverview extends React.Component {
       imageSize: '1000px',
       viewExpanded: true,
       grid: '1',
+      rightArrowPosition: '925px',
     });
   }
 
@@ -204,6 +207,7 @@ class ProductOverview extends React.Component {
       imageSize: '600px',
       viewExpanded: false,
       grid: '1/5',
+      rightArrowPosition: '45px',
     });
   }
 
@@ -237,6 +241,7 @@ class ProductOverview extends React.Component {
     const { grid } = this.state;
     const { open } = this.state;
     const { quantitySelected } = this.state;
+    const { rightArrowPosition } = this.state;
 
     return (
       <div className="product_overview_block">
@@ -247,6 +252,7 @@ class ProductOverview extends React.Component {
             imageIndex={imageIndex}
             imageSize={imageSize}
             viewExpanded={viewExpanded}
+            rightArrowPosition={rightArrowPosition}
             changeMainImage={(event) => this.changeMainImage(event)}
             arrowChangeImage={(event) => this.arrowChangeImage(event)}
             expandView={() => this.expandView()}
