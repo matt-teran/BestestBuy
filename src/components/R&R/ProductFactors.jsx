@@ -15,7 +15,7 @@ function ProductFactors({ productStats }) {
               <div className="bar-product-factor-left" />
               <div className="bar-product-factor-middle" />
               <div className="bar-product-factor-right" />
-              <div id="arrow-down" style={{left:productStats.characteristics[key].value/5*95 }}/>
+              <div id="arrow-down" style={{left: (productStats.characteristics[key].value/5)*95 + '%' }}/>
             </div>
             <div className="product-factor-description">
               <div>Too Small</div>
@@ -46,5 +46,3 @@ function ProductFactors({ productStats }) {
 }
 
 export default ProductFactors;
-
-//Comfort, Quality, Size, Width
