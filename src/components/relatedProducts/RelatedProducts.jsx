@@ -25,28 +25,23 @@ function RelatedProducts({ id }) {
       .then(({ data }) => setCurrentProductInfo(data))
       .catch((err) => { console.log(err); });
   };
-
-  const getRelatedProducts = () => {
-    function getAvgRating(ratings) {
-      const ratingsArray = Object.keys(ratings);
-      if (ratingsArray.length === 0) {
-        return -1;
-      }
-      let total = 0;
-      let numberOfRatings = 0;
-      ratingsArray.forEach((stars) => {
-        numberOfRatings += Number(ratings[stars]);
-        total += stars * Number(ratings[stars]);
-      });
-      return total / numberOfRatings;
+  const getAvgRating = (ratings) => {
+    const ratingsArray = Object.keys(ratings);
+    if (ratingsArray.length === 0) {
+      return -1;
     }
+    let total = 0;
+    let numberOfRatings = 0;
+    ratingsArray.forEach((stars) => {
+      numberOfRatings += Number(ratings[stars]);
+      total += stars * Number(ratings[stars]);
+    });
+    return total / numberOfRatings;
+  };
 
+  const getInfoFromIdArray = (ids) => {
     let cards;
-    axios.get(`${url}/products/${id}/related`, headers)
-      .then(({ data }) => {
-        const ids = [...new Set(data)];
-        return Promise.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)));
-      })
+    return Promise.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
       .then((data) => {
         cards = data.map((res) => {
           const card = res.data;
@@ -66,60 +61,34 @@ function RelatedProducts({ id }) {
         }));
       })
       .then(() => Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
-      .then((res) => {
-        setRelatedCards(cards.map((card, i) => ({
-          ...card,
-          avgRating: getAvgRating(res[i].data.ratings),
-        })));
+      .then((res) => cards.map((card, i) => ({
+        ...card,
+        avgRating: getAvgRating(res[i].data.ratings),
+      })))
+      .catch((err) => { console.log(err); });
+  };
+
+  const getRelatedProducts = () => {
+    axios.get(`${url}/products/${id}/related`, headers)
+      .then(({ data }) => {
+        const ids = [...new Set(data)];
+        return getInfoFromIdArray(ids);
+      })
+      .then((cards) => {
+        setRelatedCards(cards);
       })
       .catch((err) => { console.log(err); });
   };
 
   const setOutfitCookieAsState = () => {
-    function getAvgRating(ratings) {
-      const ratingsArray = Object.keys(ratings);
-      if (ratingsArray.length === 0) {
-        return -1;
-      }
-      let total = 0;
-      let numberOfRatings = 0;
-      ratingsArray.forEach((stars) => {
-        numberOfRatings += Number(ratings[stars]);
-        total += stars * Number(ratings[stars]);
-      });
-      return total / numberOfRatings;
-    }
     if (!Object.keys(Cookies.get()).includes('outfit')) {
       Cookies.set('outfit', JSON.stringify([]));
-      setOutfitCards(JSON.parse(Cookies.get('outfit')))
+      setOutfitCards(JSON.parse(Cookies.get('outfit')));
     } else {
       const outfitIds = JSON.parse(Cookies.get('outfit'));
-      let cards;
-      Promise.all(outfitIds.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
-        .then((data) => {
-          cards = data.map((res) => {
-            const card = res.data;
-            return {
-              id: card.id,
-              default_price: card.default_price,
-              name: card.name,
-              category: card.category,
-            };
-          });
-        })
-        .then(() => Promise.all(cards.map((card) => axios.get(`${url}/products/${card.id}/styles`, headers))))
-        .then((res) => {
-          cards = cards.map((card, i) => ({
-            ...card,
-            image: res[i].data.results[0].photos[0].thumbnail_url,
-          }));
-        })
-        .then(() => Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
-        .then((res) => {
-          setOutfitCards(cards.map((card, i) => ({
-            ...card,
-            avgRating: getAvgRating(res[i].data.ratings),
-          })));
+      getInfoFromIdArray(outfitIds)
+        .then((cards) => {
+          setOutfitCards(cards);
         })
         .catch((err) => { console.log(err); });
     }
@@ -147,7 +116,6 @@ function RelatedProducts({ id }) {
   };
 
   useEffect(() => {
-    console.log('hello from effect');
     getRelatedProducts();
     getCurrentProductInfo();
     setOutfitCookieAsState();
