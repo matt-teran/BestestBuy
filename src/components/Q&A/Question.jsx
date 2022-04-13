@@ -44,7 +44,7 @@ class Question extends React.Component {
             {/* <div className="divider"> | </div> */}
             <div className="answer-modal">
               <ModalA show={show} handleClose={this.hideModal}>
-                <SubmitYourAnswerForm />
+                <SubmitYourAnswerForm handleClose={this.hideModal} />
               </ModalA>
             </div>
             <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
@@ -57,49 +57,9 @@ class Question extends React.Component {
 }
 
 export default Question;
-Question.propTypes = {
-  questionBody: propTypes.string.isRequired,
-  questId: propTypes.number.isRequired,
-  //showModal: propTypes.func.isRequired,
-};
-
-
-/*
-function Question({ questionBody, questId, showModal, hideModal }) {
-  return (
-    <div>
-      <div className="question-ctr">
-        <h3>
-          Q:
-          {' '}
-          {questionBody}
-        </h3>
-        <div className="helpful-addAnswer-ctr">
-          <p>Helpful?</p>
-          <button className="helpful-btn" type="submit">Yes</button>
-
-          <div className="answer-modal">
-            <h1>Submit Your Answer</h1>
-            <ModalA show={this.state.showModal} handleClose={this.hideModal} />
-          </div>
-          <button className="addAnswer-btn" type="submit" onClick={showModal}>Add Answer</button>
-        </div>
-        <AnswerList questId={questId} />
-      </div>
-    </div>
-  );
-}
-
-export default Question;
 
 Question.propTypes = {
   questionBody: propTypes.string.isRequired,
   questId: propTypes.number.isRequired,
-  showModal: propTypes.func.isRequired,
+  // showModal: propTypes.func.isRequired,
 };
-
-import React from 'react';
-import propTypes from 'prop-types';
-import AnswerList from './AnswersList';
-import ModalA from './ModalA';
-*/

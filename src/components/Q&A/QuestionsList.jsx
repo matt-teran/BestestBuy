@@ -12,7 +12,7 @@ class QuestionsList extends React.Component {
     this.state = {
       limit: 4,
       searchInput: '',
-      show: false,
+      // show: false,
       searchQuestions: {
         results: [],
       },
@@ -65,13 +65,13 @@ class QuestionsList extends React.Component {
 
   showModal() {
     this.setState({
-      show: true,
+      // show: true,
     });
   }
 
   hideModal() {
     this.setState({
-      show: false,
+      // show: false,
     });
   }
 

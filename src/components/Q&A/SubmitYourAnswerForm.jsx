@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 class SubmitYourAnswerForm extends React.Component {
   constructor(props) {
@@ -8,114 +9,120 @@ class SubmitYourAnswerForm extends React.Component {
       userName: '',
       userEmail: '',
       userAnswer: '',
-      submitAnswer: false,
+      // submitAnswer: false,
     };
+
+    this.type = this.type.bind(this);
   }
 
   type(event) {
-    if (event.target.placeholder === 'Example: jackson11!') {
+    if (event.target.placeholder === 'Example: jack543!') {
       this.setState({
         userName: event.target.value,
       });
-    } else if (event.target.placeholder === 'Why did you like the product or not?') {
+    } else if (event.target.placeholder === 'Example: jack@email.com') {
       this.setState({
-        userEmail: event.target.value
+        userEmail: event.target.value,
+      });
+    } else {
+      this.setState({
+        userAnswer: event.target.value,
       });
     }
   }
-
-  render() {
-    return (
-      <div className="answer-form">
-        <form>
-          <h1 className="answer-form-title">Ask Your Question</h1>
-          <div>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
-export default SubmitYourAnswerForm
-/*
-import React from 'react';
-
-class SubmitYourAnswer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      yourAnswer: '',
-      yourName: '',
-      yourEmail: '',
-      validAnswer: true,
-      validName: true,
-      validEmail: true,
-    };
-  }
-
-  onChangeAnswer(event) {
+  /*
+  postAnswer(id) {
+    const { userName, userEmail, userAnswer } = this.state;
+    const { questId, hideModal } = this.props;
     this.setState({
-      yourAnswer: event.target.value,
+      submitAnswer: true,
     });
-  }
-
-  onChangeName(event) {
-    this.setState({
-      yourName: event.target.value,
+    axios.post('/qa/questions', {
+      name: userName,
+      email: userEmail,
+      answer: userAnswer,
+      question_id: questId,
     })
+      .then((response) => {
+        console.log('Answer Posted Successfully', response.data);
+        this.props.hideModal();
+      });
   }
 
-  onChangeEmail(event) {
-    this.setState({
-      yourEmail: event.target.value,
-    });
+  getQuestion(id) {
+    axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
+      .then((response) => {
+        // console.log(response);
+        this.setState({
+          questions: response.data,
+          searchQuestions: response.data,
+        });
+      })
+      .catch(() => {
+        console.log('getQuestion error');
+      });
   }
-
-  validateForm() {
-    const { yourName, yourAnswer, yourEmail } = this.state;
-
-    let validForm;
-
-    if (!yourName) {
-      validForm = false;
-      this.setState({
-        validName: false
-      });
-    }
-    if (!yourAnswer) {
-      validForm = false;
-      this.setState({
-        validAnswer: false
-      });
-    }
-    if (!yourEmail) {
-      validForm = false;
-      this.setState({
-        validEmail: false
-      });
-    }
-    if (!yourEmail.includes('@') || !yourEmail.includes('.com')) {
-      validForm = false;
-      this.setState({
-        validEmail: false
-      });
-    }
-    if (yourName && yourAnswer && yourEmail) {
-      return validForm;
-    }
-  }
+  */
 
   render() {
+    const { userName, userEmail, userAnswer } = this.state;
+    const { handleClose } = this.props;
     return (
       <div className="answer-form">
-        <form>
+        <div>
           <h1 className="answer-form-title">Ask Your Question</h1>
-          <div>
-          </div>
-        </form>
+          <form onSubmit={handleClose}>
+            <label htmlFor="username">
+              What is your nickname?:
+              <br />
+              <input
+                id="username"
+                type="text"
+                placeholder="Example: jack543!"
+                value={userName}
+                maxLength="60"
+                // required
+                onChange={(event) => { event.preventDefault(); this.type(event); }}
+              />
+              <p>For privacy reasons, do not use your full name</p>
+            </label>
+            <label htmlFor="email">
+              Your email?:
+              <br />
+              <input
+                id="email"
+                type="text"
+                placeholder="Example: jack@email.com"
+                value={userEmail}
+                maxLength="60"
+                // required
+                onChange={(event) => { event.preventDefault(); this.type(event); }}
+              />
+              <p>For authentication reasons, you will not be emailed</p>
+            </label>
+            <label htmlFor="answer">
+              Your Answer?:
+              <br />
+              <input
+                id="answer"
+                type="text"
+                // placeholder="Example: jack543!"
+                value={userAnswer}
+                maxLength="1000"
+                minLength="1"
+                // required
+                onChange={(event) => { event.preventDefault(); this.type(event); }}
+              />
+            </label>
+            <input type="submit" value="Submit" onClick={handleClose} />
+          </form>
+        </div>
       </div>
     );
   }
 }
-*/
+export default SubmitYourAnswerForm;
+
+SubmitYourAnswerForm.propTypes = {
+  handleClose: propTypes.func.isRequired,
+};
