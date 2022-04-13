@@ -53,7 +53,9 @@ class RatingsAndReviews extends React.Component {
         <div>
           <div className="overall-stats">
             <RatingSummary productStats={productData} filterSelect={this.handleFilterSelect} />
-            <ProductFactors productStats={productData} />
+            <div className='productFactors'>
+              <ProductFactors productStats={productData} />
+            </div>
           </div>
 
           <ReviewsList productId={id} filter={filter} />
