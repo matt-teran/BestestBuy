@@ -31,13 +31,10 @@ function Tile({ review }) {
       <div className="review-Tile-Images">
         {review.photos.map((imgObj, index) => <img onClick={() => { handleModalView(imgObj.url) }} className="review-Image" key={`imageThumbnail ${imgObj.id}`} src={imgObj.url} alt={altImg} />)}
       </div>
-
         <Modal showModal={showModal}>
           <img className="review-image-full" key={`imageFull ${modalImgUrl}`} src={modalImgUrl} alt={altImg} />
         </Modal>
         <Backdrop showModal={showModal} clickHandler={() => setModal(false)} />
-
-
       <div className="helpfulAndReport">
         <button type="button" disabled={disable} onClick={()=>{
           setReviewHelpfulness(reviewHelpfulness+1);

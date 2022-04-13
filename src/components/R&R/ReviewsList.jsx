@@ -51,11 +51,11 @@ class ReviewsList extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) { // handle types of updates here
     const { isLoaded } = this.state;
 
-    if(isLoaded) {
-      if(prevProps.filter !== this.props.filter) {
+    if (isLoaded) {
+      if (prevProps.filter !== this.props.filter) {
         this.setState({
           filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter),
           reviewsToDisplay: 2,
@@ -63,31 +63,44 @@ class ReviewsList extends React.Component {
         })
       }
 
-      new Promise( (res, rej)=> {
+      // this empties out the stored reviews if a new sort order is selected
+      if (prevProps.reviewsSort !== this.props.reviewsSort) {
+        this.allLoadedReviews = [];
+        this.allReviewsRetrieved = false;
+        this.setState({
+          numberOfTiles: 2,
+          filteredReviews: [],
+          page: 1,
+          reviewsToDisplay: 2,
+          hideButton: false,
+        })
+      }
+
+      new Promise((res, rej) => {
         this.getEnoughData(res, rej);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
   handleMoreReviews() {
     const { reviewsToDisplay, filteredReviews } = this.state;
-    this.setState({reviewsToDisplay: reviewsToDisplay + 2});
+    this.setState({ reviewsToDisplay: reviewsToDisplay + 2 });
 
     if (this.state.filteredReviews.length < this.state.reviewsToDisplay + 2) {
-      new Promise( (res, rej)=> {
+      new Promise((res, rej) => {
         this.getEnoughData(res, rej);
       })
-      .then(() => {
-        if(filteredReviews.length < this.state.reviewsToDisplay - 1 ) {
-          this.setState({hideButton: true});
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then(() => {
+          if (filteredReviews.length < this.state.reviewsToDisplay - 1) {
+            this.setState({ hideButton: true });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
@@ -97,19 +110,19 @@ class ReviewsList extends React.Component {
     const { productId } = this.props;
 
     const innerFunc = function () {
-      request.getReviews(productId, this.state.page)
+      request.getReviews(productId, this.state.page, this.props.reviewsSort)
         .then(({ data }) => {
           this.state.page = this.state.page + 1;
           if (!data.results.length) {
             this.allReviewsRetrieved = true;
           } else {
             this.allLoadedReviews = this.allLoadedReviews.concat(data.results);
-            this.setState({filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter)});
+            this.setState({ filteredReviews: filterReviews(this.allLoadedReviews, this.props.filter) });
           }
           if (this.allReviewsRetrieved !== true && this.state.filteredReviews.length <= this.state.reviewsToDisplay + 2) {
             innerFunc.call(this);
           }
-        }).then(()=>{
+        }).then(() => {
           resCallback();
         })
         .catch((err) => {
