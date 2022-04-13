@@ -53,7 +53,7 @@ class RatingsAndReviews extends React.Component {
         <div>
           <div className="overall-stats">
             <RatingSummary productStats={productData} filterSelect={this.handleFilterSelect} />
-            <div className='productFactors'>
+            <div className='product-factors'>
               <ProductFactors productStats={productData} />
             </div>
           </div>

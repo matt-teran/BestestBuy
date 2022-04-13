@@ -10,15 +10,16 @@ function ProductFactors({ productStats }) {
 
   return productCharacteristicsKeys.length ? (
     <>
+      <h3> Product Factors</h3>
       {
         productCharacteristicsKeys.map((key, index) => (
-          <div className="product-factors" key={'productFact'+index}>
+          <div className="product-factors" key={'productFact' + index}>
             <div>{key}</div>
             <div className="bar-product-factor">
               <div className="bar-product-factor-left" />
               <div className="bar-product-factor-middle" />
               <div className="bar-product-factor-right" />
-              <div id="arrow-down" />
+              <div id="arrow-down" style={{left:productStats.characteristics[key].value/5*95 }}/>
             </div>
             <div className="product-factor-description">
               <div>Too Small</div>
