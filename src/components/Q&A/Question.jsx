@@ -44,7 +44,7 @@ class Question extends React.Component {
               {' '}
               <button className="helpful-btn" type="submit">Yes</button>
               {' '}
-              {'('}
+              {`(`}
               {helpful}
               {')'}
             </span>

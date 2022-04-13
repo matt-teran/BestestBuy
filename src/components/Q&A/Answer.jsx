@@ -33,6 +33,9 @@ function Answer({ answerBody, answerer, date, helpful }) {
 
 Answer.propTypes = {
   answerBody: propTypes.string.isRequired,
+  answerer: propTypes.string.isRequired,
+  date: propTypes.func.isRequired,
+  helpful: propTypes.number.isRequired,
 };
 
 export default Answer;
