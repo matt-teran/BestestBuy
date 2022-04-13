@@ -2,11 +2,7 @@ import React from 'react';
 
 function ProductFactors({ productStats }) {
 
-  console.log(productStats.characteristics)
-
   let productCharacteristicsKeys = Object.keys(productStats.characteristics);
-
-  console.log(productCharacteristicsKeys);
 
   return productCharacteristicsKeys.length ? (
     <>
