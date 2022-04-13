@@ -131,23 +131,25 @@
 
 .helpful-addAnswer-ctr {
   display: flex;
-  margin-left: auto;
+  //margin-left: auto;
   float: right;
   background: none !important;
   border: none;
-  font-size: 14px
+  font-size: 13px;
+  line-Height: 10;
+  //justify-content:
 }
 
 .helpful-btn {
   background: none !important;
   border: none;
   padding: 0 !important;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
   text-decoration: underline;
   cursor: pointer;
   color: #0a4abf;
-  line-height: 1px
+  line-height: 0px
 }
 
 .addAnswer-btn {
@@ -160,4 +162,24 @@
   cursor: pointer;
   color: #0a4abf;
   line-height: 1px
+}
+
+.report-btn {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  margin-left: .1rem;
+  margin-right: -5rem;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #0a4abf;
+  line-height: 1px
+}
+
+.counter {
+  line-height: 9.95;
+}
+
+.answer-details {
+  font-size: 14;
 }

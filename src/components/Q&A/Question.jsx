@@ -28,7 +28,7 @@ class Question extends React.Component {
   }
 
   render() {
-    const { questionBody, questId } = this.props;
+    const { questionBody, questId, helpful } = this.props;
     const { show, showModal, hideModal } = this.state;
     return (
       <div>
@@ -39,15 +39,21 @@ class Question extends React.Component {
             {questionBody}
           </h3>
           <div className="helpful-addAnswer-ctr">
-            <p>Helpful?</p>
-            <button className="helpful-btn" type="submit">Yes</button>
-            {/* <div className="divider"> | </div> */}
+            <span>Helpful?</span>
+            <span className="counter">
+              {' '}
+              <button className="helpful-btn" type="submit">Yes</button>
+              {' '}
+              {'('}
+              {helpful}
+              {')'}
+            </span>
             <div className="qa-modal">
               <Modal show={show} handleClose={this.hideModal}>
                 <SubmitYourAnswerForm handleClose={this.hideModal} />
               </Modal>
+              <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
             </div>
-            <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
           </div>
           <AnswerList questId={questId} />
         </div>

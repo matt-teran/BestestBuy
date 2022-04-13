@@ -7,6 +7,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 65rem;
+  margin-left: 0rem;
+  margin-right: 500rem;
 }
 
 .modalClosed {
@@ -35,4 +38,12 @@
 
 .display-none {
   display: none;
+}
+
+.answer-box {
+  width: 300px;
+  height: 100px;
+  //border: 1px solid blue;
+  box-sizing: border-box;
+  justify-content: start
 }

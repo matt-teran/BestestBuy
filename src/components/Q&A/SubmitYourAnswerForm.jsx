@@ -104,12 +104,15 @@ class SubmitYourAnswerForm extends React.Component {
               Your Answer?:
               <br />
               <input
+                className="answer-box"
                 id="answer"
                 type="text"
                 // placeholder="Example: jack543!"
                 value={userAnswer}
                 maxLength="1000"
                 minLength="1"
+                rows={5}
+                columns={10}
                 // required
                 onChange={(event) => { event.preventDefault(); this.type(event); }}
               />
