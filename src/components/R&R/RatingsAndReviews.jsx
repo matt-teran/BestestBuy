@@ -4,6 +4,7 @@ import request from './requests.js';
 import ReviewsList from './ReviewsList';
 import './RatingsAndReviews.scss';
 import RatingSummary from './RatingSummary';
+import ProductFactors from './ProductFactors'
 class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -22,20 +23,20 @@ class RatingsAndReviews extends React.Component {
 
     if (!isLoaded) {
       request.getReviewsSummary(id)
-        .then(( { data } ) => {
+        .then(({ data }) => {
           this.setState({
             productData: data,
             isLoaded: true,
           })
         })
-        .catch((err)=>{
+        .catch((err) => {
           console.log(err);
         })
     }
   }
 
-  handleFilterSelect (starRating) {
-    this.setState({filter: starRating});
+  handleFilterSelect(starRating) {
+    this.setState({ filter: starRating });
   }
 
 
@@ -50,7 +51,13 @@ class RatingsAndReviews extends React.Component {
     } else {
       return (
         <div>
-          <RatingSummary productStats={productData} filterSelect={this.handleFilterSelect} />
+          <div className="overall-stats">
+            <RatingSummary productStats={productData} filterSelect={this.handleFilterSelect} />
+            <div className='product-factors'>
+              <ProductFactors productStats={productData} />
+            </div>
+          </div>
+
           <ReviewsList productId={id} filter={filter} />
         </div>
       );

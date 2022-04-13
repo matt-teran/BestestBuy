@@ -59,8 +59,72 @@
 .bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
 .bar-1 {width: 15%; height: 18px; background-color: #f44336;}
 
+.bar-product-factor {
+  width: 90%;
+  height: 10px;
+  background-color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.bar-product-factor-left {
+  width: 30%;
+  height: 10px;
+  background-color: #0a4abf;
+  position: absolute;
+}
+
+.bar-product-factor-middle {
+  width: 30%;
+  height: 10px;
+  background-color: #0a4abf;
+  left: 35%;
+  position: absolute;
+}
+
+.bar-product-factor-right {
+  width: 30%;
+  height: 10px;
+  background-color: #0a4abf;
+  left: 70%;
+  position: absolute;
+  padding: 0%;
+}
+
+.Rating-Summary {
+  width: 100%;
+}
+
 .Rating-Summary-Stats {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.product-factors {
+  width: 100%;
+}
+
+.overall-stats {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+  border-top: 1em solid #f6eb16;
+  left: 95%;
+  position: absolute;
+}
+
+.product-factor-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 5px;
 }
