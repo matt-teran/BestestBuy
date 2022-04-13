@@ -1,10 +1,18 @@
 .right-arrow {
-  color: white;
+  color: #0a4abf;
   font-size: 25px;
+  border-radius: 50%;
+  background-color: white;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .left-arrow {
-  color: white;
+  color: #0a4abf;
   font-size: 25px;
+  border-radius: 50%;
+  background-color: white;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .gallery-thumbnail {
   width:  50px;
@@ -20,7 +28,7 @@
   padding-bottom: 6px;
   position:absolute;
   left:17%;
-  top:15%;
+  top:20%;
   border-radius: 6px;
   background-color: black;
 }
