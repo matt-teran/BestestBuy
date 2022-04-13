@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import ProductCard from './productCard/ProductCard';
 import Btn from '../ui/Btn/Btn';
-// import AddToOutfit from './productCard/AddToOutfit';
 
 function ProductsList({
-  title, cards, outfit, clickHandler, children
+  title, cards, clickHandler, children,
 }) {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(5);
@@ -47,7 +46,7 @@ function ProductsList({
 
 ProductsList.defaultProps = {
   cards: [],
-  outfit: false,
+  children: null,
 };
 
 ProductsList.propTypes = {
@@ -58,7 +57,7 @@ ProductsList.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
   })),
-  outfit: propTypes.bool,
+  children: propTypes.node,
   clickHandler: propTypes.func.isRequired,
 };
 
