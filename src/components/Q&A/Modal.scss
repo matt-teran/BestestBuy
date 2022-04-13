@@ -9,7 +9,7 @@
   transform: translate(-50%, -50%);
   margin-top: 65rem;
   margin-left: 0rem;
-  margin-right: 500rem;
+  margin-right: 0rem;
 }
 
 .modalClosed {
@@ -25,11 +25,13 @@
 .modal-main {
   position: fixed;
   background: white;
-  width: 80%;
-  height: auto;
+  width: 60% !important;
+  height: 60%;
   top: 50%;
   left: 50%;
+  // bottom: %;
   transform: translate(-50%, -50%);
+
 }
 
 .display-block {
