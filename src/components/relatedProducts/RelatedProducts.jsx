@@ -38,10 +38,9 @@ function RelatedProducts({ id }) {
     });
     return total / numberOfRatings;
   };
-
   const getInfoFromIdArray = (ids) => {
     let cards;
-    return Promise.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
+    return axios.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
       .then((data) => {
         cards = data.map((res) => {
           const card = res.data;
@@ -53,21 +52,20 @@ function RelatedProducts({ id }) {
           };
         });
       })
-      .then(() => Promise.all(cards.map((card) => axios.get(`${url}/products/${card.id}/styles`, headers))))
+      .then(() => axios.all(cards.map((card) => axios.get(`${url}/products/${card.id}/styles`, headers))))
       .then((res) => {
         cards = cards.map((card, i) => ({
           ...card,
           image: res[i].data.results[0].photos[0].thumbnail_url,
         }));
       })
-      .then(() => Promise.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
+      .then(() => axios.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
       .then((res) => cards.map((card, i) => ({
         ...card,
         avgRating: getAvgRating(res[i].data.ratings),
       })))
       .catch((err) => { console.log(err); });
   };
-
   const getRelatedProducts = () => {
     axios.get(`${url}/products/${id}/related`, headers)
       .then(({ data }) => {
@@ -79,7 +77,6 @@ function RelatedProducts({ id }) {
       })
       .catch((err) => { console.log(err); });
   };
-
   const setOutfitCookieAsState = () => {
     if (!Object.keys(Cookies.get()).includes('outfit')) {
       Cookies.set('outfit', JSON.stringify([]));
@@ -93,7 +90,6 @@ function RelatedProducts({ id }) {
         .catch((err) => { console.log(err); });
     }
   };
-
   const openModal = (comparedId) => {
     axios.get(`${url}/products/${comparedId}`, headers)
       .then(({ data }) => {
@@ -102,13 +98,11 @@ function RelatedProducts({ id }) {
       })
       .catch((err) => { console.log(err); });
   };
-
   const addToOutfit = () => {
     const updatedOutfitCards = [...new Set([id, ...JSON.parse(Cookies.get('outfit'))])];
     Cookies.set('outfit', JSON.stringify(updatedOutfitCards));
     setOutfitCookieAsState();
   };
-
   const removeFromOutfit = (_id) => {
     const updatedOutfitCards = JSON.parse(Cookies.get('outfit')).filter((outfitId) => outfitId !== _id.toString());
     Cookies.set('outfit', JSON.stringify(updatedOutfitCards));
