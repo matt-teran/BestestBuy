@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import AnswerList from './AnswersList';
-import ModalA from './ModalA';
+import Modal from './Modal';
 import SubmitYourAnswerForm from './SubmitYourAnswerForm';
 
 class Question extends React.Component {
@@ -42,10 +42,10 @@ class Question extends React.Component {
             <p>Helpful?</p>
             <button className="helpful-btn" type="submit">Yes</button>
             {/* <div className="divider"> | </div> */}
-            <div className="answer-modal">
-              <ModalA show={show} handleClose={this.hideModal}>
+            <div className="qa-modal">
+              <Modal show={show} handleClose={this.hideModal}>
                 <SubmitYourAnswerForm handleClose={this.hideModal} />
-              </ModalA>
+              </Modal>
             </div>
             <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
           </div>

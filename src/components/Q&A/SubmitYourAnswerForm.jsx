@@ -49,7 +49,7 @@ class SubmitYourAnswerForm extends React.Component {
       });
   }
 
-  getQuestion(id) {
+  postQuestion(id) {
     axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
       .then((response) => {
         // console.log(response);
@@ -70,7 +70,7 @@ class SubmitYourAnswerForm extends React.Component {
     return (
       <div className="answer-form">
         <div>
-          <h1 className="answer-form-title">Ask Your Question</h1>
+          <h1 className="answer-form-title">Submit Your Answer</h1>
           <form onSubmit={handleClose}>
             <label htmlFor="username">
               What is your nickname?:
