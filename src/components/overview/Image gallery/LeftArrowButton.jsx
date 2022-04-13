@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 function LeftArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
+  // if there is only one image or current image is the first image,
+  // don't display left arrow button
   if (imageIndex === 0) {
     return (
       <div> </div>
     );
   }
-
+  // otherwise, display left arrow button
   return (
     <div>
       <span className="left-arrow">

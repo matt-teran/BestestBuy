@@ -7,9 +7,13 @@ function SizeSelector({
   sizeAndQuantity, selectSizeAndQuantity, open, currentSizeAndQuantity,
 }) {
   let sizeAndQuantityArray = [];
+  // if selected size and quantity is not defined, change dropdown selector to not available
   if (sizeAndQuantity === undefined) {
     sizeAndQuantityArray = [{ value: 'Not available', label: 'Not available' }];
   } else {
+    // otherwise, loop through size and quantity object
+    // change the keys from size to label, quantity to value
+    // and push them into an array
     sizeAndQuantityArray = Object.values(sizeAndQuantity);
     for (let i = 0; i < sizeAndQuantityArray.length; i += 1) {
       sizeAndQuantityArray[i].label = sizeAndQuantityArray[i].size || sizeAndQuantityArray[i].label;

@@ -5,6 +5,7 @@ import './AddtoCart.scss';
 
 function QuantitySelector({ currentQuantity, selectQuantity, quantitySelected }) {
   const selectArray = [];
+  // if quantity wasn't selected, display -
   if (currentQuantity === null) {
     return (
       <div className="quantity-selector">
@@ -15,6 +16,7 @@ function QuantitySelector({ currentQuantity, selectQuantity, quantitySelected })
       </div>
     );
   }
+  // if selected style have quantity of 0, display out of stock
   if (currentQuantity === 0) {
     return (
       <div className="quantity-selector">
@@ -25,6 +27,7 @@ function QuantitySelector({ currentQuantity, selectQuantity, quantitySelected })
       </div>
     );
   }
+  // if selected style have quantity larger than 15, only display up to 15
   if (currentQuantity > 15) {
     for (let i = 1; i < 16; i += 1) {
       selectArray.push({ value: i, label: i });
