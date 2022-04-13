@@ -7,6 +7,8 @@ function RatingSummary({ productStats, filterSelect }) {
 
   let reviewsPresent;
 
+  let percentageRecommendMessage = calculatePercentageRecommend(productStats.recommended);
+
   if (Object.keys(productStats.ratings).length > 0) {
     reviewsPresent = true;
   } else {
@@ -31,6 +33,7 @@ function RatingSummary({ productStats, filterSelect }) {
             <Rating rating={counts.avg} size="30px" />
           </div>
           <p>{counts.avg.toFixed(1)} star(s) average based on {counts.noOfRatings} reviews</p>
+          <p>{percentageRecommendMessage}</p>
         </div>
 
         <div className="Rating-Summary-Bars">
@@ -88,6 +91,30 @@ function RatingSummary({ productStats, filterSelect }) {
   }
 
 }
+
+//input: object {true: num, false: num}
+//output: string stating % of people recommend
+//constaints: True and/or false might be undefined or not present
+function calculatePercentageRecommend(recommendStats) {
+  let recommendStatus = '"This item is dope!" - Some reviewer';
+
+  if(recommendStats['true'] === undefined && recommendStats['false'] === undefined) {
+    recommendStatus = "No reviews yet, but I'm sure someone thinks this is cool";
+  } else if (recommendStats['true'] !== undefined && recommendStats['false'] === undefined) {
+    recommendStatus = "100% of people recommend this product";
+  } else if (recommendStats['true'] === undefined && recommendStats['false'] !== undefined) {
+    recommendStatus = '0% of people recommend this product';
+  } else {
+    let wouldRecommend = parseInt(recommendStats.true);
+    let wouldNotRecommend = parseInt(recommendStats.false);
+
+    let percentage = Math.trunc((wouldRecommend/(wouldRecommend+wouldNotRecommend)) * 100);
+    recommendStatus = `${percentage}% of people recommend this product`
+  }
+
+  return recommendStatus;
+}
+
 
 function getAvgRating(ratings) {
   const ratingsArray = Object.keys(ratings);
