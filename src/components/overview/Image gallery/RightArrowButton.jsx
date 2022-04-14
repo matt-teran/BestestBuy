@@ -5,18 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 function RightArrowButton({ imageIndex, allThumbnail, changeMainImage }) {
+  // if there is only one image, don't display right arrow button
   if (imageIndex === 0 && imageIndex === allThumbnail.length - 1) {
     return (
       <div> </div>
     );
   }
-
+  // if current image is the last image, don't display right arrow button
   if (imageIndex === allThumbnail.length - 1) {
     return (
       <div> </div>
     );
   }
-
+  // otherwise, display right arrow button
   return (
     <div>
       <span className="right-arrow">

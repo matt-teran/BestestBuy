@@ -6,7 +6,7 @@ import { GlassMagnifier } from 'react-image-magnifiers';
 function MainImage({
   currentImage, imageSize, expandView, viewExpanded, normalView,
 }) {
-  // if view is expanded, change the size to 2.5 times larger and change cursor to +
+  // if view is expanded, change the size to 2.5 times larger and use glass magnifier
   if (viewExpanded) {
     return (
       <div>

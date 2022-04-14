@@ -116,6 +116,8 @@ class ProductOverview extends React.Component {
       .catch((err) => console.log('Failed to fetch rating data', err));
   }
 
+  // Interaction methods
+
   selectStyle(event) {
     this.setState({
       currentStyle: event,
