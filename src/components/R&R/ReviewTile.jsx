@@ -29,18 +29,26 @@ function Tile({ review }) {
       <h3>{review.summary}</h3>
       <p>{review.body}</p>
       <div className="review-Tile-Images">
-        {review.photos.map((imgObj, index) => <img onClick={() => { handleModalView(imgObj.url) }} className="review-Image" key={`imageThumbnail ${imgObj.id}`} src={imgObj.url} alt={altImg} />)}
+        {review.photos.map((imgObj, index) => {
+
+          return (
+            <span className='thumbnail-image-container'>
+              <img onClick={() => { handleModalView(imgObj.url) }} className="review-Image" key={`imageThumbnail ${imgObj.id}`} src={imgObj.url} alt={altImg} />
+            </span>)
+        })}
       </div>
-        <Modal showModal={showModal}>
-          <img className="review-image-full" key={`imageFull ${modalImgUrl}`} src={modalImgUrl} alt={altImg} />
-        </Modal>
-        <Backdrop showModal={showModal} clickHandler={() => setModal(false)} />
-      <div className="helpfulAndReport">
-        <button type="button" disabled={disable} onClick={()=>{
-          setReviewHelpfulness(reviewHelpfulness+1);
+      <Modal showModal={showModal}>
+        <div className="modal-body">
+        <img className="review-image-full" key={`imageFull ${modalImgUrl}`} src={modalImgUrl} alt={altImg} />
+        </div>
+      </Modal>
+      <Backdrop showModal={showModal} clickHandler={() => setModal(false)} />
+      <div className="action-container">
+        <button type="button" disabled={disable} onClick={() => {
+          setReviewHelpfulness(reviewHelpfulness + 1);
           setDisable(true);
           request.markHelpful(review.review_id);
-          }}>
+        }}>
           Helpful(
           {reviewHelpfulness}
           )
@@ -52,5 +60,4 @@ function Tile({ review }) {
   ) : (<></>);
 }
 
-// {avgRating !== -1 ? <Rating rating={avgRating} size="20px" /> : null}
 export default Tile;

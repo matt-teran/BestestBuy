@@ -30,11 +30,11 @@
 }
 
 .review-Image {
-  display: flex;
-  flex-direction: row;
-  width: 20%;
+  width: inherit;
+  height: inherit;
   padding: 10px;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .review-Image:hover {
@@ -44,7 +44,9 @@
 
 .review-Tile-Images {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .star-filter:hover {
@@ -129,31 +131,35 @@
   padding-top: 5px;
 }
 
-.modal {
-  height: 350px;
-  max-height: 100%;
-  width: 500px;
-  max-width: 100%;
-  background-color: #fff;
-  z-index: 20;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-.closed {
-  display: none;
+.modal-body {
+  width: inherit;
+  height: inherit;
 }
 
-.modal-overlay {
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+.thumbnail-image-container {
+  width: 150px;
+  height: 200px;
+  margin: 0px 10px;
+}
+
+// .closed {
+//   display: none;
+// }
+
+// .modal-overlay {
+//   z-index: 10;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(0,0,0,0.5);
+// }
+
+.review-image-full {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
 }
 
 .sort-dropdown {
@@ -161,4 +167,9 @@
   left: 70%;
   position: relative;
 
+}
+
+.action-container {
+  display: inline-block;
+  margin-top: 10px;
 }
