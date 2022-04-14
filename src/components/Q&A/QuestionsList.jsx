@@ -5,7 +5,7 @@ import { url, headers } from '../../config';
 import Search from './Search';
 import Question from './Question';
 import AnswerList from './Answer';
-import Modal from './Modal';
+import ModalQA from './ModalQA';
 import AskYourQuestionForm from './AskYourQuestionForm';
 
 class QuestionsList extends React.Component {
@@ -94,9 +94,9 @@ class QuestionsList extends React.Component {
         <div className="btn-ctr">
           <button className="maq-btn" type="button">MORE ANSWERED QUESTIONS</button>
           <div className="qa-modal">
-            <Modal show={show} handleClose={this.hideModal}>
+            <ModalQA show={show} handleClose={this.hideModal}>
               <AskYourQuestionForm handleClose={this.hideModal} />
-            </Modal>
+            </ModalQA>
           </div>
           <button className="aaq-btn" type="submit" onClick={this.showModal}>ADD A QUESTION +</button>
         </div>
