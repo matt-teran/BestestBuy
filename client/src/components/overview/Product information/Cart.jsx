@@ -21,7 +21,7 @@ export default class Cart extends Component {
   render() {
     const { shoppingCart } = this.state;
     return (
-      <div className="modal">
+      <div className="overview-modal">
         <div className="cart-content">
           <span className="close" onClick={() => this.handleClick()} aria-hidden="true">&times;</span>
           <h3>Shopping Cart</h3>

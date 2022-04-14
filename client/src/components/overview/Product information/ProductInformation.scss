@@ -54,9 +54,14 @@
   overflow-y: auto;
   height: 180px;
 }
-.modal {
+.overview-modal {
+  position: absolute;
+  top:30%;
+  left: 40%;
   border: 5px solid black;
   border-radius: 5px;
+  z-index: 2;
+  background-color: white;
 }
 .close {
   color: white;
