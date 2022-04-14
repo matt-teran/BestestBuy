@@ -1,7 +1,7 @@
 {
   "name": "bestest_buy",
   "version": "1.0.0",
-  "main": "./src/index.jsx",
+  "main": "/src/index.jsx",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
