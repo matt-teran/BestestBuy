@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-
+/* eslint-disable */
 function Answer({ answerBody, answerer, date, helpful }) {
   return (
     <div>

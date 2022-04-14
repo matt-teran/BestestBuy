@@ -39,7 +39,7 @@ class Question extends React.Component {
             {questionBody}
           </h3>
           <div className="helpful-addAnswer-ctr">
-            <span>Helpful?</span>
+            <span>Helpful</span>
             <span className="counter">
               {' '}
               <button className="helpful-btn" type="submit">Yes</button>

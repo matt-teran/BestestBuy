@@ -61,7 +61,7 @@ class AnswerList extends React.Component {
       <div className="answer-list-ctr">
         {answers.results.map((answer, i) => {
           if (i < limit) {
-            return <Answer key={answer.answer_id} answerBody={answer.body} answerer={answer.answerer_name} date={moment(answer.date).fromNow()} helpful={answer.helpfulness} />;
+            return <Answer key={answer.answer_id} answerBody={answer.body} answerer={answer.answerer_name} date={moment(answer.date).format('MMMM DD, YYYY')} helpful={answer.helpfulness} />;
           }
         })}
         {answers.results.length > 2 ? (

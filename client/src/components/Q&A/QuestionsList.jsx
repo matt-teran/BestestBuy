@@ -87,7 +87,7 @@ class QuestionsList extends React.Component {
         <Search changeHandler={this.changeHandler} search={this.search} />
         {searchQuestions.results.map((question, i) => {
           if (i < limit) {
-            return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} helpful={question.question_helpfulness} />
+            return (<Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} helpful={question.question_helpfulness} />)
           }
         })}
         <AnswerList />
