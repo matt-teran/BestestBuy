@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/RFCTeamSaturn/BestestBuy/issues"
   },
-  "homepage": "https://github.com/RFCTeamSaturn/BestestBuy#readme"
+  "homepage": "https://github.com/RFCTeamSaturn/BestestBuy#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
+  }
 }
