@@ -6,7 +6,7 @@ function ProductFactors({ productStats }) {
 
   return productCharacteristicsKeys.length ? (
     <>
-      <h3> Product Factors</h3>
+      <h3> Product Factors!!</h3>
       {
         productCharacteristicsKeys.map((key, index) => (
           <div className="product-factors" key={'productFact' + index}>

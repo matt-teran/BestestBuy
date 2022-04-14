@@ -22,6 +22,7 @@
   "homepage": "https://github.com/RFCTeamSaturn/BestestBuy#readme",
   "dependencies": {
     "axios": "^0.26.1",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "node": "^17.7.2"
   }
 }
