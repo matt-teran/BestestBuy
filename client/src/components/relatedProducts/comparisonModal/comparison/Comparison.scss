@@ -1,0 +1,23 @@
+.comparison {
+    height: calc(100% - 60px);
+    width: calc(100% - 60px);
+    margin: 30px 30px;
+    text-align: center;
+    .comparison-title {
+        font-weight: 300;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+    .comparison-table {
+        width: 100%;
+        .comparison-table-body {
+            display: flex;
+            flex-direction: column;
+        }
+        .comparison-table-row {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
