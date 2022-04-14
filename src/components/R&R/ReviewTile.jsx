@@ -38,10 +38,12 @@ function Tile({ review }) {
         })}
       </div>
       <Modal showModal={showModal}>
+        <div className="modal-body">
         <img className="review-image-full" key={`imageFull ${modalImgUrl}`} src={modalImgUrl} alt={altImg} />
+        </div>
       </Modal>
       <Backdrop showModal={showModal} clickHandler={() => setModal(false)} />
-      <div className="helpfulAndReport">
+      <div className="action-container">
         <button type="button" disabled={disable} onClick={() => {
           setReviewHelpfulness(reviewHelpfulness + 1);
           setDisable(true);
@@ -58,5 +60,4 @@ function Tile({ review }) {
   ) : (<></>);
 }
 
-// {avgRating !== -1 ? <Rating rating={avgRating} size="20px" /> : null}
 export default Tile;
