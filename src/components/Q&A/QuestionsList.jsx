@@ -5,6 +5,8 @@ import { url, headers } from '../../config';
 import Search from './Search';
 import Question from './Question';
 import AnswerList from './Answer';
+import Modal from './Modal';
+import AskYourQuestionForm from './AskYourQuestionForm';
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class QuestionsList extends React.Component {
     this.state = {
       limit: 4,
       searchInput: '',
-      // modal: false,
+      show: false,
       searchQuestions: {
         results: [],
       },
@@ -23,6 +25,8 @@ class QuestionsList extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.search = this.search.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
@@ -61,8 +65,20 @@ class QuestionsList extends React.Component {
     });
   }
 
+  showModal() {
+    this.setState({
+      show: true,
+    });
+  }
+
+  hideModal() {
+    this.setState({
+      show: false,
+    });
+  }
+
   render() {
-    const { searchQuestions, limit } = this.state;
+    const { searchQuestions, limit, show } = this.state;
     return (
       <div className="main-ctr">
         <div className="title-ctr">
@@ -71,13 +87,18 @@ class QuestionsList extends React.Component {
         <Search changeHandler={this.changeHandler} search={this.search} />
         {searchQuestions.results.map((question, i) => {
           if (i < limit) {
-            return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} />
+            return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} helpful={question.question_helpfulness} />
           }
         })}
         <AnswerList />
         <div className="btn-ctr">
           <button className="maq-btn" type="button">MORE ANSWERED QUESTIONS</button>
-          <button className="aaq-btn" type="button">ADD A QUESTION +</button>
+          <div className="qa-modal">
+            <Modal show={show} handleClose={this.hideModal}>
+              <AskYourQuestionForm handleClose={this.hideModal} />
+            </Modal>
+          </div>
+          <button className="aaq-btn" type="submit" onClick={this.showModal}>ADD A QUESTION +</button>
         </div>
       </div>
     );

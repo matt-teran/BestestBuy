@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
+import moment from 'moment';
 import { url, headers } from '../../config';
 import Answer from './Answer';
 
@@ -60,7 +61,7 @@ class AnswerList extends React.Component {
       <div className="answer-list-ctr">
         {answers.results.map((answer, i) => {
           if (i < limit) {
-            return <Answer key={answer.answer_id} answerBody={answer.body} />;
+            return <Answer key={answer.answer_id} answerBody={answer.body} answerer={answer.answerer_name} date={moment(answer.date).fromNow()} helpful={answer.helpfulness} />;
           }
         })}
         {answers.results.length > 2 ? (

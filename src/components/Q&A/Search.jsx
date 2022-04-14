@@ -10,8 +10,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { changeHandler } = this.props;
-    const { search } = this.props;
+    const { changeHandler, search } = this.props;
     return (
       <div className="search-ctr">
         <input
