@@ -1,0 +1,34 @@
+@use '../variables.scss' as *;
+body {
+    background-color: white;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.app {
+    padding-inline: 15vw;
+    width: 70vw;
+    height: 100%;
+    background-color: white;
+    .show-related {
+        padding: 0 2rem;
+        font-size: 18px;
+        line-height: 1.3;
+        letter-spacing: 0;
+        font-weight: 600;
+        color: white;
+        background-color: $primary;
+        border: none;
+        border-radius: 3px;
+        margin: auto;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+        transition: all .3s ease-out 0s;
+        &:hover {
+            background-color: #001e73;
+        }
+    }
+}
