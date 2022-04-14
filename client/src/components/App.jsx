@@ -18,6 +18,7 @@ function App() {
     setProductId(paramId);
     setShowRelated(false);
   }, [paramId]);
+  console.log(process.env);
   return (
     <PostClickData>
       <div className="app" id="app" key={productId}>
