@@ -32,7 +32,8 @@
 .review-Image {
   display: flex;
   flex-direction: row;
-  width: 20%;
+  max-width: 20%;
+  height: auto;
   padding: 10px;
   cursor: pointer;
 }
@@ -130,17 +131,8 @@
 }
 
 .modal {
-  height: 350px;
-  max-height: 100%;
-  width: 500px;
-  max-width: 100%;
-  background-color: #fff;
-  z-index: 20;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+  background-color: transparent;
+
 }
 .closed {
   display: none;
@@ -154,6 +146,12 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.5);
+}
+
+.review-image-full {
+  position:relative;
+  width: 100%;
+  height: auto;
 }
 
 .sort-dropdown {
