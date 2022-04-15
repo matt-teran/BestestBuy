@@ -6,7 +6,7 @@ function AppRouter() {
   return (
     <Routes>
       <Route path="/:paramId" element={<App />} />
-      <Route path="*" element={<Navigate replace to="/66642" />} />
+      <Route path="*" element={<Navigate replace to="/66659" />} />
     </Routes>
   );
 }
