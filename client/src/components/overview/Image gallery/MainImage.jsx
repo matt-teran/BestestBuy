@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ImageGallery.scss';
 import { GlassMagnifier } from 'react-image-magnifiers';
+import LazyLoad from 'react-lazyload';
 
 function MainImage({
   currentImage, imageSize, expandView, viewExpanded, normalView,
@@ -10,13 +11,15 @@ function MainImage({
   if (viewExpanded) {
     return (
       <div>
-        <GlassMagnifier
-          className="main-image"
-          imageSrc={currentImage}
-          imageAlt="Product"
-          style={{ width: imageSize, height: 'auto' }}
-          magnifierSize="25%"
-        />
+        <LazyLoad height={200}>
+          <GlassMagnifier
+            className="main-image"
+            imageSrc={currentImage}
+            imageAlt="Product"
+            style={{ width: imageSize, height: 'auto' }}
+            magnifierSize="25%"
+          />
+        </LazyLoad>
         <span className="normal-view-button" onClick={() => normalView()} aria-hidden="true">&times;</span>
       </div>
     );
@@ -24,14 +27,16 @@ function MainImage({
   // display normal view, change cursor to a magnifying glass
   return (
     <div>
-      <img
-        className="main-image"
-        src={currentImage}
-        alt="Product"
-        style={{ width: imageSize, height: imageSize, cursor: 'zoom-in' }}
-        onClick={() => expandView()}
-        aria-hidden="true"
-      />
+      <LazyLoad height={200}>
+        <img
+          className="main-image"
+          src={currentImage}
+          alt="Product"
+          style={{ width: imageSize, height: imageSize, cursor: 'zoom-in' }}
+          onClick={() => expandView()}
+          aria-hidden="true"
+        />
+      </LazyLoad>
     </div>
   );
 }
