@@ -30,7 +30,6 @@ function RatingSummary({ productStats, filterSelect }) {
         <div className="Rating-Summary-Header">
           <div className="Rating-Summary-Overall">
             <h3> Overall User Rating </h3>
-            <Rating rating={counts.avg} size="30px" />
           </div>
           <p>{counts.avg.toFixed(1)} star(s) average based on {counts.noOfRatings} reviews</p>
           <p>{percentageRecommendMessage}</p>
