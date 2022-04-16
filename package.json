@@ -24,6 +24,7 @@
     "axios": "^0.26.1",
     "compression": "^1.7.4",
     "express": "^4.17.3",
-    "express-static-gzip": "^2.1.5"
+    "express-static-gzip": "^2.1.5",
+    "node": "^17.7.2"
   }
 }
