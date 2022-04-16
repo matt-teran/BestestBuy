@@ -14,8 +14,10 @@ class AnswerList extends React.Component {
       answers: {
         results: [],
       },
+      clicks: 0,
     };
     this.removeLimit = this.removeLimit.bind(this);
+    this.setClicks = this.setClicks.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +38,6 @@ class AnswerList extends React.Component {
       });
   }
 
-  // removeLimit() {
-  //   this.setState({
-  //     limit: 100,
-  //   });
-  // }
-
   removeLimit() {
     const { limit, answers, expanded } = this.state;
     limit === 2 ? (this.setState({
@@ -51,6 +47,16 @@ class AnswerList extends React.Component {
       limit: 2,
       expanded: false,
     }));
+  }
+
+  setClicks() {
+    const { answers, clicks } = this.state;
+    answers.results.map((answer) => {
+      const inc = answer.helpfulness + 1;
+      return this.setState({
+        clicks: inc,
+      });
+    });
   }
 
   render() {

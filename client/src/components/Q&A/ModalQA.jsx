@@ -6,13 +6,18 @@ function ModalQA({ handleClose, show, children }) {
     return null;
   }
   return (
-    <div className="modal-qa">
-      <section className="modal-main-qa">
-        {children}
-        <button type="button" onClick={handleClose}>
-        </button>
-      </section>
-    </div>
+    <>
+      <div className="modal-qa">
+        .
+      </div>
+      <div>
+        <section className="modal-main-qa">
+          {children}
+          <button type="button" onClick={handleClose}>
+          </button>
+        </section>
+      </div>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 /* eslint-disable */
-function Answer({ answerBody, answerer, date, helpful }) {
+
+function Answer({ answerBody, answerer, date, helpful, setClicks }) {
   return (
     <div>
       <div className="answer-ctr">
@@ -19,7 +20,7 @@ function Answer({ answerBody, answerer, date, helpful }) {
           {'  |  '}
           Helpful?
           {' '}
-          <button className="helpful-btn" type="submit">Yes</button>
+          <button className="helpful-btn" type="submit">Yes?</button>
           {'('}
           {helpful}
           {')'}

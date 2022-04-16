@@ -30,39 +30,6 @@ class SubmitYourAnswerForm extends React.Component {
       });
     }
   }
-  /*
-  postAnswer(id) {
-    const { userName, userEmail, userAnswer } = this.state;
-    const { questId, hideModal } = this.props;
-    this.setState({
-      submitAnswer: true,
-    });
-    axios.post('/qa/questions', {
-      name: userName,
-      email: userEmail,
-      answer: userAnswer,
-      question_id: questId,
-    })
-      .then((response) => {
-        console.log('Answer Posted Successfully', response.data);
-        this.props.hideModal();
-      });
-  }
-
-  postQuestion(id) {
-    axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
-      .then((response) => {
-        // console.log(response);
-        this.setState({
-          questions: response.data,
-          searchQuestions: response.data,
-        });
-      })
-      .catch(() => {
-        console.log('getQuestion error');
-      });
-  }
-  */
 
   render() {
     const { userName, userEmail, userAnswer } = this.state;
@@ -129,3 +96,38 @@ export default SubmitYourAnswerForm;
 SubmitYourAnswerForm.propTypes = {
   handleClose: propTypes.func.isRequired,
 };
+
+
+/*
+  postAnswer(id) {
+    const { userName, userEmail, userAnswer } = this.state;
+    const { questId, hideModal } = this.props;
+    this.setState({
+      submitAnswer: true,
+    });
+    axios.post('/qa/questions', {
+      name: userName,
+      email: userEmail,
+      answer: userAnswer,
+      question_id: questId,
+    })
+      .then((response) => {
+        console.log('Answer Posted Successfully', response.data);
+        this.props.hideModal();
+      });
+  }
+
+  postQuestion(id) {
+    axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
+      .then((response) => {
+        // console.log(response);
+        this.setState({
+          questions: response.data,
+          searchQuestions: response.data,
+        });
+      })
+      .catch(() => {
+        console.log('getQuestion error');
+      });
+  }
+  */

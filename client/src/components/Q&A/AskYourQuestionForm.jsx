@@ -30,39 +30,6 @@ class AskYourQuestionForm extends React.Component {
       });
     }
   }
-  /*
-  postAnswer(id) {
-    const { userName, userEmail, userAnswer } = this.state;
-    const { questId, hideModal } = this.props;
-    this.setState({
-      submitAnswer: true,
-    });
-    axios.post('/qa/questions', {
-      name: userName,
-      email: userEmail,
-      answer: userAnswer,
-      question_id: questId,
-    })
-      .then((response) => {
-        console.log('Answer Posted Successfully', response.data);
-        this.props.hideModal();
-      });
-  }
-
-  postQuestion(id) {
-    axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
-      .then((response) => {
-        // console.log(response);
-        this.setState({
-          questions: response.data,
-          searchQuestions: response.data,
-        });
-      })
-      .catch(() => {
-        console.log('getQuestion error');
-      });
-  }
-  */
 
   render() {
     const { userName, userEmail, userAnswer } = this.state;
@@ -71,12 +38,12 @@ class AskYourQuestionForm extends React.Component {
       <div className="answer-form">
         <div>
           <h1 className="answer-form-title">Ask Your Question</h1>
-          <form onSubmit={handleClose}>
-            <label htmlFor="username">
+          <form className="form-horizontal" onSubmit={handleClose}>
+            <label htmlFor="qa-label-username">
               What is your nickname?:
-              <br />
+              {/* <br /> */}
               <input
-                id="username"
+                id="qa-username"
                 type="text"
                 placeholder="Example: jackson11!"
                 value={userName}
@@ -86,11 +53,11 @@ class AskYourQuestionForm extends React.Component {
               />
               <p>For privacy reasons, do not use your full name</p>
             </label>
-            <label htmlFor="email">
+            <label htmlFor="qa-label-email">
               Your email?:
-              <br />
+              {/* <br /> */}
               <input
-                id="email"
+                id="qa-email"
                 type="text"
                 placeholder="Example: jack@email.com"
                 value={userEmail}
@@ -100,11 +67,11 @@ class AskYourQuestionForm extends React.Component {
               />
               <p>For authentication reasons, you will not be emailed</p>
             </label>
-            <label htmlFor="answer">
-              Your Answer?:
-              <br />
+            <label htmlFor="qa-label-answer">
+              Your Question?:
+              {/* <br /> */}
               <input
-                id="answer"
+                id="qa-answer"
                 type="text"
                 // placeholder="Example: jack543!"
                 value={userAnswer}
@@ -128,87 +95,122 @@ AskYourQuestionForm.propTypes = {
 };
 
 /*
+postAnswer(id) {
+  const { userName, userEmail, userAnswer } = this.state;
+  const { questId, hideModal } = this.props;
+  this.setState({
+    submitAnswer: true,
+  });
+  axios.post('/qa/questions', {
+    name: userName,
+    email: userEmail,
+    answer: userAnswer,
+    question_id: questId,
+  })
+    .then((response) => {
+      console.log('Answer Posted Successfully', response.data);
+      this.props.hideModal();
+    });
+}
+
+postQuestion(id) {
+  axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
+    .then((response) => {
+      // console.log(response);
+      this.setState({
+        questions: response.data,
+        searchQuestions: response.data,
+      });
+    })
+    .catch(() => {
+      console.log('getQuestion error');
+    });
+}
+*/
+
+
+/*
 import React from 'react';
 
 class SubmitYourAnswer extends React.Component {
-  constructor(props) {
-    super(props)
+constructor(props) {
+  super(props)
 
-    this.state = {
-      yourQuestion: '',
-      yourName: '',
-      yourEmail: '',
-      validQuestion: true,
-      validName: true,
-      validEmail: true,
+  this.state = {
+    yourQuestion: '',
+    yourName: '',
+    yourEmail: '',
+    validQuestion: true,
+    validName: true,
+    validEmail: true,
 
-    },
-  }
+  },
+}
 
-  onChangeAnswer(event) {
+onChangeAnswer(event) {
+  this.setState({
+    yourAnswer: event.target.value,
+  })
+}
+
+onChangeName(event) {
+  this.setState({
+    yourNickname: event.target.value,
+  })
+}
+
+onChangeEmail(event) {
+  this.setState({
+    yourEmail: event.target.value,
+  })
+}
+
+validateForm() {
+  const yourName = this.state.yourName;
+  const yourAnswer = this.state.yourAnswer;
+  const yourEmail = this.state.yourEmail;
+
+  let validForm = true;
+
+  if (!yourName) {
+    validForm = false;
     this.setState({
-      yourAnswer: event.target.value,
-    })
+      validName: false
+    });
   }
-
-  onChangeName(event) {
+  if (!yourAnswer) {
+    validForm = false;
     this.setState({
-      yourNickname: event.target.value,
-    })
+      validAnswer: false
+    });
   }
-
-  onChangeEmail(event) {
+  if (!yourEmail) {
+    validForm = false;
     this.setState({
-      yourEmail: event.target.value,
-    })
+      validEmail: false
+    });
   }
-
-  validateForm() {
-    const yourName = this.state.yourName;
-    const yourAnswer = this.state.yourAnswer;
-    const yourEmail = this.state.yourEmail;
-
-    let validForm = true;
-
-    if (!yourName) {
-      validForm = false;
-      this.setState({
-        validName: false
-      });
-    }
-    if (!yourAnswer) {
-      validForm = false;
-      this.setState({
-        validAnswer: false
-      });
-    }
-    if (!yourEmail) {
-      validForm = false;
-      this.setState({
-        validEmail: false
-      });
-    }
-    if (!yourEmail.includes('@') || !yourEmail.includes('.com')) {
-      validForm = false;
-      this.setState({
-        validEmail: false
-      });
-    }
-    if (name && body && email) {
-      return validForm;
-    }
+  if (!yourEmail.includes('@') || !yourEmail.includes('.com')) {
+    validForm = false;
+    this.setState({
+      validEmail: false
+    });
   }
-
-  render() {
-    return (
-      <div className='answer-form'>
-        <form>
-          <h1 className='answer-form-title'>Ask Your Question</h1>
-          <div>
-          </div>
-        </form>
-      </div>
-    );
+  if (name && body && email) {
+    return validForm;
   }
+}
+
+render() {
+  return (
+    <div className='answer-form'>
+      <form>
+        <h1 className='answer-form-title'>Ask Your Question</h1>
+        <div>
+        </div>
+      </form>
+    </div>
+  );
+}
 }
 */
