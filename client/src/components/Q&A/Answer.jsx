@@ -7,11 +7,13 @@ function Answer({ answerBody, answerer, date, helpful, setClicks }) {
     <div>
       <div className="answer-ctr">
         <h4>
+          {' '}
           A:
           {' '}
           {answerBody}
         </h4>
         <h5>
+          {' '}
           by
           {' '}
           {answerer}

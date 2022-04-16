@@ -38,21 +38,23 @@ class Question extends React.Component {
             {' '}
             {questionBody}
           </h3>
-          <div className="helpful-addAnswer-ctr">
-            <span>Helpful</span>
-            <span className="counter">
-              {' '}
-              <button className="helpful-btn" type="submit">Yes</button>
-              {' '}
-              {`(`}
-              {helpful}
-              {')'}
-            </span>
-            <div className="qa-modal">
-              <ModalQA show={show} handleClose={this.hideModal}>
-                <SubmitYourAnswerForm handleClose={this.hideModal} />
-              </ModalQA>
-              <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
+          <div className="quest-helpful-rep">
+            <div className="helpful-addAnswer-ctr">
+              <span>Helpful</span>
+              <span className="counter">
+                {' '}
+                <button className="helpful-btn" type="submit">Yes</button>
+                {' '}
+                {`(`}
+                {helpful}
+                {')'}
+              </span>
+              <div className="qa-modal">
+                <ModalQA show={show} handleClose={this.hideModal}>
+                  <SubmitYourAnswerForm handleClose={this.hideModal} />
+                </ModalQA>
+                <button className="addAnswer-btn" type="submit" onClick={this.showModal}>Add Answer</button>
+              </div>
             </div>
           </div>
           <AnswerList questId={questId} />
