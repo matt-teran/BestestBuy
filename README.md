@@ -53,20 +53,20 @@ The app emulates an e-commerce site with 4 sub-components:
   - Reset filter removes all filters
  
  - Product Factors section
-  - Moves yellow indicator to display the average thoughts about a particular product factor
+   - Moves yellow indicator to display the average thoughts about a particular product factor
  
  - Sort dropdown
-  - Sorts the review tiles by relevance, newest, or helpful
+   - Sorts the review tiles by relevance, newest, or helpful
  
  - Review Tile
-  - Shows all reviews for a particular product ID with images, review title, review body, reviewer name, starts, and date
-  - Clicking on image opens up a modal view
-  - clicking helpful marks an item as helpful and sends a post request
-  - clicking report displays "thanks for reporting" and removes tile after a 1 sec and sends a request
-  - Clicking more reviews will display 2 more reviews if available
-  - Reviews list will prerender at least 2 review tiles to avoid needing to make API calls so user doesn't have to wait
-  - Review tiles will work with cacheing so avoid unnecessary calls to the API
-  - More reviews button will disappear if no more reviews are present
+   - Shows all reviews for a particular product ID with images, review title, review body, reviewer name, starts, and date
+   - Clicking on image opens up a modal view
+   - clicking helpful marks an item as helpful and sends a post request
+   - clicking report displays "thanks for reporting" and removes tile after a 1 sec and sends a request
+   - Clicking more reviews will display 2 more reviews if available
+   - Reviews list will prerender at least 2 review tiles to avoid needing to make API calls so user doesn't have to wait
+   - Review tiles will work with cacheing so avoid unnecessary calls to the API
+   - More reviews button will disappear if no more reviews are present
 
 
 ## Installation
