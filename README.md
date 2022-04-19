@@ -21,7 +21,7 @@ The app emulates an e-commerce site with 4 sub-components:
 ### Overview:
 <img src="./image/overview.png" alt="BestestBuyOverview" style="zoom: 40%"/>
 
-- Image Gallery with epand view mode, arrow buttons, responsive thumbnails.
+- Image Gallery with expand view mode, arrow buttons, responsive thumbnails.
 - Cart icon will open a pop-up window to display all the products has been added.
 - Star rating component and link to review section.
 - Product category, name, overview and features.
@@ -32,10 +32,18 @@ The app emulates an e-commerce site with 4 sub-components:
 - Add to bag button will be used to place the style, size and quantity of the product selected into the user’s cart. If size hasn't been selected, dropdown will open and a message will appear above the dropdown stating "Please select size".
 - Share icons provide user a method to share current product to social media.
 
-### Related Product
-<img src="./image/relatedProduct.png" alt="BestestBuyrelatedProduct" style="zoom: 40%"/>
+### Related Products & Outfit
+<img src="./image/relatedProduct.png" alt="BestestBuyRelatedProducts" style="zoom: 40%"/>
 
--
+- Related Products displays a list of products that is determined by the API.
+- Each product is formatted into a card.
+- The cards display a product thumbnail, category, name, price, and rating.
+- The cards also have an action button in the top right corner. This button will open a modal that has a comparison table. It compares the features between the clicked product, and the current product being viewed at the top of the page.
+- The modal can be closed by clicking the backdrop.
+- Outfit displays a list of products that is determined by the user.
+- To add a product to the Outfit, the user should click the 'Add the Outfit Card'.
+- To remove a product from the Outfit, the user should click the action button on the top right corner of an Outfit card.
+- The Outfit will consist even if the user exits the page.
 
 ### Questions and Answers:
 <img src="./image/QandA.png" alt="BestestBuyQandA" style="zoom: 40%"/>
@@ -112,13 +120,16 @@ npm install
 
 ## Usage
 
--  In client folder, build wepack transpiling react
+-  In client folder, install dependencies, then build webpack transpiling react
 ```shell
+npm install
 npm run build
 ```
-- In root folder, open localhost server
+- In root folder, install dependencies, then open localhost server
 ```shell
+npm install
 npm run start
+open browser and type in http://localhost:8080/
 ```
 
 ## Tech-Stack:
