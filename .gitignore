@@ -104,7 +104,7 @@ typings/
 .tern-port
 
 # API token
-*config.js
+config.js
 
 # distribution files
 dist
