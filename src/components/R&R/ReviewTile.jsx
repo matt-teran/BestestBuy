@@ -35,7 +35,7 @@ function Tile({ review }) {
         {review.photos.map((imgObj, index) => {
 
           return (
-            <span className='thumbnail-image-container'>
+            <span className='thumbnail-image-container' key={imgObj.url}>
               <img onClick={() => { handleModalView(imgObj.url) }} className="review-Image" key={`imageThumbnail ${imgObj.id}`} src={imgObj.url} alt={altImg} />
             </span>)
         })}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
 
-import { headers, url } from '../../config';
+// import { headers, url } from '../../config';
 
 /**
  * This component must wrap the entire App component.
@@ -45,23 +45,48 @@ function PostClickData({ children }) {
     let widget = 'App';
     if (docRef.current.querySelector('#header').contains(event.target)) {
       widget = 'Header';
-    } else if (docRef.current.querySelector('#product-overview').contains(event.target)) {
+    } else if (
+      docRef.current.querySelector('#product-overview').contains(event.target)
+    ) {
       widget = 'Product Overview';
-    } else if (docRef.current.querySelector('#related-products').contains(event.target)) {
+    } else if (
+      docRef.current.querySelector('#related-products').contains(event.target)
+    ) {
       widget = 'Related Products and Outfits';
-    } else if (docRef.current.querySelector('#questions-and-answers').contains(event.target)) {
+    } else if (
+      docRef.current
+        .querySelector('#questions-and-answers')
+        .contains(event.target)
+    ) {
       widget = 'Questions and Answers';
-    } else if (docRef.current.querySelector('#ratings-and-reviews').contains(event.target)) {
+    } else if (
+      docRef.current
+        .querySelector('#ratings-and-reviews')
+        .contains(event.target)
+    ) {
       widget = 'Ratings and Reviews';
     }
     // data points are posted to api
-    axios.post(`${url}/interactions`, {
-      element,
-      widget,
-      time: moment()._d,
-    }, headers)
-      .then((res) => { console.log(res); })
-      .catch((err) => { console.log(err); });
+    axios
+      .post(
+        `${process.env.URL}/interactions`,
+        {
+          element,
+          widget,
+          time: moment()._d,
+        },
+        {
+          headers: {
+            Authorization: process.env.KEY,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   /*

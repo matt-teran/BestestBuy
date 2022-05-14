@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import { API_KEY, url, headers } from '../../config';
+// import { API_KEY, url, headers } from '../../config';
 
 const getQuestion = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: `${url}qa/questions?product_id=${id}&count=25`,
-    headers,
+    url: `${process.env}qa/questions?product_id=${id}&count=25`,
+    {headers: {
+      Authorization: process.env.KEY,
+    }},
   };
   axios(apiOptions)
     .then((response) => cb(response.data))
@@ -18,7 +20,7 @@ const getQuestion = (id, cb) => {
 const getHelpfulQuestCount = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: `${url}qa/questions?product_id=${id}`,
+    url: `${process.env}qa/questions?product_id=${id}`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
@@ -31,7 +33,7 @@ const getHelpfulQuestCount = (id, cb) => {
 const getAnsCount = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: `${url}qa/questions/${id}/answers?count=25`,
+    url: `${process.env}qa/questions/${id}/answers?count=25`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
@@ -52,7 +54,7 @@ const getAnsCount = (id, cb) => {
 const getReportedStatus = (id, cb) => {
   const apiOptions = {
     method: 'GET',
-    url: `${url}qa/questions?product_id=${id}&count=100`,
+    url: `${process.env}qa/questions?product_id=${id}&count=100`,
     headers: { Authorization: API_KEY },
   };
   axios(apiOptions)
@@ -79,11 +81,9 @@ const postQuestAPI = (data) => {
     product_id: data.product_id,
   };
 
-  axios.post(`${url}qa/questions`, details, {
-    headers: {
-      Authorization: API_KEY,
-    },
-  })
+  axios.post(`${process.env.URL}qa/questions`, details, {headers: {
+    Authorization: process.env.KEY,
+  }})
     .then(() => {
       console.log('question created in API');
     })
@@ -100,11 +100,9 @@ const postAnsAPI = (data) => {
     email: data.email,
     photos: data.photos,
   };
-  axios.post(`${url}qa/questions/${data.question_id}/answers`, details, {
-    headers: {
-      Authorization: API_KEY,
-    },
-  })
+  axios.post(`${process.env.URL}qa/questions/${data.question_id}/answers`, details, {headers: {
+    Authorization: process.env.KEY,
+  }})
     .then(() => {
       console.log('Answer created in API');
     })
@@ -117,7 +115,9 @@ const putQuestHelpful = (id, cb) => {
   const apiOptions = {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${id}/helpful?count=25`,
-    headers: { Authorization: API_KEY },
+    headers: {
+      Authorization: process.env.KEY,
+    }
   };
   axios(apiOptions)
     .then((data) => {
@@ -133,7 +133,9 @@ const putAnsHelpful = (id, cb) => {
   const apiOptions = {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${id}/helpful?count=25`,
-    headers: { Authorization: API_KEY },
+    headers: {
+      Authorization: process.env.KEY,
+    }
   };
   axios(apiOptions)
     .then((data) => {
@@ -149,7 +151,9 @@ const putReportQuest = (questId) => {
   const apiOptions = {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questId}/report?count=25`,
-    headers: { Authorization: API_KEY },
+    headers: {
+      Authorization: process.env.KEY,
+    }
   };
   axios(apiOptions);
 };
@@ -158,7 +162,9 @@ const putReportAns = (ansId, cb) => {
   const apiOptions = {
     method: 'PUT',
     url: `/qa/answers/${ansId}/report`,
-    headers: { Authorization: API_KEY },
+    headers: {
+      Authorization: process.env.KEY,
+    },
   };
   axios(apiOptions)
     .then((data) => {

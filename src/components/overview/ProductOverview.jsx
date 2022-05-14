@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
 import swal from 'sweetalert';
-import { headers, url } from '../../config';
+// import { headers, url } from '../../config';
 import ProductInformation from './ProductInformation';
 import StyleSelector from './StyleSelector';
 import AddtoCart from './AddtoCart';
@@ -52,8 +52,12 @@ class ProductOverview extends React.Component {
   fetchProductData() {
     const { productId } = this.state;
     axios.get(
-      `${url}/products/${productId}`,
-      headers,
+      `${process.env.URL}/products/${productId}`,
+      {
+        headers: {
+          Authorization: process.env.KEY,
+        },
+      },
     )
       .then((productInfo) => {
         this.setState({
@@ -70,8 +74,12 @@ class ProductOverview extends React.Component {
   fetchStyleData() {
     const { productId } = this.state;
     axios.get(
-      `${url}/products/${productId}/styles`,
-      headers,
+      `${process.env.URL}/products/${productId}/styles`,
+      {
+        headers: {
+          Authorization: process.env.KEY,
+        },
+      },
     )
       .then((styleInfo) => {
         this.setState({
@@ -89,8 +97,12 @@ class ProductOverview extends React.Component {
   fetchRatingData() {
     const { productId } = this.state;
     axios.get(
-      `${url}/reviews/meta?product_id=${productId}`,
-      headers,
+      `${process.env.URL}/reviews/meta?product_id=${productId}`,
+      {
+        headers: {
+          Authorization: process.env.KEY,
+        },
+      },
     )
       .then((ratingInfo) => {
         if (Object.keys(ratingInfo.data.ratings).length === 0) {
@@ -159,7 +171,11 @@ class ProductOverview extends React.Component {
       }
     }
     for (let i = 0; i < quantitySelected; i += 1) {
-      axios.post(`${url}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, headers)
+      axios.post(`${process.env.URL}/cart`, { sku_id: parseInt(skusId, 10), count: quantitySelected }, {
+        headers: {
+          Authorization: process.env.KEY,
+        },
+      })
         .then(() => console.log('add to cart successfully'))
         .catch((err) => console.log('post fail', err));
     }
@@ -171,7 +187,11 @@ class ProductOverview extends React.Component {
   }
 
   cartButton() {
-    axios.get(`${url}/cart`, headers)
+    axios.get(`${process.env.URL}/cart`, {
+      headers: {
+        Authorization: process.env.KEY,
+      },
+    })
       .then((results) => {
         this.setState({
           cart: results.data,

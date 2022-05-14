@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
-import { url, headers } from '../../config';
+// import { url, headers } from '../../config';
 import Search from './Search';
 import Question from './Question';
 import AnswerList from './Answer';
@@ -35,7 +35,11 @@ class QuestionsList extends React.Component {
   }
 
   getQuestion(id) {
-    axios(`${url}/qa/questions?product_id=${id}&count=25`, headers)
+    axios(`${process.env.URL}/qa/questions?product_id=${id}&count=25`, {
+      headers: {
+        Authorization: process.env.KEY,
+      },
+    })
       .then((response) => {
         // console.log(response);
         this.setState({
@@ -57,9 +61,7 @@ class QuestionsList extends React.Component {
 
   search() {
     const { questions, searchInput } = this.state;
-    const searchedArr = questions.results.filter((question) => {
-      return question.question_body.includes(searchInput)
-    });
+    const searchedArr = questions.results.filter((question) => question.question_body.includes(searchInput));
     this.setState({
       searchQuestions: { results: searchedArr },
     });
@@ -87,18 +89,29 @@ class QuestionsList extends React.Component {
         <Search changeHandler={this.changeHandler} search={this.search} />
         {searchQuestions.results.map((question, i) => {
           if (i < limit) {
-            return <Question key={question.question_id} questionBody={question.question_body} questId={question.question_id} helpful={question.question_helpfulness} />
+            return (
+              <Question
+                key={question.question_id}
+                questionBody={question.question_body}
+                questId={question.question_id}
+                helpful={question.question_helpfulness}
+              />
+            );
           }
         })}
-        <AnswerList />
+        {/* <AnswerList /> */}
         <div className="btn-ctr">
-          <button className="maq-btn" type="button">MORE ANSWERED QUESTIONS</button>
+          <button className="maq-btn" type="button">
+            MORE ANSWERED QUESTIONS
+          </button>
           <div className="qa-modal">
             <ModalQA show={show} handleClose={this.hideModal}>
               <AskYourQuestionForm handleClose={this.hideModal} />
             </ModalQA>
           </div>
-          <button className="aaq-btn" type="submit" onClick={this.showModal}>ADD A QUESTION +</button>
+          <button className="aaq-btn" type="submit" onClick={this.showModal}>
+            ADD A QUESTION +
+          </button>
         </div>
       </div>
     );

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
 import Cookies from 'js-cookie';
-
-import { url, headers } from '../../config';
 // import RelatedProductsList from './RelatedProductsList';
 import ProductsList from './ProductsList';
 import Modal from '../ui/Modal/Modal';
@@ -21,7 +19,9 @@ function RelatedProducts({ id }) {
   const [comparedProductInfo, setComparedProductInfo] = useState(null);
 
   const getCurrentProductInfo = () => {
-    axios.get(`${url}/products/${id}`, headers)
+    axios.get(`${process.env.URL}/products/${id}`, {headers: {
+      Authorization: process.env.KEY,
+    }})
       .then(({ data }) => setCurrentProductInfo(data))
       .catch((err) => { console.log(err); });
   };
@@ -40,7 +40,9 @@ function RelatedProducts({ id }) {
   };
   const getInfoFromIdArray = (ids) => {
     let cards;
-    return axios.all(ids.map((_id) => axios.get(`${url}/products/${_id}`, headers)))
+    return axios.all(ids.map((_id) => axios.get(`${process.env.URL}/products/${_id}`, {headers: {
+      Authorization: process.env.KEY,
+    }})))
       .then((data) => {
         cards = data.map((res) => {
           const card = res.data;
@@ -52,14 +54,18 @@ function RelatedProducts({ id }) {
           };
         });
       })
-      .then(() => axios.all(cards.map((card) => axios.get(`${url}/products/${card.id}/styles`, headers))))
+      .then(() => axios.all(cards.map((card) => axios.get(`${process.env.URL}/products/${card.id}/styles`, {headers: {
+      Authorization: process.env.KEY,
+    }}))))
       .then((res) => {
         cards = cards.map((card, i) => ({
           ...card,
           image: res[i].data.results[0].photos[0].thumbnail_url,
         }));
       })
-      .then(() => axios.all(cards.map((card) => axios.get(`${url}/reviews/meta?product_id=${card.id}`, headers))))
+      .then(() => axios.all(cards.map((card) => axios.get(`${process.env.URL}/reviews/meta?product_id=${card.id}`, {headers: {
+      Authorization: process.env.KEY,
+    }}))))
       .then((res) => cards.map((card, i) => ({
         ...card,
         avgRating: getAvgRating(res[i].data.ratings),
@@ -67,7 +73,9 @@ function RelatedProducts({ id }) {
       .catch((err) => { console.log(err); });
   };
   const getRelatedProducts = () => {
-    axios.get(`${url}/products/${id}/related`, headers)
+    axios.get(`${process.env.URL}/products/${id}/related`, {headers: {
+      Authorization: process.env.KEY,
+    }})
       .then(({ data }) => {
         const ids = [...new Set(data)];
         return getInfoFromIdArray(ids);
@@ -91,7 +99,9 @@ function RelatedProducts({ id }) {
     }
   };
   const openModal = (comparedId) => {
-    axios.get(`${url}/products/${comparedId}`, headers)
+    axios.get(`${process.env.URL}/products/${comparedId}`, {headers: {
+      Authorization: process.env.KEY,
+    }})
       .then(({ data }) => {
         setComparedProductInfo(data);
         setShowModal(true);

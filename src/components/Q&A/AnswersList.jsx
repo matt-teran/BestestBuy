@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import propTypes from 'prop-types';
 import moment from 'moment';
-import { url, headers } from '../../config';
+// import { url, headers } from '../../config';
 import Answer from './Answer';
 
 class AnswerList extends React.Component {
@@ -24,9 +24,12 @@ class AnswerList extends React.Component {
   }
 
   getAnswer(questId) {
-    axios(`${url}/qa/questions/${questId}/answers?count=25`, headers)
+    axios(`${process.env.URL}/qa/questions/${questId}/answers?count=25`, {
+      headers: {
+        Authorization: process.env.KEY,
+      },
+    })
       .then((response) => {
-        console.log(response);
         this.setState({
           answers: response.data,
         });
@@ -44,13 +47,15 @@ class AnswerList extends React.Component {
 
   removeLimit() {
     const { limit, answers, expanded } = this.state;
-    limit === 2 ? (this.setState({
-      limit: answers.results.length,
-      expanded: true,
-    })) : (this.setState({
-      limit: 2,
-      expanded: false,
-    }));
+    limit === 2
+      ? this.setState({
+        limit: answers.results.length,
+        expanded: true,
+      })
+      : this.setState({
+        limit: 2,
+        expanded: false,
+      });
   }
 
   render() {
@@ -61,18 +66,38 @@ class AnswerList extends React.Component {
       <div className="answer-list-ctr">
         {answers.results.map((answer, i) => {
           if (i < limit) {
-            return <Answer key={answer.answer_id} answerBody={answer.body} answerer={answer.answerer_name} date={moment(answer.date).fromNow()} helpful={answer.helpfulness} />;
+            return (
+              <Answer
+                key={answer.answer_id}
+                answerBody={answer.body}
+                answerer={answer.answerer_name}
+                date={moment(answer.date).fromNow()}
+                helpful={answer.helpfulness}
+              />
+            );
           }
         })}
         {answers.results.length > 2 ? (
           <div>
-            {(!expanded) ? (
-              <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Load More Answers</button>
+            {!expanded ? (
+              <button
+                type="button"
+                className="more-answers-btn"
+                onClick={this.removeLimit}
+              >
+                Load More Answers
+              </button>
             ) : (
-              <button type="button" className="more-answers-btn" onClick={this.removeLimit}>Collapse Answers</button>
+              <button
+                type="button"
+                className="more-answers-btn"
+                onClick={this.removeLimit}
+              >
+                Collapse Answers
+              </button>
             )}
           </div>
-        ) : (null)}
+        ) : null}
       </div>
     );
   }

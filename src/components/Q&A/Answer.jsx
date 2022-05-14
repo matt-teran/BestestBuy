@@ -1,7 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-function Answer({ answerBody, answerer, date, helpful }) {
+function Answer({
+  answerBody, answerer, date, helpful,
+}) {
   return (
     <div>
       <div className="answer-ctr">
@@ -20,9 +22,9 @@ function Answer({ answerBody, answerer, date, helpful }) {
           Helpful?
           {' '}
           <button className="helpful-btn" type="submit">Yes</button>
-          {'('}
+          (
           {helpful}
-          {')'}
+          )
           {'  |  '}
           <button className="report-btn" type="submit">Report</button>
         </h5>
@@ -34,7 +36,7 @@ function Answer({ answerBody, answerer, date, helpful }) {
 Answer.propTypes = {
   answerBody: propTypes.string.isRequired,
   answerer: propTypes.string.isRequired,
-  date: propTypes.func.isRequired,
+  date: propTypes.string.isRequired,
   helpful: propTypes.number.isRequired,
 };
 

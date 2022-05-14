@@ -144,7 +144,7 @@ class ReviewsList extends React.Component {
       return (
         <div className="reviews-List">
           {reviewsToShow.map((review, index) =>
-            <ReviewTile key={index} review={review} />)}
+            <ReviewTile key={review.summary} review={review} />)}
           {!hideButton ? <button type="button" className="More-Reviews-button" onClick={this.handleMoreReviews}>More Reviews</button> : null}
         </div>
       );

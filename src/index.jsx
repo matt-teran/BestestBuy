@@ -1,3 +1,4 @@
+// import 'dotenv/config';
 import React from 'react';
 import reactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
