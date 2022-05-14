@@ -1,5 +1,5 @@
 import React from 'react';
-import './modalQA.scss';
+import './ModalQA.scss';
 
 function ModalQA({ handleClose, show, children }) {
   if (show === false) {
@@ -9,8 +9,7 @@ function ModalQA({ handleClose, show, children }) {
     <div className="modal-qa">
       <section className="modal-main-qa">
         {children}
-        <button type="button" onClick={handleClose}>
-        </button>
+        <button type="button" onClick={handleClose} />
       </section>
     </div>
   );
