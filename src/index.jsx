@@ -1,8 +1,12 @@
-// import 'dotenv/config';
 import React from 'react';
 import reactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 
-import AppRouter from './components/AppRouter.jsx';
+import AppRouter from './components/AppRouter';
 
-reactDOM.render(<HashRouter><AppRouter /></HashRouter>, document.getElementById('root'));
+reactDOM.render(
+  <HashRouter>
+    <AppRouter />
+  </HashRouter>,
+  document.getElementById('root'),
+);

@@ -9,26 +9,28 @@ import StarRating from './Product information/StarRating';
 import Cart from './Product information/Cart';
 
 function ProductInformation({
-  category, title, price, rating, review, salePrice, cartButton,
-  togglePop, seen, cart,
+  price, rating, review, salePrice, cartButton,
+  togglePop, seen, cart, productInfo,
 }) {
   return (
     <div>
       <div>
-        <FontAwesomeIcon className="shopping-cart" icon={faCartShopping} onClick={() => cartButton()} aria-hidden="true" />
+        <FontAwesomeIcon className="shopping-cart" icon={faCartShopping} onClick={cartButton} aria-hidden="true" />
       </div>
-      <div>{seen ? <Cart toggle={() => togglePop()} cart={cart} /> : null}</div>
+      <div>{seen ? <Cart toggle={togglePop} cart={cart} /> : null}</div>
       <div><StarRating rating={rating} review={review} /></div>
-      <div><ProductCategory category={category} /></div>
-      <div><ProductTitle title={title} /></div>
+      <div><ProductCategory category={productInfo.category} /></div>
+      <div><ProductTitle title={productInfo.title} /></div>
       <div><Price price={price} salePrice={salePrice} /></div>
     </div>
   );
 }
 
 ProductInformation.propTypes = {
-  category: PropTypes.string,
-  title: PropTypes.string,
+  productInfo: PropTypes.shape({
+    category: PropTypes.string,
+    title: PropTypes.string,
+  }),
   price: PropTypes.string,
   rating: PropTypes.number,
   review: PropTypes.number,
@@ -40,8 +42,10 @@ ProductInformation.propTypes = {
 };
 
 ProductInformation.defaultProps = {
-  category: '',
-  title: '',
+  productInfo: {
+    category: '',
+    title: '',
+  },
   price: '',
   rating: 0,
   review: 0,

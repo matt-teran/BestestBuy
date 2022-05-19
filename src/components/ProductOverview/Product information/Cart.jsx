@@ -5,25 +5,19 @@ import './ProductInformation.scss';
 export default class Cart extends Component {
   constructor(props) {
     super(props);
-    const { toggle } = this.props;
     const { cart } = this.props;
     this.state = {
-      togglePop: toggle,
       shoppingCart: cart,
     };
   }
 
-  handleClick() {
-    const { togglePop } = this.state;
-    togglePop();
-  }
-
   render() {
     const { shoppingCart } = this.state;
+    const { toggle } = this.props;
     return (
       <div className="overview-modal">
         <div className="cart-content">
-          <span className="close" onClick={() => this.handleClick()} aria-hidden="true">&times;</span>
+          <span className="close" onClick={toggle} aria-hidden="true">&times;</span>
           <h3>Shopping Cart</h3>
           <div className="items-in-cart">
             {
