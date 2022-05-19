@@ -7,7 +7,7 @@ function StyleSelector({
   styles, selectStyle, title, styleId,
 }) {
   return (
-    <div>
+    <div className="styles">
       <div className="style-title">
         <StyleTitle title={title} />
       </div>

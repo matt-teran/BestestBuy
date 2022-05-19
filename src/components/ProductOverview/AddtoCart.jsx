@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SizeSelector from './Add to cart/SizeSelector';
 import QuantitySelector from './Add to cart/QuantitySelector';
@@ -8,30 +8,26 @@ function AddtoCart({
   sizeAndQuantity, selectSizeAndQuantity, currentSizeAndQuantity,
   selectQuantity, addToCart, openDropdown, open, quantitySelected,
 }) {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   return (
-    <div>
-      <div>
-        <SizeSelector
-          sizeAndQuantity={sizeAndQuantity}
-          selectSizeAndQuantity={(event) => selectSizeAndQuantity(event)}
-          open={open}
-          currentSizeAndQuantity={currentSizeAndQuantity}
-        />
-      </div>
-      <div>
-        <QuantitySelector
-          currentQuantity={currentSizeAndQuantity.value}
-          selectQuantity={(event) => selectQuantity(event)}
-          quantitySelected={quantitySelected}
-        />
-      </div>
-      <div>
-        <AddtoCartButton
-          addToCart={() => addToCart()}
-          currentQuantity={currentSizeAndQuantity.value}
-          openDropdown={() => openDropdown()}
-        />
-      </div>
+    <div className="add-to-cart">
+      <SizeSelector
+        sizeAndQuantity={sizeAndQuantity}
+        selectSizeAndQuantity={(event) => selectSizeAndQuantity(event)}
+        open={open}
+        currentSizeAndQuantity={currentSizeAndQuantity}
+      />
+      <QuantitySelector
+        currentQuantity={currentSizeAndQuantity.value}
+        selectQuantity={(event) => selectQuantity(event)}
+        quantitySelected={quantitySelected}
+      />
+      <AddtoCartButton
+        addToCart={() => addToCart()}
+        currentQuantity={currentSizeAndQuantity.value}
+        openDropdown={() => openDropdown()}
+      />
     </div>
   );
 }

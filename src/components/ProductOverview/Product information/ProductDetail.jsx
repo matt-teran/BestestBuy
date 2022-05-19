@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ProductDetail({ slogan, description, features }) {
-  const featuresWithIndex = [];
-  for (let i = 0; i < features.length; i += 1) {
-    featuresWithIndex.push({ feature: features[i].feature, value: features[i].value, id: i });
-  }
+function ProductDetail({ productInfo }) {
   return (
     <div className="product-detail">
-      <b id="slogan">{slogan}</b>
-      <p id="description">{description}</p>
-      {featuresWithIndex.map((feature) => (
-        <p key={feature.id} className="features">
+      <b id="slogan">{productInfo.slogan}</b>
+      <p id="description">{productInfo.description}</p>
+      {productInfo.features.map((feature) => (
+        <p key={feature.feature} className="features">
           <b>√</b>
           {' '}
           {feature.feature}
@@ -24,17 +20,21 @@ function ProductDetail({ slogan, description, features }) {
 }
 
 ProductDetail.propTypes = {
-  slogan: PropTypes.string,
-  description: PropTypes.string,
-  features: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number, feature: PropTypes.string, value: PropTypes.string,
-  })),
+  productInfo: PropTypes.shape({
+    slogan: PropTypes.string,
+    description: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number, feature: PropTypes.string, value: PropTypes.string,
+    })),
+  }),
 };
 
 ProductDetail.defaultProps = {
-  slogan: '',
-  description: '',
-  features: [],
+  productInfo: {
+    slogan: '',
+    description: '',
+    features: [],
+  },
 };
 
 export default ProductDetail;
